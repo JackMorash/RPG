@@ -1,4 +1,4 @@
 # RPG: Oregon Trail Changelog
-v1.0
+[v0.1] - 2021-01-14
 - File created
 - Basic numerical inventory created
