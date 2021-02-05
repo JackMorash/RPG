@@ -7,3 +7,10 @@
 - Introductory menu's added
 - Player attributes defined
 - Placeholder numerical inventory removed
+
+[v0.3] - 2021-02-05
+- Store interface created
+- Added name selection for player
+- Added party members + name selection for them
+- Added story elements
+- Added date of departure selector
