@@ -10,7 +10,7 @@ Python 3.7 is needed to play this game. [Python 3.7](https://www.python.org/down
 ## Run the Program
 
 ```python
-python oregontrail.py
+python or_main.py
 ```
 
 ## Contributing
