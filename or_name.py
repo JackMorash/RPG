@@ -7,6 +7,7 @@ from or_player import player
 def name():
     """Asks for a name for the player (wagon leader)"""
     print("\nWhat is the first name of the [blue]wagon leader?[/blue]")
-    or_player.Player.name = input("\n--> ")
-
+    name = input("\n--> ")
+    if name == "exit":
+      return None
     members()
