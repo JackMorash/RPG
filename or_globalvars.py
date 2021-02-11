@@ -34,13 +34,13 @@ class GameGlobals:
             int(self.amount_spent_on_clothing), 0)
         self.amount_spent_on_miscellaneous = max(
             int(self.amount_spent_on_miscellaneous), 0)
-        print("=================================================")
+        print("="*53)
         print("[cyan]Food: [/cyan]", self.amount_spent_on_food)
         print("[cyan]Bullets: [/cyan]", self.amount_spent_on_bullets)
         print("[cyan]Clothing: [/cyan]", self.amount_spent_on_clothing)
         print("[cyan]Supplies: [/cyan]", self.amount_spent_on_miscellaneous)
         print("[green]Money : $[/green]", self.cash_total)
-        print("=================================================")
+        print("="*53)
 
     def increment_turn(self):
         self.current_date += 1
