@@ -38,17 +38,23 @@ leave [red]Independence[/red]")
             matt_message()
             break
         elif month == "2":
+            del dates[1]
             matt_message()
             break
         elif month == "3":
+            del dates[1:3]
             matt_message()
             break
         elif month == "4":
+            del dates[1:5]
             matt_message()
             break
         elif month == "5":
+            del dates[1:7]
             matt_message()
             break
+        elif month == "exit":
+            return None
         else:
             print("\n[red]Invalid Selection, please enter a number[/red]")
         continue
@@ -59,9 +65,9 @@ weekdays = ["SATURDAY", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY",
 
 
 def print_date(turn_number):
-    print("==================================================")
+    print("=" * 53)
     print("{} {} 1847".format(weekdays[0], dates[turn_number]))
-    print("==================================================")
+    print("=" * 53)
 
 
 def print_weekday(amount):
