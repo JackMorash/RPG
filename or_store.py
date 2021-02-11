@@ -1,8 +1,8 @@
 from rich import print
 from rich.console import Console
 from rich.table import Table
-import or_player
 from or_player import player
+from or_main import journey
 
 oxen_total = 0
 food_total = 0
@@ -193,7 +193,8 @@ def store():
     console.print(table)
 
     while True:
-        print("Which item would you like to buy?")
+        print("Which item would you like to buy?\n\n[cyan italic]\
+Press spacebar to exit the store[/cyan italic]")
         selection = input("\n-->")
         if selection == "1":
             oxen()
@@ -209,6 +210,17 @@ def store():
             break
         elif selection == "5":
             parts()
+            break
+        elif selection == "exit":
+            return None
+        elif selection == "leave":
+            if player.oxen < 1:
+                print("[cyan italic] Don't forget,\
+ you'll need oxen to pull your wagon![/cyan italic]")
+            elif player.oxen > 1:
+                print("[cyan italic]Well then, you are ready to start.\
+ Good luck! You have a long and difficult journey ahead of you...[/cyan italic]")
+            journey()
             break
         else:
             print("\n[red]Invalid Selection[/red]\n")
