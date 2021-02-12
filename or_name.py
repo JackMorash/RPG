@@ -12,4 +12,6 @@ def name():
     print("\nWhat is the first name of the [blue]wagon leader?[/blue]")
     or_player.Player.name = input("\n--> ")
     console.clear()
+    if input == "exit":
+        return None
     members()

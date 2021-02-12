@@ -33,6 +33,8 @@ def job():
 [bold cyan]Farmer[/bold cyan]\n")
             or_player.Player.job = "Farmer"
             break
+        elif job == "exit":
+            return None
         elif ValueError:
             print("\n[bold red]Invalid selection, please enter a number \
 [/bold red]\n")
