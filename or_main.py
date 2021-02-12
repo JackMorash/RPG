@@ -11,10 +11,12 @@ from rich.markdown import Markdown
 from rich import print
 from or_jobs import job
 from or_player import player
+from time import sleep
 
 # Creates empty list for party member names
 mem_names = []
 console = Console()
+console.clear()
 
 
 def menu():
@@ -29,21 +31,26 @@ Python Edition![/u]\n")
         print("3.) Changelog")
         option = input("\n--> ")
         if option == "start":
+            console.clear()
             job()
             break
         elif option == "exit":
             continue
         elif option == "1":
+            console.clear()
             job()
             break
         elif option == "2":
             continue
         elif option == "3":
+            console.clear()
             with open("changelog.md") as md:
                 markdown = Markdown(md.read())
             console.print(markdown)
         else:
             print("[bold red]Invalid Selection[/bold red]")
+        sleep(2)
+        console.clear()
 
 
 menu()

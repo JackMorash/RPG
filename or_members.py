@@ -1,6 +1,9 @@
 from or_dates import choose_date
 from rich import print
 from or_player import player
+from rich.console import Console
+
+console = Console()
 
 
 def members():
@@ -16,4 +19,5 @@ def members():
     mem_names.append(member2)
     mem_names.append(member3)
     mem_names.append(member4)
+    console.clear()
     choose_date()

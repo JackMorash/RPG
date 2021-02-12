@@ -1,6 +1,8 @@
 from or_store import matt_message
 from rich import print
 from or_player import player
+from rich.console import Console
+console = Console()
 
 dates = ["MARCH 29",
          "APRIL 12 ",
@@ -35,23 +37,29 @@ leave [red]Independence[/red]")
     while True:
         month = input("\n-->")
         if month == "1":
+            console.clear()
             matt_message()
             break
         elif month == "2":
+            console.clear()
             matt_message()
             break
         elif month == "3":
+            console.clear()
             matt_message()
             break
         elif month == "4":
+            console.clear()
             matt_message()
             break
         elif month == "5":
+            console.clear()
             matt_message()
             break
         else:
             print("\n[red]Invalid Selection, please enter a number[/red]")
         continue
+    console.clear()
 
 
 weekdays = ["SATURDAY", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY",

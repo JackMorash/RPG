@@ -2,6 +2,9 @@ import or_player
 from or_name import name
 from rich import print
 from or_player import player
+from rich.console import Console
+
+console = Console()
 
 
 def job():
@@ -34,4 +37,5 @@ def job():
             print("\n[bold red]Invalid selection, please enter a number \
 [/bold red]\n")
         continue
+    console.clear()
     name()
