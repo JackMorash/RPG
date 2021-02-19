@@ -14,3 +14,6 @@
 - Added party members + name selection for them
 - Added story elements
 - Added date of departure selector
+[v0.4] - 2021-02-18
+- Created map
+- Removed redundant files
