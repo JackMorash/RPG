@@ -2,6 +2,7 @@ import time
 
 from rich import print
 from rich.console import Console
+from rich.progress import track
 from rich.table import Table
 
 from or_map import map
