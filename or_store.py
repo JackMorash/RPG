@@ -1,10 +1,11 @@
+import time
+
 from rich import print
 from rich.console import Console
 from rich.table import Table
-from rich import track
+
+from or_map import map
 from or_player import player
-from or_main import journey
-from time import sleep
 
 oxen_total = 0
 food_total = 0
@@ -23,18 +24,17 @@ I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
         oxen_total = float(amount)
         if (oxen_total * 40.00) > player.money:
             print("[red]You can't spend that much on oxen[/red]")
-            sleep(1.5)
+            time.sleep(1.5)
             continue
         if player.money <= 0:
             print("\n[red] You can't spend any more.[/red]")
-            sleep(1.5)
+            time.sleep(1.5)
             console.clear()
             store()
             continue
         elif player.money > 0:
             player.money = player.money - (oxen_total * 40.00)
             player.oxen = player.oxen + oxen_total
-            console.clear()
             store()
             break
         elif ValueError:
@@ -54,11 +54,11 @@ def food():
         food_total = float(amount)
         if (food_total * 0.20) > player.money:
             print("[red]You can't spend that much on food[/red]")
-            sleep(1.5)
+            time.sleep(1.5)
             continue
         if player.money <= 0:
             print("\n[red] You can't spend any more.[/red]")
-            sleep(1.5)
+            time.sleep(1.5)
             console.clear()
             store()
             continue
@@ -84,11 +84,11 @@ def clothes():
         clothes_total = float(amount)
         if (clothes_total * 40.00) > player.money:
             print("[red]You can't spend that much on clothes[/red]")
-            sleep(1.5)
+            time.sleep(1.5)
             continue
         if player.money <= 0:
             print("\n[red] You can't spend any more.[/red]")
-            sleep(1.5)
+            time.sleep(1.5)
             console.clear()
             store()
             break
@@ -114,11 +114,11 @@ box costs [green]$2.00.[/green][/cyan italic]\n")
         if (bullets_total * 2.00) > player.money:
             print("[red]You can't buy that many bullets, it's not like\
 you are an American or something...oh wait[/red]")
-            sleep(1.5)
+            time.sleep(1.5)
             continue
         if player.money <= 0:
             print("\n[red] You can't spend any more.[/red]\n")
-            sleep(1.5)
+            time.sleep(1.5)
             console.clear()
             store()
             break
@@ -151,11 +151,11 @@ def parts():
         parts_total = (wheels + axles + tongues)
         if (parts_total) > player.money:
             print("[red]You can't spend that much on spare parts[/red]")
-            sleep(1.5)
+            time.sleep(1.5)
             continue
         if player.money <= 0:
             print("\n[red] You can't spend any more.[/red]")
-            sleep(1.5)
+            time.sleep(1.5)
             console.clear()
             store()
             break
@@ -175,22 +175,20 @@ def parts():
 def matt_message():
     """Prints store message, creates store interface"""
     for step in track(range(13), description="Beginning Your Journey..."):
-        sleep(0.2)
-    sleep(1.5)
+        time.sleep(0.2)
+    time.sleep(1.5)
     print("\nBefore leaving [red]Independence[/red] you should buy equipment \
 and supplies. You have [green]$1600.00[/green] in cash, but you \
 dont have to spend it \
 all now.\n\n You can buy whatever you need at \
 [red]Matt's General Store[/red]")
+    input("Press Enter to continue...")
+    console.clear()
     print("\n[cyan italic] Hello, I'm Matt. So you're going to Oregon! I can\
  fix you up with what you need:\n\n\n - [blue]A team of oxen to pull your \
 wagon\
 \n - Clothing for both winter and summer[/blue]\n\n")
-    key = input("Press Enter to continue")
-    console.clear()
-    print("\n[blue italic]- Plenty of food for the trip\n\
-- Ammunition for your rifles\n- Spare parts for your wagon\n[/blue italic]")
-    key = input("Press Enter to continue")
+    input("Press Enter to continue...")
     console.clear()
     store()
 
@@ -201,7 +199,6 @@ def store():
     c = player.clothes * 40.00
     f = player.food * 0.20
     o = player.oxen * 40.00
-    console = Console()
 # Store interface
     table = Table(show_header=True, header_style="bold magenta")
     table.add_column("Goods")
@@ -234,7 +231,7 @@ def store():
 
     while True:
         print("Which item would you like to buy?\n\n[cyan italic]\
-Press spacebar to exit the store[/cyan italic]")
+Type 'leave' to exit the store[/cyan italic]")
         selection = input("\n-->")
         if selection == "1":
             console.clear()
@@ -257,15 +254,23 @@ Press spacebar to exit the store[/cyan italic]")
             parts()
             break
         elif selection == "exit":
+            console.clear()
             return None
         elif selection == "leave":
             if player.oxen < 1:
                 print("[cyan italic] Don't forget,\
  you'll need oxen to pull your wagon![/cyan italic]")
+                input("Press Enter to Continue...")
+                console.clear()
+                store()
             elif player.oxen > 1:
+                console.clear()
                 print("[cyan italic]Well then, you are ready to start.\
- Good luck! You have a long and difficult journey ahead of you...[/cyan italic]")
-            journey()
+ Good luck! You have a long and difficult\
+ journey ahead of you...[/cyan italic]")
+            input("Press Enter to Continue...")
+            console.clear()
+            map()
             break
         else:
             print("\n[red]Invalid Selection[/red]\n")
