@@ -1,14 +1,18 @@
+import time
+
 from rich import print
 from rich.console import Console
 from rich.table import Table
+
+from or_map import map
 from or_player import player
-from or_main import journey
 
 oxen_total = 0
 food_total = 0
 clothes_total = 0
 bullets_total = 0
 parts_total = 0
+console = Console()
 
 
 def oxen():
@@ -27,8 +31,6 @@ I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
         elif player.money > 0:
             player.money = player.money - (oxen_total * 40.00)
             player.oxen = player.oxen + oxen_total
-            print(player.oxen)
-            print(player.money)
             store()
             break
         elif ValueError:
@@ -147,11 +149,14 @@ and supplies. You have [green]$1600.00[/green] in cash, but you \
 dont have to spend it \
 all now.\n\n You can buy whatever you need at \
 [red]Matt's General Store[/red]")
+    input("Press Enter to continue...")
+    console.clear()
     print("\n[cyan italic] Hello, I'm Matt. So you're going to Oregon! I can\
  fix you up with what you need:\n\n\n - [blue]A team of oxen to pull your \
 wagon\
 \n - Clothing for both winter and summer[/blue]\n\n")
-    key = input("Press Enter to continue")
+    input("Press Enter to continue...")
+    console.clear()
     store()
 
 
@@ -161,7 +166,6 @@ def store():
     c = player.clothes * 40.00
     f = player.food * 0.20
     o = player.oxen * 40.00
-    console = Console()
 # Store interface
     table = Table(show_header=True, header_style="bold magenta")
     table.add_column("Goods")
@@ -194,33 +198,46 @@ def store():
 
     while True:
         print("Which item would you like to buy?\n\n[cyan italic]\
-Press spacebar to exit the store[/cyan italic]")
+Type 'leave' to exit the store[/cyan italic]")
         selection = input("\n-->")
         if selection == "1":
+            console.clear()
             oxen()
             break
         elif selection == "2":
+            console.clear()
             food()
             break
         elif selection == "3":
+            console.clear()
             clothes()
             break
         elif selection == "4":
+            console.clear()
             bullets()
             break
         elif selection == "5":
+            console.clear()
             parts()
             break
         elif selection == "exit":
+            console.clear()
             return None
         elif selection == "leave":
             if player.oxen < 1:
                 print("[cyan italic] Don't forget,\
  you'll need oxen to pull your wagon![/cyan italic]")
+                input("Press Enter to Continue...")
+                console.clear()
+                store()
             elif player.oxen > 1:
+                console.clear()
                 print("[cyan italic]Well then, you are ready to start.\
- Good luck! You have a long and difficult journey ahead of you...[/cyan italic]")
-            journey()
+ Good luck! You have a long and difficult\
+ journey ahead of you...[/cyan italic]")
+            input("Press Enter to Continue...")
+            console.clear()
+            map()
             break
         else:
             print("\n[red]Invalid Selection[/red]\n")

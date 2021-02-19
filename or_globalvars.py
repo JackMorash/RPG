@@ -1,5 +1,6 @@
 from rich import print
 
+
 class GameGlobals:
     def __init__(self):
         self.dead = False
