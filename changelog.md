@@ -18,3 +18,6 @@
 [v0.4] - 2021-02-18
 - Created map
 - Removed redundant files
+
+[v0.5] - 2021-02-20
+- Added exceptions for value errors
