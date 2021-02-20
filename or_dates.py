@@ -64,6 +64,8 @@ leave [red]Independence[/red]")
         elif month == "exit":
             console.clear()
             return None
+        elif ValueError:
+            print("\n[red]Invalid Selection, please enter a number[/red]")
         else:
             print("\n[red]Invalid Selection, please enter a number[/red]")
         continue

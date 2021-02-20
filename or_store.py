@@ -257,6 +257,9 @@ Type 'leave' to exit the store[/cyan italic]")
         elif selection == "exit":
             console.clear()
             return None
+        elif selection == ValueError:
+            print("[bold red]Invalid Selection[/bold red]")
+            continue
         elif selection == "leave":
             if player.oxen < 1:
                 print("[cyan italic] Don't forget,\

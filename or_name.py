@@ -1,8 +1,9 @@
-from or_members import members
-import or_player
 from rich import print
-from or_player import player
 from rich.console import Console
+
+import or_player
+from or_members import members
+from or_player import player
 
 console = Console()
 
@@ -14,4 +15,6 @@ def name():
     console.clear()
     if input == "exit":
         return None
+    elif input == ValueError:
+        print("[bold red]Invalid Input[/bold red]")
     members()

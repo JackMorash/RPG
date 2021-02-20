@@ -43,3 +43,8 @@ def map():
 * * * * * * * * * * * * *
 
     """)
+    option = input("\n--> ")
+    if option == "exit":
+        return False
+    elif ValueError:
+        return False
