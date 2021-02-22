@@ -21,3 +21,6 @@
 
 [v0.5] - 2021-02-20
 - Added exceptions for value errors
+
+[v0.6] - 2021-02-21
+- Added trail
