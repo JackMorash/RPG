@@ -3,6 +3,8 @@ import time
 
 from rich import print
 
+import or_player
+
 
 class GameGlobals:
     def __init__(self):
@@ -29,6 +31,9 @@ class GameGlobals:
         self.hostility_of_riders = False
         self.cash_total = -1
         self.has_fort = False
+        self.got_shot = False
+        self.cold_weather = False
+        self.raining = False
 
     def print_inventory(self):
         self.amount_spent_on_food = max(int(self.amount_spent_on_food), 0)
@@ -52,7 +57,7 @@ class GameGlobals:
     def print_too_long(self):
         print("[red]You have been on the trail for too long...[/red]")
         print("[red]Your family dies in the \
-first blizzard of the winter[/red]")
+    first blizzard of the winter[/red]")
         self.dead = True
 
     def no_turns_left(self, arr):
@@ -71,13 +76,13 @@ first blizzard of the winter[/red]")
                 text_2_int = None
         return text_2_int
 
-    def shooting(shooting_level):
-        words = ["bang", "blam", "pow", "wham"]
+    def shooting():
+        words = ["BANG", "BLAM", "POW", "WHAM"]
         word = random.choice(words)
         t0 = time.time()
-        typed_word = input("TYPE {}: ".format(word))
+        typed_word = input("{}".format(word))
         t1 = time.time()
-        B1 = (t1-t0)-(shooting_level-1)
+        B1 = (t1-t0)-(vars.shooting_level)
         if typed_word != word:
             return 9
         return max(B1, 0)
@@ -99,4 +104,12 @@ first blizzard of the winter[/red]")
             this_vars.has_illness = True
 
 
+def health():
+    if vars.is_injured == True:
+        health = "Injured"
+    elif vars.is_injured == False:
+        health = "Good"
+
+
 vars = GameGlobals()
+
