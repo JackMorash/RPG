@@ -27,3 +27,10 @@
 
 [v0.7] - 2021-02-21
 - Added random events
+
+[v0.8] 20221-02-22
+- Fixed issue with date storing
+- Added functions to set weather type
+- Added Weather globals
+- Removed redundacies
+- Added new options to trail.py
