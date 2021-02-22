@@ -1,5 +1,7 @@
 import random
 
+from rich import print
+
 from or_globalvars import vars
 
 
@@ -43,9 +45,9 @@ def weather():
     """Random event for handling both weather events"""
 # Determines what weather event to use
     if vars.total_mileage > vars.SOUTH_PASS_IN_MILES:
-        cold_weather(vars)
+        cold_weather()
     else:
-        heavy_rains(vars)
+        heavy_rains()
 
 
 def wagon_break_down():
@@ -221,7 +223,7 @@ events_list = [weather, wagon_break_down, ox_injuries, arm_broke,
 
 def events():
     """Function for determining which event occurs"""
-    random.choice(events_list)
+    random.choice(events_list)()
 
 
 events()

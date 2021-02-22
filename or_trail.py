@@ -3,8 +3,9 @@ import or_map
 
 
 def walking_trail():
-    print("March 1, 1848  --  Independence, Missuori")
-    print("""
+    while True:
+        print("March 1, 1848  --  Independence, Missuori")
+        print("""
 ===============================================================================
     Weather:
     Health:
@@ -17,10 +18,10 @@ You May:
     2. Check supplies
     3. Check map
     """)
-    option = input("What is your choice? ")
-    if option == "1":
-        or_events.events()
-    elif option == "2":
-        print()
-    elif option == "3":
-        or_map.map()
+        option = input("What is your choice? ")
+        if option == "1":
+            or_events.events()
+        elif option == "2":
+            print()
+        elif option == "3":
+            or_map.map()
