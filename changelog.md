@@ -24,3 +24,6 @@
 
 [v0.6] - 2021-02-21
 - Added trail
+
+[v0.7] - 2021-02-21
+- Added random events
