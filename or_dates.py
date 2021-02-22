@@ -5,26 +5,16 @@ from or_store import matt_message
 
 console = Console()
 # Possible starting dates
-dates = ["MARCH 29",
-         "APRIL 12 ",
-         "APRIL 26 ",
-         "MAY 10 ",
-         "MAY 24 ",
-         "JUNE 7 ",
-         "JUNE 21 ",
-         "JULY 5 ",
-         "JULY 19 ",
-         "AUGUST 2 ",
-         "AUGUST 16 ",
-         "AUGUST 31 ",
-         "SEPTEMBER 13 ",
-         "SEPTEMBER 27 ",
-         "OCTOBER 11 ",
-         "OCTOBER 25 ",
-         "NOVEMBER 8 ",
-         "NOVEMBER 22 ",
-         "DECEMBER 6 ",
-         "DECEMBER 20 "]
+dates = ["MARCH 1",
+         "APRIL 1",
+         "MAY 1",
+         "JUNE 1",
+         "JULY 1",
+         "AUGUST 1",
+         "SEPTEMBER 1",
+         "OCTOBER 1",
+         "NOVEMBER 1",
+         "DECEMBER 1"]
 
 
 def choose_date():
@@ -47,17 +37,17 @@ leave [red]Independence[/red]")
             matt_message()
             break
         elif month == "3":
-            del dates[1:3]
+            del dates[1:2]
             console.clear()
             matt_message()
             break
         elif month == "4":
-            del dates[1:5]
+            del dates[1:3]
             console.clear()
             matt_message()
             break
         elif month == "5":
-            del dates[1:7]
+            del dates[1:4]
             console.clear()
             matt_message()
             break
