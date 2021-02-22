@@ -3,10 +3,8 @@ import time
 from rich import print
 from rich.console import Console
 
-from or_dates import choose_date
+import or_dates
 from or_player import player
-
-console = Console()
 
 console = Console()
 
@@ -79,7 +77,7 @@ def members():
     mem_names.append(member3)
     mem_names.append(member4)
     console.clear()
-    choose_date()
+    or_dates.choose_date()
 
 
 def name():
