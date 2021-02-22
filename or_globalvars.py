@@ -54,3 +54,6 @@ first blizzard of the winter[/red]")
 
     def no_turns_left(self, arr):
         return self.current_date >= len(arr)
+
+
+vars = GameGlobals()

@@ -1,9 +1,10 @@
+import time
+
 from rich import print
 from rich.console import Console
-import time
+
 from or_dates import choose_date
 from or_player import player
-from rich.console import Console
 
 console = Console()
 

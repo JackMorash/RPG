@@ -5,8 +5,8 @@ from rich.console import Console
 from rich.progress import track
 from rich.table import Table
 
-from or_map import map
 from or_player import player
+from or_trail import walking_trail
 
 oxen_total = 0
 food_total = 0
@@ -274,7 +274,7 @@ Type 'leave' to exit the store[/cyan italic]")
  journey ahead of you...[/cyan italic]")
             input("Press Enter to Continue...")
             console.clear()
-            map()
+            walking_trail()
             break
         else:
             print("\n[red]Invalid Selection[/red]\n")

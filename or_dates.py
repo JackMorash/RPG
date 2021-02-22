@@ -71,6 +71,7 @@ leave [red]Independence[/red]")
         continue
     console.clear()
 
+
 # Weekday names
 weekdays = ["SATURDAY", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY",
             "THURSDAY", "FRIDAY"]

@@ -12,7 +12,7 @@ from rich import print
 from rich.console import Console
 from rich.markdown import Markdown
 
-from or_jobs import job
+import or_jobs
 
 # Creates empty list for party member names
 mem_names = []
@@ -22,7 +22,7 @@ console.clear()
 console.clear()
 
 
-def menu():
+def main_menu():
     """Function for displaying main menu"""
     while True:
         print("""
@@ -44,13 +44,13 @@ Python Edition![/u]\n""")
         option = input("\n--> ")
         if option == "start":
             console.clear()
-            job()
+            or_jobs.job()
             break
         elif option == "exit":
             return False
         elif option == "1":
             console.clear()
-            job()
+            or_jobs.job()
             break
         elif option == "2":
             return False
@@ -65,4 +65,4 @@ Python Edition![/u]\n""")
             continue
 
 
-menu()
+main_menu()
