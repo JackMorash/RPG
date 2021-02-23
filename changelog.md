@@ -34,3 +34,6 @@
 - Added Weather globals
 - Removed redundacies
 - Added new options to trail.py
+
+[v0.9] 2021-02-23
+- Fixed error where main.py was replaced with map.py
