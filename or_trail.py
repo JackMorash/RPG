@@ -22,6 +22,8 @@ def weather():
 def walking_trail(turn_number):
     """Function for displaying main game UI"""
     while True:
+        if vars.dead == "True":
+            print("")
         console.clear()
 # Prints UI
         print("{} {}, 1847".format(
@@ -53,5 +55,3 @@ def walking_trail(turn_number):
         elif option == "exit".lower:
             return False
 
-
-walking_trail(turn_number=1)

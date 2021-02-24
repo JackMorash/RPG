@@ -20,6 +20,7 @@ def cold_weather():
         if not enough_clothes:
             vars.is_sufficient_clothing = True
             vars.dead = True
+            vars.death()
         while True:
             option = input("Press Enter to Continue:")
             if option == "exit":
@@ -38,13 +39,12 @@ def heavy_rains():
         vars.amount_spent_on_bullets -= 500
         vars.amount_spent_on_miscellaneous -= 15
         vars.total_mileage -= (10 * random.random()) - 5
-        break
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
+        while True:
+            option = input("Press Enter to Continue:")
+            if option == "exit":
+                return False
+            else:
+                break
 
 
 def got_shot():
@@ -220,6 +220,7 @@ def snake_poison():
     if vars.amount_spent_on_miscellaneous < 0:
         print("\n[red]You die of a snakebite as you have no medicine.[/red]\n")
         vars.dead = True
+        vars.death()
     while True:
         option = input("Press Enter to Continue:")
         if option == "exit":
@@ -289,6 +290,7 @@ def animals_attack():
         print("\n[red]The wolves overpower your group![/red]\n")
         vars.is_injured = True
         vars.dead = True
+        vars.death()
     # Determines if you were fast enough to win the battle
     if response_time <= 2:
         print("\n[cyan italic]Nice shootin'! \

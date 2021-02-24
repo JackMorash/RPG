@@ -38,3 +38,6 @@
 [v0.9] 2021-02-23
 - Fixed error where main.py was replaced with map.py
 - Missing comments and docstrings added
+- Fixed comment mistypes on 2 comments
+- Fixed error where illnesses cant trigger death
+- Fixed error when getting shot 
