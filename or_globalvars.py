@@ -3,7 +3,7 @@ import time
 
 from rich import print
 
-import or_player
+from or_player import player
 
 
 class GameGlobals:
@@ -29,11 +29,12 @@ class GameGlobals:
         self.total_mileage_previous_turn = 0
         self.has_illness = False
         self.hostility_of_riders = False
-        self.cash_total = -1
         self.has_fort = False
         self.got_shot = False
         self.cold_weather = False
         self.raining = False
+        self.weather = "Fine"
+        self.health = "Healthy"
 
     def print_inventory(self):
         self.amount_spent_on_food = max(int(self.amount_spent_on_food), 0)
@@ -43,13 +44,22 @@ class GameGlobals:
             int(self.amount_spent_on_clothing), 0)
         self.amount_spent_on_miscellaneous = max(
             int(self.amount_spent_on_miscellaneous), 0)
-        print("="*53)
+        print("█"*79)
         print("[cyan]Food: [/cyan]", self.amount_spent_on_food)
         print("[cyan]Bullets: [/cyan]", self.amount_spent_on_bullets)
         print("[cyan]Clothing: [/cyan]", self.amount_spent_on_clothing)
         print("[cyan]Supplies: [/cyan]", self.amount_spent_on_miscellaneous)
-        print("[green]Money : $[/green]", self.cash_total)
-        print("="*53)
+        print("[green]Money : $[/green]", player.money)
+        print("█"*79)
+        input("-->")
+
+    def cont():
+        while True:
+            option = input("Press Enter to Continue:")
+            if option == "exit":
+                return False
+            else:
+                break
 
     def increment_turn(self):
         self.current_date += 1
@@ -90,26 +100,24 @@ class GameGlobals:
     def illness(this_vars):
         RND = random.random()
         if 100*RND < 10+35*(this_vars.choice_of_eating-1):
-            print("MILD ILLNESS---MEDICINE USED")
+            print("\n[red]MILD ILLNESS---MEDICINE USED[/red]\n")
             this_vars.total_mileage -= 5
             this_vars.amount_spent_on_miscellaneous -= 2
         elif 100*RND < 100-(40/4**(this_vars.choice_of_eating-1)):
-            print("BAD ILLNESS---MEDICINE USED")
+            print("\n[red]BAD ILLNESS---MEDICINE USED[/red]\n")
             this_vars.total_mileage -= 5
             this_vars.amount_spent_on_miscellaneous -= 5
         else:
-            print("SERIOUS ILLNESS")
-            print("YOU MUST STOP FOR MEDICAL ATTENTION")
+            print("\n[red]SERIOUS ILLNESS[/red]\n")
+            print("\n[red]YOU MUST STOP FOR MEDICAL ATTENTION[/red]\n")
             this_vars.amount_spent_on_miscellaneous -= 10
             this_vars.has_illness = True
 
-
-def health():
-    if vars.is_injured == True:
-        health = "Injured"
-    elif vars.is_injured == False:
-        health = "Good"
+    def hp():
+        if vars.is_injured == True:
+            health = "Injured"
+        elif vars.is_injured == False:
+            health = "Healthy"
 
 
 vars = GameGlobals()
-
