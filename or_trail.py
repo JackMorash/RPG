@@ -3,25 +3,12 @@ from rich.console import Console
 
 import or_dates
 import or_events
-import or_globalvars
 import or_map
 from or_globalvars import vars
 
 console = Console()
 
 
-    [cyan italic]Weather: {weather}[/cyan italic]
-    [cyan italic]Health: {health}[/cyan italic]
-    [cyan italic]Pace:[/cyan italic]
-    [cyan italic]Rations:[/cyan italic]
-===============================================================================
-[u italic]You May[/u italic]:
-    
-    [u blue]1. Continue on Trail[/u blue]
-    [u blue]2. Check supplies[/u blue]
-    [u blue]3. Check map[/u blue]
-    [u blue]4. Check Supplies[/u blue]
-=======
 def weather():
     """Function for determining weather type"""
     if vars.cold_weather == True:
@@ -67,4 +54,3 @@ def walking_trail(turn_number):
             vars.print_inventory()
         elif option == "exit".lower:
             return False
-
