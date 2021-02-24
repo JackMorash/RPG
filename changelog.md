@@ -41,3 +41,5 @@
 - Fixed comment mistypes on 2 comments
 - Fixed error where illnesses cant trigger death
 - Fixed error when getting shot 
+- Improved main menu by adding keyboard selection
+- Fixed bug where only banker could be selected for a job
