@@ -6,6 +6,10 @@
 # Description: Final project for CS30,
 # a remake of the original Oregon Trail CLI game from 1978
 # originally written in BASIC, i've re-written it from scratch in Python.
+# IMPORTANT: When running in repl, make sure to manually install the 
+# xlib package. You must also click into the VM window in order to operate
+# the UI elements
+
 from colorama import Back, Fore, Style
 from pynput import keyboard
 from rich.console import Console
@@ -43,7 +47,7 @@ def main_menu():
             print(Back.WHITE, Fore.BLACK, option, Back.RESET, Fore.RESET)
         else:
             print(option)
-
+    print("\nUse the arrow keys and enter to navigate the menu")
 
 def op():
     global selected
@@ -73,7 +77,6 @@ def on_press(key):
     elif key == keyboard.Key.enter:
         op()
         return False
-
     main_menu()
 
 
