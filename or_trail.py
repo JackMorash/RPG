@@ -53,5 +53,3 @@ def walking_trail(turn_number):
         elif option == "exit".lower:
             return False
 
-
-walking_trail(turn_number=1)
