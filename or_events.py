@@ -127,7 +127,7 @@ def arm_broke():
 def ox_wander():
     """Random event for an ox wandering off"""
     print("\n[red]An ox wanders off, you take time to look for it.[/red]\n")
-    # Adds random amount to mileage
+    # Adds 17 to mileage
     vars.total_mileage -= 17
     while True:
         option = input("Press Enter to Continue:")
@@ -154,7 +154,7 @@ def lost_son():
     """Random event for your son getting lost"""
     print("\n[red]Your son gets lost!\
  You spend the day looking for him...[/red]\n")
-    # Adds random amount to mileage
+    # Adds 10 to mileage
     vars.total_mileage -= 10
     while True:
         option = input("Press Enter to Continue:")

@@ -8,8 +8,7 @@ console = Console()
 
 def map():
     """Array for locations in the game, each " "*x creates spaces between
-locations.    
-    """
+locations."""
     console.clear()
     map = [["[blue bold]OREGON \n CITY[/blue bold]", "   FORT WALLA WALLA"],
            ["  ★", " "*10, "☐", "\n", " "*10, "◼"],
