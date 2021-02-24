@@ -1,3 +1,6 @@
+import random
+
+from pynput import keyboard
 from rich import print
 from rich.console import Console
 
@@ -19,15 +22,15 @@ def weather():
         vars.weather == "Fine"
 
 
-def walking_trail(turn_number):
+def walking_trail(print_date):
     """Function for displaying main game UI"""
     while True:
-        if vars.dead == "True":
-            print("")
         console.clear()
+        if vars.dead == True:
+            vars.death()
+            break
 # Prints UI
-        print("{} {}, 1847".format(
-            "SUNDAY", "MARCH 1"))
+
         print(f"""
 ███████████████████████████████████████████████████████████████████████████████
     
@@ -43,14 +46,66 @@ def walking_trail(turn_number):
     [blue]1. Continue on Trail[/blue]
     [blue]2. Check map[/blue]
     [blue]3. Check Supplies[/blue]
+    [blue]4. Hunt for food[/blue]
     """)
 # Determines which option the player selects from the UI
         option = input("What is your choice? ")
         if option == "1":
-            or_events.events()
+            begin()
         elif option == "2":
             or_map.map()
         elif option == "3":
             vars.print_inventory()
+        elif option == "4":
+            or_events.hunt()
         elif option == "exit".lower:
             return False
+
+
+def on_press(key):
+    global selected
+    if key == keyboard.Key.esc:
+        # Stop listener
+        return False
+    elif key == keyboard.Key.space:
+        walking_trail(1)
+
+
+def begin():
+    if vars.amount_spent_on_food < 13:
+        print("\n[red]You'd better do some hunting\
+ or buy some food...And soon!![/red]\n")
+    vars.cash_total = int(vars.cash_total)
+    vars.total_mileage = int(vars.total_mileage)
+    vars.total_mileage_previous_turn = vars.total_mileage
+    if vars.has_illness or vars.is_injured:
+        vars.cash_total -= 20
+        if vars.cash_total < 0:
+            print("[red]Looks like you don't have enough money \
+for a doctor... Guess you should have been born in a different country...\
+And a different century...Unlucky[/red]")
+            vars.dead = True
+        else:
+            print("\n[blue]You go to get \
+yourself treated by a doctor[/blue]\n")
+            print("\n[cyan]Doctor's bill is[/cyan] [green]$20[/green]\n")
+            vars.is_injured = vars.has_illness = False
+    else:
+        print(f"""
+                     Press ENTER to size up the situation
+███████████████████████████████████████████████████████████████████████████████
+    
+    [cyan italic]Date: [/cyan italic]
+    [cyan italic]Weather: {vars.weather}[/cyan italic]
+    [cyan italic]Health: {vars.health}[/cyan italic]
+    [cyan italic]Food: {vars.amount_spent_on_food}[/cyan italic]
+    [cyan italic]Next Landmark:[/cyan italic]
+    [cyan italic]Miles Traveled: {vars.total_mileage}[/cyan italic]
+
+███████████████████████████████████████████████████████████████████████████████
+                        Press SPACE BAR to continue
+""")
+    with keyboard.Listener(
+            on_press=on_press, suppress=True) as listener:
+        listener.join()
+
