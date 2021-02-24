@@ -7,7 +7,8 @@ console = Console()
 
 
 def map():
-    """Array for locations in the game"""
+    """Array for locations in the game, each " "*x creates spaces between
+locations."""
     console.clear()
     map = [["[blue bold]OREGON \n CITY[/blue bold]", "   FORT WALLA WALLA"],
            ["  ★", " "*10, "☐", "\n", " "*10, "◼"],
@@ -26,9 +27,10 @@ def map():
            [" "*98, "INDEPENDENCE"],
            ]
 
-# prints the map
+    # Displays the title
     spacer = " "*40
     print(f"\n{spacer}[u italic cyan]Map of the Oregon Trail[/u italic cyan]")
+    # prints each value in the map array, as well as prints the legend
     for i in map:
         for j in i:
             print(j, end=" ")
@@ -45,9 +47,10 @@ def map():
 * * * * * * * * * * * * *
 
     """)
+    # Option for continueing
     option = input("\n--> ")
     if option == "exit":
         return False
     else:
         console.clear()
-        or_trail.walking_trail()
+        or_trail.walking_trail(1)

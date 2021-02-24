@@ -5,27 +5,11 @@ import or_dates
 import or_events
 import or_globalvars
 import or_map
+from or_globalvars import vars
 
-health = or_globalvars.health()
 console = Console()
 
 
-def weather():
-    if vars.cold_weather == True:
-        weather == "Cold"
-    elif vars.raining == True:
-        weather == "Rainy"
-    else:
-        weather == "Fine"
-
-
-def walking_trail(turn_number):
-    while True:
-        console.clear()
-        print("{} {}, 1847".format(
-            "SUNDAY", "MARCH 1"))
-        print(f"""
-===============================================================================
     [cyan italic]Weather: {weather}[/cyan italic]
     [cyan italic]Health: {health}[/cyan italic]
     [cyan italic]Pace:[/cyan italic]
@@ -37,18 +21,50 @@ def walking_trail(turn_number):
     [u blue]2. Check supplies[/u blue]
     [u blue]3. Check map[/u blue]
     [u blue]4. Check Supplies[/u blue]
+=======
+def weather():
+    """Function for determining weather type"""
+    if vars.cold_weather == True:
+        vars.weather == "Cold"
+    elif vars.raining == True:
+        vars.weather == "Rainy"
+    else:
+        vars.weather == "Fine"
+
+
+def walking_trail(turn_number):
+    """Function for displaying main game UI"""
+    while True:
+        if vars.dead == "True":
+            print("")
+        console.clear()
+# Prints UI
+        print("{} {}, 1847".format(
+            "SUNDAY", "MARCH 1"))
+        print(f"""
+███████████████████████████████████████████████████████████████████████████████
+    
+    [cyan italic]Weather: {vars.weather}[/cyan italic]
+    [cyan italic]Health: {vars.health}[/cyan italic]
+    [cyan italic]Pace:[/cyan italic]
+    [cyan italic]Rations:[/cyan italic]
+
+███████████████████████████████████████████████████████████████████████████████
+
+[u italic]You May[/u italic]:
+    
+    [blue]1. Continue on Trail[/blue]
+    [blue]2. Check map[/blue]
+    [blue]3. Check Supplies[/blue]
     """)
+# Determines which option the player selects from the UI
         option = input("What is your choice? ")
         if option == "1":
             or_events.events()
         elif option == "2":
-            print()
-        elif option == "3":
             or_map.map()
-        elif option == "4":
-            or_globalvars.print_inventory()
+        elif option == "3":
+            vars.print_inventory()
         elif option == "exit".lower:
             return False
 
-
-walking_trail(1)

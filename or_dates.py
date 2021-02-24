@@ -62,7 +62,7 @@ leave [red]Independence[/red]")
     console.clear()
 
 
-# Weekday names
+# Weekday names array
 weekdays = ["SATURDAY", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY",
             "THURSDAY", "FRIDAY"]
 
@@ -79,18 +79,12 @@ def print_date(turn_number):
 
 
 def print_weekday(amount):
+    """Function for determining day of the week"""
     return weekdays[amount % 7]
 
 
 def print_final_date(D3):
-    """Determines final date based off origin
-
-    Args:
-        D3 ([type]): [description]
-
-    Returns:
-        [type]: [description]
-    """
+    """Determines final date based off origin"""
     # mar 29 -> dec 20 1847 = 266 days
     weekday = print_weekday(D3)
     # dec 1 = 246 days

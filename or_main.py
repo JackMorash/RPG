@@ -6,63 +6,81 @@
 # Description: Final project for CS30,
 # a remake of the original Oregon Trail CLI game from 1978
 # originally written in BASIC, i've re-written it from scratch in Python.
-import time
+# IMPORTANT: When running in repl, make sure to manually install the 
+# xlib package. You must also click into the VM window in order to operate
+# the UI elements
 
-from rich import print
+from colorama import Back, Fore, Style
+from pynput import keyboard
 from rich.console import Console
 from rich.markdown import Markdown
 
 import or_jobs
 
-# Creates empty list for party member names
-mem_names = []
 console = Console()
-console.clear()
 
-console.clear()
+
+options = ["Start".ljust(50),
+           "Changelog".ljust(50),
+           "Exit".ljust(50)]
+
+selected = 0
 
 
 def main_menu():
     """Function for displaying main menu"""
-    while True:
-        print("""
- _____                              _____         _ _ 
-|  _  |                            |_   _|       (_) |
+    console.clear()
+    print(f"""
+ _____                              _____         _ _
+|  _  |                            |_   _|       |_  |
 | | | |_ __ ___  __ _  ___  _ __     | |_ __ __ _ _| |
 | | | | '__/ _ \/ _` |/ _ \| '_ \    | | '__/ _` | | |
-\ \_/ / | |  __/ (_| | (_) | | | |   | | | | (_| | | |
+\ \_/ / | |  __/ |_| | |_| | | | |   | | | | |_| | | |
  \___/|_|  \___|\__, |\___/|_| |_|   \_/_|  \__,_|_|_|
-                 __/ |                                
-                |___/
-        \n \n [u]Welcome to [bold red]Oregon Trail[/bold red]:\
-Python Edition![/u]\n""")
+                 __/ |
+                |___/    
+        \n \nWelcome to {Fore.RED}Oregon Trail: \
+{Fore.RESET}Python Edition!\n""")
 
-    # Menu option selection handlers
-        print("1.) Start")
-        print("2.) Exit")
-        print("3.) Changelog")
-        option = input("\n--> ")
-        if option == "start":
-            console.clear()
-            or_jobs.job()
-            break
-        elif option == "exit":
-            return False
-        elif option == "1":
-            console.clear()
-            or_jobs.job()
-            break
-        elif option == "2":
-            return False
-        elif option == "3":
-            console.clear()
-            with open("changelog.md") as md:
-                markdown = Markdown(md.read())
-            console.print(markdown)
+    for i, option in enumerate(options):
+        if (i == selected):
+            print(Back.WHITE, Fore.BLACK, option, Back.RESET, Fore.RESET)
         else:
-            print("[bold red]Invalid Selection[/bold red]")
-            time.sleep(3)
-            continue
+            print(option)
+    print("\nUse the arrow keys and enter to navigate the menu")
+
+def op():
+    global selected
+    if selected == 0:
+        console.clear()
+        or_jobs.job()
+    elif selected == 1:
+        console.clear()
+        with open("changelog.md") as md:
+            markdown = Markdown(md.read())
+        console.print(markdown)
+    elif selected == 2:
+        return False
+# main_menu()
+
+
+def on_press(key):
+    global selected
+    if key == keyboard.Key.esc:
+        # Stop listener
+        return False
+
+    if key == keyboard.Key.up and selected != 0:
+        selected -= 1
+    elif key == keyboard.Key.down and selected != len(options)-1:
+        selected += 1
+    elif key == keyboard.Key.enter:
+        op()
+        return False
+    main_menu()
 
 
 main_menu()
+with keyboard.Listener(
+        on_press=on_press, suppress=True) as listener:
+    listener.join()

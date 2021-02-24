@@ -17,6 +17,7 @@ console = Console()
 
 
 def oxen():
+    """Function for handling the purchase of oxen"""
     while True:
         print("\n[cyan italic]There are 2 oxen in a yoke;\n\
 I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
@@ -46,6 +47,7 @@ I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
 
 
 def food():
+    """Function for handling the purchase of food"""
     while True:
         print("\n[cyan italic]I recommend you take at least 200 pounds of food\
  for each person in your group. I see that you have 5 people in total.\
@@ -76,6 +78,7 @@ def food():
 
 
 def clothes():
+    """Function for handling the purchase of clothes"""
     while True:
         print("\n[cyan italic]You'll need warm clothing in the mountains.\
  I recommend taking at least 2 sets of clothes per person.\
@@ -107,22 +110,26 @@ def clothes():
 
 
 def bullets():
+    """Function for handling the purchase of bullets"""
     while True:
         print("\n[cyan italic]I sell ammunition in boxes of 20 bullets. Each\
 box costs [green]$2.00.[/green][/cyan italic]\n")
         amount = input("\nHow many boxes do you want?: ")
         bullets_total = float(amount)
+        # Determines if the player can spend enough bullets
         if (bullets_total * 2.00) > player.money:
             print("[red]You can't buy that many bullets, it's not like\
 you are an American or something...oh wait[/red]")
             time.sleep(1.5)
             continue
+        # Determines if the player can afford bullets
         if player.money <= 0:
             print("\n[red] You can't spend any more.[/red]\n")
             time.sleep(1.5)
             console.clear()
             store()
             break
+        # Adds bullets to total player bullets
         elif player.money > 0:
             player.money = player.money - (bullets_total * 2.00)
             player.bullets = player.bullets + bullets_total
@@ -137,6 +144,7 @@ you are an American or something...oh wait[/red]")
 
 
 def parts():
+    """Function for handling the purchase of misc. parts"""
     while True:
         print("\n[cyan italic]It's a good idea to have a few spare parts for\
  your wagon. Here are the totals:\
@@ -195,35 +203,43 @@ wagon\
 
 
 def store():
+    """Function for creating the store UI"""
+    # Determines price of each type of item
     p = player.parts * 10.00
     b = player.bullets * 2.00
     c = player.clothes * 40.00
     f = player.food * 0.20
     o = player.oxen * 40.00
-# Store interface
+    # Creates store UI using table library
     table = Table(show_header=True, header_style="bold magenta")
     table.add_column("Goods")
     table.add_column("Cost", justify="right")
+    # Creates "oxen" portion of the table
     table.add_row(
         "1. Oxen",
         f"[green]${player.oxen * 40.00}[/green]"
     )
+    # Creates "food" portion of the table
     table.add_row(
         "2. Food",
         f"[green]${player.food * 0.20}[/green]",
     )
+    # Creates "clothing" portion of the table
     table.add_row(
         "3. Clothing",
         f"[green]${player.clothes * 40.00}[/green]"
     )
+    # Creates "ammunition" portion of the table
     table.add_row(
         "4. Ammunition",
         f"[green]${player.bullets * 2.00}[/green]"
     )
+    # Creates "parts" portion of the table
     table.add_row(
         "5. Spare Parts",
         f"[green]${player.parts * 10.00}[/green]"
     )
+    # Creates the total spent portion of the table
     table.add_row(
         "\nTotal",
         f"\n[green]${o+f+c+b+p}[/green]"
@@ -231,6 +247,7 @@ def store():
     console.print(table)
 
     while True:
+        # Displays and handles store options and which option the player selects
         print("Which item would you like to buy?\n\n[cyan italic]\
 Type 'leave' to exit the store[/cyan italic]")
         selection = input("\n-->")
@@ -261,6 +278,7 @@ Type 'leave' to exit the store[/cyan italic]")
             print("[bold red]Invalid Selection[/bold red]")
             continue
         elif selection == "leave":
+            # Determines if the player has enough oxen to play the game
             if player.oxen < 1:
                 print("[cyan italic] Don't forget,\
  you'll need oxen to pull your wagon![/cyan italic]")
