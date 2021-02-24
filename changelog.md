@@ -37,3 +37,4 @@
 
 [v0.9] 2021-02-23
 - Fixed error where main.py was replaced with map.py
+- Missing comments and docstrings added
