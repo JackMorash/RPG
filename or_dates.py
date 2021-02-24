@@ -1,27 +1,20 @@
-from or_store import matt_message
 from rich import print
-from or_player import player
+from rich.console import Console
 
-dates = ["MARCH 29",
-         "APRIL 12 ",
-         "APRIL 26 ",
-         "MAY 10 ",
-         "MAY 24 ",
-         "JUNE 7 ",
-         "JUNE 21 ",
-         "JULY 5 ",
-         "JULY 19 ",
-         "AUGUST 2 ",
-         "AUGUST 16 ",
-         "AUGUST 31 ",
-         "SEPTEMBER 13 ",
-         "SEPTEMBER 27 ",
-         "OCTOBER 11 ",
-         "OCTOBER 25 ",
-         "NOVEMBER 8 ",
-         "NOVEMBER 22 ",
-         "DECEMBER 6 ",
-         "DECEMBER 20 "]
+from or_store import matt_message
+
+console = Console()
+# Possible starting dates
+dates = ["MARCH 1",
+         "APRIL 1",
+         "MAY 1",
+         "JUNE 1",
+         "JULY 1",
+         "AUGUST 1",
+         "SEPTEMBER 1",
+         "OCTOBER 1",
+         "NOVEMBER 1",
+         "DECEMBER 1"]
 
 
 def choose_date():
@@ -35,36 +28,51 @@ leave [red]Independence[/red]")
     while True:
         month = input("\n-->")
         if month == "1":
+            console.clear()
             matt_message()
             break
         elif month == "2":
             del dates[1]
+            console.clear()
             matt_message()
             break
         elif month == "3":
-            del dates[1:3]
+            del dates[1:2]
+            console.clear()
             matt_message()
             break
         elif month == "4":
-            del dates[1:5]
+            del dates[1:3]
+            console.clear()
             matt_message()
             break
         elif month == "5":
-            del dates[1:7]
+            del dates[1:4]
+            console.clear()
             matt_message()
             break
         elif month == "exit":
+            console.clear()
             return None
+        elif ValueError:
+            print("\n[red]Invalid Selection, please enter a number[/red]")
         else:
             print("\n[red]Invalid Selection, please enter a number[/red]")
         continue
+    console.clear()
 
 
+# Weekday names
 weekdays = ["SATURDAY", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY",
             "THURSDAY", "FRIDAY"]
 
 
 def print_date(turn_number):
+    """Determines which turn it is, creates a date based off turn #
+
+    Args:
+        turn_number (Month, Day): Sets possible dates
+    """
     print("=" * 53)
     print("{} {} 1847".format(weekdays[0], dates[turn_number]))
     print("=" * 53)
@@ -75,6 +83,14 @@ def print_weekday(amount):
 
 
 def print_final_date(D3):
+    """Determines final date based off origin
+
+    Args:
+        D3 ([type]): [description]
+
+    Returns:
+        [type]: [description]
+    """
     # mar 29 -> dec 20 1847 = 266 days
     weekday = print_weekday(D3)
     # dec 1 = 246 days

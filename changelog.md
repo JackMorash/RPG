@@ -14,3 +14,16 @@
 - Added party members + name selection for them
 - Added story elements
 - Added date of departure selector
+
+[v0.4] - 2021-02-18
+- Created map
+- Removed redundant files
+
+[v0.5] - 2021-02-20
+- Added exceptions for value errors
+
+[v0.6] - 2021-02-21
+- Added trail
+
+[v0.7] - 2021-02-21
+- Added random events

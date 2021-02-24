@@ -6,22 +6,36 @@
 # Description: Final project for CS30,
 # a remake of the original Oregon Trail CLI game from 1978
 # originally written in BASIC, i've re-written it from scratch in Python.
+import time
+
+from rich import print
 from rich.console import Console
 from rich.markdown import Markdown
-from rich import print
-from or_jobs import job
-from or_player import player
+
+import or_jobs
 
 # Creates empty list for party member names
 mem_names = []
 console = Console()
+console.clear()
+
+console.clear()
 
 
-def menu():
+def main_menu():
+    """Function for displaying main menu"""
     while True:
-        """Function for displaying main menu"""
-        print("\n \n [u]Welcome to [bold red]Oregon Trail[/bold red]:\
-Python Edition![/u]\n")
+        print("""
+ _____                              _____         _ _ 
+|  _  |                            |_   _|       (_) |
+| | | |_ __ ___  __ _  ___  _ __     | |_ __ __ _ _| |
+| | | | '__/ _ \/ _` |/ _ \| '_ \    | | '__/ _` | | |
+\ \_/ / | |  __/ (_| | (_) | | | |   | | | | (_| | | |
+ \___/|_|  \___|\__, |\___/|_| |_|   \_/_|  \__,_|_|_|
+                 __/ |                                
+                |___/
+        \n \n [u]Welcome to [bold red]Oregon Trail[/bold red]:\
+Python Edition![/u]\n""")
 
     # Menu option selection handlers
         print("1.) Start")
@@ -29,21 +43,26 @@ Python Edition![/u]\n")
         print("3.) Changelog")
         option = input("\n--> ")
         if option == "start":
-            job()
+            console.clear()
+            or_jobs.job()
             break
         elif option == "exit":
-            continue
+            return False
         elif option == "1":
-            job()
+            console.clear()
+            or_jobs.job()
             break
         elif option == "2":
-            continue
+            return False
         elif option == "3":
+            console.clear()
             with open("changelog.md") as md:
                 markdown = Markdown(md.read())
             console.print(markdown)
         else:
             print("[bold red]Invalid Selection[/bold red]")
+            time.sleep(3)
+            continue
 
 
-menu()
+main_menu()

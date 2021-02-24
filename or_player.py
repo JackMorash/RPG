@@ -1,3 +1,12 @@
+import time
+
+from rich import print
+from rich.console import Console
+
+
+console = Console()
+
+
 class Player:
     def __init__(self):
         self.name = ""
