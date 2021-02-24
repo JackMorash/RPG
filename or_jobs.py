@@ -18,7 +18,7 @@ def job():
         print("2. Be a [bold cyan]Carpenter[/bold cyan] from [i]Ohio[/i]\n\n")
         print("3. Be a [bold cyan]Farmer[/bold cyan] from [i]Illinois[/i]\n\n")
         print("[green]What is your choice?[/green]")
-# Handles job input selection
+    # Handles job input selection
         job = input("\n--> ")
         if job == "1":
             print("\nYou have chosen to be the \
@@ -55,7 +55,7 @@ def members():
     """Function determines names of party members"""
     mem_names = []
     print("What are the names of your other 4 party members?")
-# Inputs for party member names
+    # Inputs for party member names
     member1 = input("\nFirst member: ")
     if member1 == "exit":
         console.clear()

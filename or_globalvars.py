@@ -7,6 +7,8 @@ from or_player import player
 
 
 class GameGlobals:
+    """Sets global game variables"""
+
     def __init__(self):
         self.dead = False
         self.GOAL_IN_MILES = 2040
@@ -37,6 +39,8 @@ class GameGlobals:
         self.health = "Healthy"
 
     def print_inventory(self):
+        """Function for printing the inventory"""
+        # Determines what how much of each item is in the inventory
         self.amount_spent_on_food = max(int(self.amount_spent_on_food), 0)
         self.amount_spent_on_bullets = max(
             int(self.amount_spent_on_bullets), 0)
@@ -44,6 +48,7 @@ class GameGlobals:
             int(self.amount_spent_on_clothing), 0)
         self.amount_spent_on_miscellaneous = max(
             int(self.amount_spent_on_miscellaneous), 0)
+        # Prints inventory
         print("█"*79)
         print("[cyan]Food: [/cyan]", self.amount_spent_on_food)
         print("[cyan]Bullets: [/cyan]", self.amount_spent_on_bullets)
@@ -54,6 +59,7 @@ class GameGlobals:
         input("-->")
 
     def cont():
+        """Function for "Press enter to continue" """
         while True:
             option = input("Press Enter to Continue:")
             if option == "exit":
@@ -62,22 +68,27 @@ class GameGlobals:
                 break
 
     def increment_turn(self):
+        """Function for adding to the turn value"""
         self.current_date += 1
 
     def print_too_long(self):
+        """Function for when the player has been on the trail too long"""
         print("[red]You have been on the trail for too long...[/red]")
         print("[red]Your family dies in the \
     first blizzard of the winter[/red]")
         self.dead = True
 
     def no_turns_left(self, arr):
+        """Function for determining if the player has any turns left"""
         return self.current_date >= len(arr)
 
     def input_yes_no(message):
+        """Function for a yes/no message"""
         reply = input(message)
         return True if 'y' in reply else False
 
     def input_int(message):
+        """Function for inputing only integers (unused so far)"""
         text_2_int = None
         while text_2_int == None:
             try:
@@ -86,18 +97,20 @@ class GameGlobals:
                 text_2_int = None
         return text_2_int
 
-    def shooting():
+    def shooting(shooting_level):
+        """Function for determining if the player wins a gun battle"""
         words = ["BANG", "BLAM", "POW", "WHAM"]
         word = random.choice(words)
         t0 = time.time()
         typed_word = input("{}".format(word))
         t1 = time.time()
-        B1 = (t1-t0)-(vars.shooting_level)
+        B1 = (t1-t0)-int(shooting_level)
         if typed_word != word:
             return 9
         return max(B1, 0)
 
     def illness(this_vars):
+        """Function for determining which illness the player recieves"""
         RND = random.random()
         if 100*RND < 10+35*(this_vars.choice_of_eating-1):
             print("\n[red]MILD ILLNESS---MEDICINE USED[/red]\n")
@@ -114,6 +127,7 @@ class GameGlobals:
             this_vars.has_illness = True
 
     def hp():
+        """Function for general player health"""
         if vars.is_injured == True:
             health = "Injured"
         elif vars.is_injured == False:

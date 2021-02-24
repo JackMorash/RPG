@@ -10,6 +10,7 @@ console = Console()
 
 
 def weather():
+    """Function for determining weather type"""
     if vars.cold_weather == True:
         vars.weather == "Cold"
     elif vars.raining == True:
@@ -19,8 +20,10 @@ def weather():
 
 
 def walking_trail(turn_number):
+    """Function for displaying main game UI"""
     while True:
         console.clear()
+# Prints UI
         print("{} {}, 1847".format(
             "SUNDAY", "MARCH 1"))
         print(f"""
@@ -39,6 +42,7 @@ def walking_trail(turn_number):
     [blue]2. Check map[/blue]
     [blue]3. Check Supplies[/blue]
     """)
+# Determines which option the player selects from the UI
         option = input("What is your choice? ")
         if option == "1":
             or_events.events()
@@ -50,4 +54,4 @@ def walking_trail(turn_number):
             return False
 
 
-walking_trail(1)
+walking_trail(turn_number=1)

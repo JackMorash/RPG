@@ -1,5 +1,6 @@
 class Player:
     def __init__(self):
+        """Function for creating player-based variables"""
         self.name = ""
         self.job = ""
         self.money = 1600
