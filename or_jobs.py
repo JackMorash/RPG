@@ -30,14 +30,14 @@ def job():
         elif job == "2":
             print("\nYou have chosen to be the \
 [bold cyan]Carpenter[/bold cyan]")
-            player.Player.job = "Carpenter"
+            player.job = "Carpenter"
             time.sleep(2)
             console.clear()
             break
         elif job == "3":
             print("\nYou have chosen to be the \
 [bold cyan]Farmer[/bold cyan]\n")
-            player.Player.job = "Farmer"
+            player.job = "Farmer"
             time.sleep(2)
             console.clear()
             break
