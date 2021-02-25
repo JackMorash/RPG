@@ -18,25 +18,31 @@ def job():
         print("2. Be a [bold cyan]Carpenter[/bold cyan] from [i]Ohio[/i]\n\n")
         print("3. Be a [bold cyan]Farmer[/bold cyan] from [i]Illinois[/i]\n\n")
         print("[green]What is your choice?[/green]")
-    # Handles job input selection
+        # Handles job input selection
         job = input("\n--> ")
         if job == "1":
-            print("\nYou have chosen to be the \
-[bold cyan]Banker[/bold cyan]\n")
+            print(
+                "\nYou have chosen to be the \
+[bold cyan]Banker[/bold cyan]\n"
+            )
             player.job = "Banker"
             time.sleep(2)
             console.clear()
             break
         elif job == "2":
-            print("\nYou have chosen to be the \
-[bold cyan]Carpenter[/bold cyan]")
+            print(
+                "\nYou have chosen to be the \
+[bold cyan]Carpenter[/bold cyan]"
+            )
             player.job = "Carpenter"
             time.sleep(2)
             console.clear()
             break
         elif job == "3":
-            print("\nYou have chosen to be the \
-[bold cyan]Farmer[/bold cyan]\n")
+            print(
+                "\nYou have chosen to be the \
+[bold cyan]Farmer[/bold cyan]\n"
+            )
             player.job = "Farmer"
             time.sleep(2)
             console.clear()
@@ -44,8 +50,10 @@ def job():
         elif job == "exit":
             return None
         elif ValueError:
-            print("\n[bold red]Invalid selection, please enter a number \
-[/bold red]\n")
+            print(
+                "\n[bold red]Invalid selection, please enter a number \
+[/bold red]\n"
+            )
         continue
     console.clear()
     name()
@@ -93,12 +101,16 @@ def name():
 
 def choose_date():
     """Displays storyline message, selects date for departure"""
-    print("\nIt is 1848, your jumping off place for Oregon is \
+    print(
+        "\nIt is 1848, your jumping off place for Oregon is \
 [red]Independence, Missouri[/red]. You must decide which month to \
-leave [red]Independence[/red]")
-    print("\n [green]1. March[green/]\n [green]2. April[/green]\n [green]\
-3. May[/green]\n [green]4. June[/green]\n [green]5. July[/green]")
-# Options for month of departure
+leave [red]Independence[/red]"
+    )
+    print(
+        "\n [green]1. March[green/]\n [green]2. April[/green]\n [green]\
+3. May[/green]\n [green]4. June[/green]\n [green]5. July[/green]"
+    )
+    # Options for month of departure
     while True:
         month = input("\n-->")
         if month == "1":

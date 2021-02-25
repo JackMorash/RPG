@@ -23,11 +23,12 @@ import or_jobs
 console = Console()
 
 
-options = ["Start".ljust(50),
-           "Learn about Oregon Trail".ljust(50),
-           "Changelog".ljust(50),
-           "Exit".ljust(50)
-           ]
+options = [
+    "Start".ljust(50),
+    "Learn about Oregon Trail".ljust(50),
+    "Changelog".ljust(50),
+    "Exit".ljust(50),
+]
 
 selected = 0
 
@@ -35,7 +36,8 @@ selected = 0
 def main_menu():
     """Function for displaying main menu and options"""
     console.clear()
-    print(f"""
+    print(
+        f"""
  _____                              _____         _ _
 |  _  |                            |_   _|       |_  |
 | | | |_ __ ___  __ _  ___  _ __     | |_ __ __ _ _| |
@@ -45,10 +47,11 @@ def main_menu():
                  __/ |
                 |___/
         \n \nWelcome to {Fore.RED}Oregon Trail: \
-{Fore.RESET}Python Edition!\n""")
+{Fore.RESET}Python Edition!\n"""
+    )
 
     for i, option in enumerate(options):
-        if (i == selected):
+        if i == selected:
             print(Back.WHITE, Fore.BLACK, option, Back.RESET, Fore.RESET)
         else:
             print(option)
@@ -58,7 +61,8 @@ def main_menu():
 def message():
     """Displays the story of Oregon Trail"""
     console.clear()
-    print(f"""    This program simulates a trip over the oregon trail from
+    print(
+        f"""    This program simulates a trip over the oregon trail from
     Independence, Missouri to Oregon City, Oregon in 1847.
     your family of five will cover the 2040 mile Oregon Trail
     in 5-6 months --- if you make it alive.
@@ -99,7 +103,8 @@ and you've just
     except bullets
     when asked to enter money amounts, don't use a "$" "."
     good luck!!!
-    """)
+    """
+    )
     input(f"\nPress Enter to Continue")
     console.clear()
 
@@ -129,8 +134,7 @@ def on_press(key):
     queue.put(key)
 
 
-listener = keyboard.Listener(
-    on_press=on_press, suppress=True)
+listener = keyboard.Listener(on_press=on_press, suppress=True)
 listener.start()
 
 while True:

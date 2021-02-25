@@ -7,8 +7,15 @@ console = Console()
 # Possible starting dates
 
 # Weekday names array
-weekdays = ["SATURDAY", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY",
-            "THURSDAY", "FRIDAY"]
+weekdays = [
+    "SATURDAY",
+    "SUNDAY",
+    "MONDAY",
+    "TUESDAY",
+    "WEDNESDAY",
+    "THURSDAY",
+    "FRIDAY",
+]
 
 
 def get_date():

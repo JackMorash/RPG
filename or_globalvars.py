@@ -56,53 +56,61 @@ class GameGlobals:
         self.blue_mountains_passed = False
         self.fort_walla_walla_passed = False
         self.the_dalles_passed = False
-    dates = ["MARCH",
-             "APRIL",
-             "MAY",
-             "JUNE",
-             "JULY",
-             "AUGUST",
-             "SEPTEMBER",
-             "OCTOBER",
-             "NOVEMBER",
-             "DECEMBER"]
 
-    locations = ["Kansas River",
-                 "Big Blue River",
-                 "Fort Kearney",
-                 "Chimney Rock",
-                 "Fort Laramie",
-                 "Independence Rock",
-                 "South Pass",
-                 "Fort Bridger",
-                 "Green River",
-                 "Soda Springs",
-                 "Fort Hall",
-                 "Snake River",
-                 "Fort Boise",
-                 "Grande Ronde Valley",
-                 "Blue Mountains",
-                 "Fort Walla Walla",
-                 "The Dalles"]
+    dates = [
+        "MARCH",
+        "APRIL",
+        "MAY",
+        "JUNE",
+        "JULY",
+        "AUGUST",
+        "SEPTEMBER",
+        "OCTOBER",
+        "NOVEMBER",
+        "DECEMBER",
+    ]
+
+    locations = [
+        "Kansas River",
+        "Big Blue River",
+        "Fort Kearney",
+        "Chimney Rock",
+        "Fort Laramie",
+        "Independence Rock",
+        "South Pass",
+        "Fort Bridger",
+        "Green River",
+        "Soda Springs",
+        "Fort Hall",
+        "Snake River",
+        "Fort Boise",
+        "Grande Ronde Valley",
+        "Blue Mountains",
+        "Fort Walla Walla",
+        "The Dalles",
+    ]
 
     def print_inventory(self):
         """Function for printing the inventory"""
         # Determines what how much of each item is in the inventory
         self.amount_spent_on_food = max(int(self.amount_spent_on_food), 0)
         self.amount_spent_on_bullets = max(
-            int(self.amount_spent_on_bullets), 0)
+            int(self.amount_spent_on_bullets), 0
+        )
         self.amount_spent_on_clothing = max(
-            int(self.amount_spent_on_clothing), 0)
+            int(self.amount_spent_on_clothing), 0
+        )
         self.amount_spent_on_miscellaneous = max(
-            int(self.amount_spent_on_miscellaneous), 0)
+            int(self.amount_spent_on_miscellaneous), 0
+        )
         # Prints inventory
-        print("█"*79)
+        print("█" * 79)
         print("[cyan]Food: [/cyan]", self.amount_spent_on_food)
         print("[cyan]Bullets: [/cyan]", self.amount_spent_on_bullets)
         print("[cyan]Clothing: [/cyan]", self.amount_spent_on_clothing)
         print("[cyan]Supplies: [/cyan]", self.amount_spent_on_miscellaneous)
         print("[green]Money : $[/green]", player.money)
-        print("█"*79)
+        print("█" * 79)
         input("-->")
 
     def cont(self):
@@ -121,8 +129,10 @@ class GameGlobals:
     def print_too_long(self):
         """Function for when the player has been on the trail too long"""
         print("[red]You have been on the trail for too long...[/red]")
-        print("[red]Your family dies in the \
-    first blizzard of the winter[/red]")
+        print(
+            "[red]Your family dies in the \
+    first blizzard of the winter[/red]"
+        )
         self.dead = True
 
     def no_turns_left(self, arr):
@@ -132,7 +142,7 @@ class GameGlobals:
     def input_yes_no(self, message):
         """Function for a yes/no message"""
         reply = input(message)
-        return True if 'y' in reply else False
+        return True if "y" in reply else False
 
     def input_int(self, message):
         """Function for inputing only integers (unused so far)"""
@@ -152,7 +162,7 @@ class GameGlobals:
         t0 = time.time()
         typed_word = input(word)
         t1 = time.time()
-        B1 = int(t1-t0)-(self.shooting_level)
+        B1 = int(t1 - t0) - (self.shooting_level)
         if typed_word != word:
             return 9
         return B1
@@ -160,11 +170,11 @@ class GameGlobals:
     def illness(self):
         """Function for determining which illness the player recieves"""
         RND = random.random()
-        if 100*RND < 10+35*(self.choice_of_eating-1):
+        if 100 * RND < 10 + 35 * (self.choice_of_eating - 1):
             print("\n[red]MILD ILLNESS---MEDICINE USED[/red]\n")
             self.total_mileage -= 5
             self.amount_spent_on_miscellaneous -= 2
-        elif 100*RND < 100-(40/4**(self.choice_of_eating-1)):
+        elif 100 * RND < 100 - (40 / 4 ** (self.choice_of_eating - 1)):
             print("\n[red]BAD ILLNESS---MEDICINE USED[/red]\n")
             self.total_mileage -= 5
             self.amount_spent_on_miscellaneous -= 5
@@ -183,7 +193,8 @@ class GameGlobals:
 
     def death(self):
         if self.dead == True:
-            print(f"""[white]
+            print(
+                f"""[white]
                        uuuuuuuuuuuuuuuuuuuuu.
                    .u$$$$$$$$$$$$$$$$$$$$$$$$$$W.
                  u$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Wu.
@@ -231,7 +242,8 @@ $$         $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                               $$$$$$$$$$$$$$$$$$$$$$!
                             $$$$$$$$$$$$$$$$$$$$$$$`
                              $$$$$$$$$$$$$$$$$$$$"
-            [/white]""")
+            [/white]"""
+            )
         return False
 
 
