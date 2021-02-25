@@ -6,6 +6,10 @@
 # Description: Final project for CS30,
 # a remake of the original Oregon Trail CLI game from 1978
 # originally written in BASIC, i've re-written it from scratch in Python.
+# IMPORTANT: When running in repl, make sure to manually install the
+# xlib package. You must also click into the VM window in order to operate
+# the UI elements
+
 from colorama import Back, Fore, Style
 from pynput import keyboard
 from rich.console import Console
@@ -17,14 +21,16 @@ console = Console()
 
 
 options = ["Start".ljust(50),
+           "Learn about Oregon Trail".ljust(50),
            "Changelog".ljust(50),
-           "Exit".ljust(50)]
+           "Exit".ljust(50)
+           ]
 
 selected = 0
 
 
 def main_menu():
-    """Function for displaying main menu"""
+    """Function for displaying main menu and options"""
     console.clear()
     print(f"""
  _____                              _____         _ _
@@ -43,29 +49,86 @@ def main_menu():
             print(Back.WHITE, Fore.BLACK, option, Back.RESET, Fore.RESET)
         else:
             print(option)
+    print("\nUse the arrow keys and enter to navigate the menu")
+
+
+def message():
+    """Displays the story of Oregon Trail"""
+    console.clear()
+    print(f"""    This program simulates a trip over the oregon trail from
+    Independence, Missouri to Oregon City, Oregon in 1847.
+    your family of five will cover the 2040 mile Oregon Trail
+    in 5-6 months --- if you make it alive.
+    You had saved {Fore.GREEN}$90{Fore.RESET} to spend for the trip,\
+and you've just
+    paid {Fore.GREEN}$200{Fore.RESET} for a wagon.
+    You will need to spend the rest of your money on the 
+    following items:
+    {Fore.CYAN}
+        Oxen - you can spend {Fore.GREEN}$200-$300{Fore.CYAN} on your team
+        the more you spend, the faster you'll go
+        because you'll have better animals
+        
+        Food - the more you have, the less chance there
+        is of getting sick
+        
+        Ammunition - 81 buys a belt of 50 bullets
+        you will need bullets for attacks by animals
+        and bandits, and for hunting food
+        
+        Clothing - this is especially important for the cold
+        weather you will encounter when crossing the mountains
+        
+        Miscellaneous supplies - this includes medicine and
+        other things you will need for sickness
+        and emergency repairs
+    {Fore.RESET}
+    You can spend all your money before you start your trip -
+    or you can save some of your cash to spend at forts along
+    the way when you run low. However, items cost more at
+    the forts. you can also go hunting along the way to get
+    more food.
+    Whenever you have to use your trusty rifle along the way,
+    you will be told to type in a word (one that sounds like a
+    gun shot). The faster you type in that word and hit the
+    "return" key, the better luck you'll have with your gun.
+    At each turn, all items are shown in dollar amounts
+    except bullets
+    when asked to enter money amounts, don't use a "$" "."
+    good luck!!!
+    """)
+    input(f"\nPress Enter to Continue")
+    console.clear()
 
 
 def op():
+    """Function for determining what each selected option does"""
     global selected
     if selected == 0:
         console.clear()
         or_jobs.job()
     elif selected == 1:
+        message()
+    elif selected == 2:
         console.clear()
         with open("changelog.md") as md:
             markdown = Markdown(md.read())
         console.print(markdown)
-    elif selected == 2:
+        input(f"\nPress Enter to Continue")
+        console.clear()
+    elif selected == 3:
         return False
 # main_menu()
 
 
 def on_press(key):
+    """Function handling menu navigation"""
     global selected
+    # Determines which key is pressed,
+    # the list "selected" is modified accordingly
     if key == keyboard.Key.esc:
         # Stop listener
         return False
-
     if key == keyboard.Key.up and selected != 0:
         selected -= 1
     elif key == keyboard.Key.down and selected != len(options)-1:
@@ -73,7 +136,6 @@ def on_press(key):
     elif key == keyboard.Key.enter:
         op()
         return False
-
     main_menu()
 
 
@@ -81,3 +143,5 @@ main_menu()
 with keyboard.Listener(
         on_press=on_press, suppress=True) as listener:
     listener.join()
+
+main_menu()

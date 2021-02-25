@@ -21,14 +21,14 @@ class GameGlobals:
         self.current_date = 0
         self.shooting_level = 5
         self.choice_of_eating = 1
-        self.amount_spent_on_food = 0
+        self.amount_spent_on_food = player.food
         self.has_cleared_south_pass = False
         self.has_cleared_blue_montains = False
         self.fraction_of_2_weeks = 0
         self.is_injured = False
         self.is_blizzard = False
         self.total_mileage = 0
-        self.amount_spent_on_miscellaneous = 0
+        self.amount_spent_on_miscellaneous = player.parts
         self.total_mileage_previous_turn = 0
         self.has_illness = False
         self.hostility_of_riders = False
@@ -98,7 +98,7 @@ class GameGlobals:
                 text_2_int = None
         return text_2_int
 
-    def shooting(self):
+    def shooting(self, shooting_level):
         """Function for determining if the player wins a gun battle"""
 
         words = ["BANG", "BLAM", "POW", "WHAM"]
@@ -187,6 +187,13 @@ $$         $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                              $$$$$$$$$$$$$$$$$$$$"
             """)
             return False
+
+
+def health():
+    if vars.is_injured == True:
+        health = "Injured"
+    elif vars.is_injured == False:
+        health = "Good"
 
 
 vars = GameGlobals()

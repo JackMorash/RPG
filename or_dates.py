@@ -5,16 +5,16 @@ from or_store import matt_message
 
 console = Console()
 # Possible starting dates
-dates = ["MARCH 1",
-         "APRIL 1",
-         "MAY 1",
-         "JUNE 1",
-         "JULY 1",
-         "AUGUST 1",
-         "SEPTEMBER 1",
-         "OCTOBER 1",
-         "NOVEMBER 1",
-         "DECEMBER 1"]
+dates = ["MARCH",
+         "APRIL",
+         "MAY",
+         "JUNE",
+         "JULY",
+         "AUGUST",
+         "SEPTEMBER",
+         "OCTOBER",
+         "NOVEMBER",
+         "DECEMBER"]
 
 
 def choose_date():

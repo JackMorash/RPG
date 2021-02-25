@@ -1,4 +1,5 @@
 import random
+import time
 
 from rich import print
 
@@ -21,6 +22,7 @@ def cold_weather():
             vars.is_sufficient_clothing = True
             vars.dead = True
             vars.death()
+            return False
         while True:
             option = input("Press Enter to Continue:")
             if option == "exit":
@@ -221,6 +223,7 @@ def snake_poison():
         print("\n[red]You die of a snakebite as you have no medicine.[/red]\n")
         vars.dead = True
         vars.death()
+        return False
     while True:
         option = input("Press Enter to Continue:")
         if option == "exit":
@@ -291,6 +294,7 @@ def animals_attack():
         vars.is_injured = True
         vars.dead = True
         vars.death()
+        return False
     # Determines if you were fast enough to win the battle
     if response_time <= 2:
         print("\n[cyan italic]Nice shootin'! \
@@ -340,6 +344,116 @@ def bandits_attack():
                     return False
                 else:
                     break
+
+
+def hunt():
+    if vars.amount_spent_on_bullets <= 39:
+        print("\nTough...You need more bullets to go hunting\n")
+        choices()
+    else:
+        vars.total_mileage -= 45
+        RND = random.random()
+        response_time = vars.shooting(vars.shooting_level)
+        if response_time <= 1:
+            print("\nYou begin to look for animals...\n")
+            time.sleep(2)
+            print("\nFound one!\n")
+            print("Right between the eyes, you got a big one!!!")
+            print("Full bellies tonight!")
+            vars.amount_spent_on_food = (
+                vars.amount_spent_on_food+52)+(RND*6)
+            vars.amount_spent_on_bullets = (
+                vars.amount_spent_on_bullets-10)-(RND*4)
+        elif 100*RND < 13*response_time:
+            print("You missed and your dinner got away...")
+        else:
+            print("Nice shot--Right on target--Good eatin' tonight!")
+            vars.amount_spent_on_food = (
+                vars.amount_spent_on_food+48)-(2*response_time)
+            vars.amount_spent_on_bullets = (
+                vars.amount_spent_on_bullets-10)-(3*response_time)
+        continue_on()
+
+
+def choices():
+    choice = 0
+    choices_1 = []
+    if vars.has_fort:
+        while choice < 1 or choice > 3:
+            print("[u]Do you want to:[/u] \n\n [blue]1. Stop at the next fort\
+\n 2. Hunt\n 3. Continue[/blue]")
+            choice = vars.input_int("\n-->")
+        choices_1 = [fort, hunt, continue_on]
+    else:
+        while choice < 1 or choice > 2:
+            print("[u]Do you want to:[/u] \n\n [blue]1. Stop at the next fort\
+\n 2. Hunt\n 3. Continue[/blue]")
+            choice = vars.input_int("\n-->")
+        choices_1 = [hunt, continue_on]
+    choices_1[choice-1]()
+
+
+def continue_on():
+    while True:
+        if vars.amount_spent_on_food < 13:
+            vars.dead = True
+            print("[red]\nYou decide to continue on with no food or ammunition\
+ With no food and no ability to hunt, you \
+starve to death[/red]\n")
+            input("\n-->")
+            vars.death()
+            return False
+        else:
+            break
+
+
+def fort():
+    print("[cyan]Enter what you wish to spend on the following:\n[/cyan]")
+    vars.cash_total, P, is_purchase = spend(
+        vars.input_int('[blue]Food[/blue]'), vars.cash_total)
+    if is_purchase and P > 0:
+        vars.amount_spent_on_food += (
+            vars.amount_spent_on_food+2)/(3*P)
+    vars.cash_total, P, is_purchase = spend(
+        vars.input_int('[blue]Ammunition[/blue]'), vars.cash_total)
+    if is_purchase and P > 0:
+        vars.amount_spent_on_bullets += int(
+            (vars.amount_spent_on_bullets+2)/(3*P*50))
+    vars.cash_total, P, is_purchase = spend(
+        vars.input_int('[blue]Clothing[/blue]'), vars.cash_total)
+    if is_purchase and P > 0:
+        vars.amount_spent_on_clothing += (
+            vars.amount_spent_on_clothing+2)/(3*P)
+    vars.cash_total, P, is_purchase = spend(
+        vars.input_int('[blue]Misc. Supplies[/blue]'), vars.cash_total)
+    if is_purchase and P > 0:
+        vars.amount_spent_on_miscellaneous += (
+            vars.amount_spent_on_miscellaneous+2)/(3*P)
+    vars.total_mileage -= 45
+    continue_on()
+
+
+def spend(value, purse):
+    if value > purse:
+        print("You don't have that much...Keep spending down.")
+        print("You missed your chance to spend on that item.")
+        return purse, value, False
+    return purse - value, value, True
+
+
+def eating(vars):
+    vars.choice_of_eating = 0
+    while vars.choice_of_eating < 1 or vars.choice_of_eating > 3:
+        vars.choice_of_eating = vars.input_int(
+            "Do you want to eat \n1. Poorly\n2. Moderately\n3. Well")
+    eaten = (vars.amount_spent_on_food-8)-(5*vars.choice_of_eating)
+    if eaten < 0:
+        print("You can't eat that well.")
+    else:
+        vars.amount_spent_on_food = eaten
+        vars.total_mileage += (vars.total_mileage+200+(
+            vars.amount_spent_on_animals-220)) / (5+(10*random.random()))
+        vars.is_blizzard = vars.is_sufficient_clothing = False
 
 
 # events array
