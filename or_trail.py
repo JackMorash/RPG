@@ -72,6 +72,8 @@ def walking_trail():
 
 def begin():
     while True:
+        if vars.dead:
+            return False
         if vars.amount_spent_on_food < 13:
             print("\n[red]You'd better do some hunting\
     or buy some food...And soon!![/red]\n")
