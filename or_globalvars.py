@@ -48,6 +48,7 @@ class GameGlobals:
         self.fort_laramie_passed = False
         self.independence_rock_passed = False
         self.south_pass_passed = False
+        self.snake_river_passed = False
         self.fort_bridger_passed = False
         self.green_river_passed = False
         self.fort_boise_passed = False
