@@ -331,6 +331,7 @@ buy some supplies...[/italic cyan]"
     )
     input("Press Enter to Continue...")
     or_events.fort()
+
     # def chimney_rock():
 
 
@@ -562,3 +563,6 @@ def fort_walla_walla():
     input("Press Enter to Continue...")
     or_events.fort()
     # def the_dalles
+
+
+walking_trail()

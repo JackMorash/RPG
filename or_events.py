@@ -89,7 +89,7 @@ for the rest of the trip...[/red]\n"
 
 def arm_broke():
     """Random event for a broken arm"""
-    print("\n[red]Uh oh! Your daughter broke her arm![/red]\n")
+    print(f"\n[red]Uh oh! {vars.random_member} broke their arm![/red]\n")
     print("\n[blue]You stop and use some supplies to make a sling.[/blue]\n")
     # Increases amount spent on supplies, mileage
     vars.total_mileage -= random.randint(5, 10)
@@ -110,11 +110,11 @@ def helpful_indians():
     vars.amount_spent_on_food += 14
 
 
-def lost_son():
+def lost_member():
     """Random event for your son getting lost"""
     print(
-        "\n[red]Your son gets lost!\
- You spend the day looking for him...[/red]\n"
+        f"\n[red]{vars.random_member} gets lost!\
+ You spend the day looking for them...[/red]\n"
     )
     # Adds 10 to mileage
     vars.total_mileage -= 10
@@ -170,6 +170,27 @@ def snake_poison():
         return False
 
 
+def dysentary():
+    print(f"\n[red]{vars.random_member} has dysentary.[/red]\n")
+    print(
+        f"\n[cyan]You can use medicine on them or \
+wait to see if they pull through.[/cyan]\n"
+    )
+    option = input("Use medicine? (Y/N): ").lower
+    if option == "y":
+        print(f"[cyan]You give medicine to {vars.random_member}.[cyan]\n")
+    elif option == "n":
+        print(
+            f"\n[blue]You decide not to \
+give {vars.random_member} medicine.[blue]\n"
+        )
+        if random.randint(0, 10) > 5:
+            print(f"[red]{vars.random_member} has died of dysentary.\n")
+            vars.dead_member()
+    elif option == "exit":
+        return False
+
+
 def wagon_swamped():
     """Random event for getting your wagon swamped"""
     print(
@@ -212,7 +233,7 @@ def animals_attack():
     print("\n[red]Wild animals attack your group![/red]\n")
     # Determines shooting level, whether you miss or not, or have enough bullets
     response_time = vars.shooting()
-    if vars.amount_spent_on_bullets <= 38:
+    if vars.amount_spent_on_bullets <= 20:
         print("\n[red]You were too low on bullets![/red]\n")
         print("\n[red]The wolves overpower your group![/red]\n")
         vars.is_injured = True
@@ -220,7 +241,7 @@ def animals_attack():
         vars.death()
         return False
     # Determines if you were fast enough to win the battle
-    if response_time <= 2:
+    if response_time <= 3:
         print(
             "\n[cyan italic]Nice shootin'! \
 They didn't get much.[/cyan italic]\n"
@@ -230,7 +251,7 @@ They didn't get much.[/cyan italic]\n"
             "\n[red]You were too slow on the draw, \
 they took your food and clothes![/red]\n"
         )
-        vars.amount_spent_on_bullets -= 20 * response_time
+        vars.amount_spent_on_bullets -= 10 * response_time
         vars.amount_spent_on_clothing -= 4 * response_time
         vars.amount_spent_on_food -= 8 * response_time
 
@@ -606,7 +627,6 @@ def fort():
                     )
                     input("Press Enter to Continue...")
                     console.clear()
-                    fort()
 
 
 def spend(value, purse):
@@ -642,7 +662,7 @@ events_list = [
     arm_broke,
     ox_wander,
     helpful_indians,
-    lost_son,
+    lost_member,
     unsafe_water,
     wagon_fire,
     heavy_fog,
@@ -651,6 +671,7 @@ events_list = [
     eating,
     animals_attack,
     bandits_attack,
+    dysentary,
 ]
 
 

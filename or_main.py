@@ -37,7 +37,7 @@ def main_menu():
     """Function for displaying main menu and options"""
     console.clear()
     print(
-        fr"""
+        fr"""{Fore.WHITE}
  _____                              _____         _ _
 |  _  |                            |_   _|       |_  |
 | | | |_ __ ___  __ _  ___  _ __     | |_ __ __ _ _| |
@@ -125,6 +125,8 @@ def op(selected):
         console.print(markdown)
         input(f"\nPress Enter to Continue")
         console.clear()
+    elif selected == 3:
+        exit()
 
 
 queue = SimpleQueue()
@@ -147,9 +149,11 @@ while True:
     elif key == keyboard.Key.down and selected < len(options) - 1:
         selected += 1
     elif key == keyboard.Key.enter:
-        listener.stop()
-        op(selected)
-        break
+        if selected == 2:
+            op(selected)
+        else:
+            listener.stop()
+            op(selected)
     elif key == keyboard.Key.esc:
         listener.stop()
         break

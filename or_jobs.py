@@ -61,7 +61,6 @@ def job():
 
 def members():
     """Function determines names of party members"""
-    mem_names = []
     print("What are the names of your other 4 party members?")
     # Inputs for party member names
     member1 = input("\nFirst member: ")
@@ -80,10 +79,10 @@ def members():
     if member4 == "exit":
         console.clear()
         return None
-    mem_names.append(member1)
-    mem_names.append(member2)
-    mem_names.append(member3)
-    mem_names.append(member4)
+    player.members.append(member1)
+    player.members.append(member2)
+    player.members.append(member3)
+    player.members.append(member4)
     console.clear()
     choose_date()
 

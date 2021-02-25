@@ -56,6 +56,7 @@ class GameGlobals:
         self.blue_mountains_passed = False
         self.fort_walla_walla_passed = False
         self.the_dalles_passed = False
+        self.member = ""
 
     dates = [
         "MARCH",
@@ -184,6 +185,32 @@ class GameGlobals:
             self.amount_spent_on_miscellaneous -= 10
             self.has_illness = True
 
+    def random_member(self):
+        global random_member
+        x = random.randint(1, 4)
+        if x == 1:
+            random_member = player.members[0]
+            self.member = player.members[0]
+        elif x == 2:
+            random_member = player.members[1]
+            self.member = player.members[1]
+        elif x == 3:
+            random_member = player.members[2]
+            self.member = player.members[2]
+        elif x == 4:
+            random_member = player.members[3]
+            self.member = player.members[3]
+
+    def dead_member(self):
+        if random_member == 1:
+            del player.members[0]
+        elif random_member == 2:
+            del player.members[1]
+        elif random_member == 3:
+            del player.members[2]
+        elif random_member == 4:
+            del player.members[3]
+
     def hp(self):
         """Function for general player health"""
         if self.is_injured == True:
@@ -250,7 +277,9 @@ $$         $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 def health():
     if vars.is_injured == True:
         health = "Injured"
-    elif vars.is_injured == False:
+    elif vars.got_shot == True:
+        health = "Critical"
+    else:
         health = "Good"
 
 

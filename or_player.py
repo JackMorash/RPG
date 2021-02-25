@@ -11,6 +11,7 @@ class Player:
         """Function for creating player-based variables"""
         self.name = ""
         self.job = ""
+        self.members = []
         self.money = 1600
         self.bullets = 999
         self.water = 0
