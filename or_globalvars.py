@@ -2,8 +2,11 @@ import random
 import time
 
 from rich import print
+from rich.console import Console
 
 from or_player import player
+
+console = Console()
 
 
 class GameGlobals:
@@ -38,7 +41,20 @@ class GameGlobals:
         self.raining = False
         self.weather = "Fine"
         self.health = "Healthy"
-
+        self.kansas_river_passed = False
+        self.big_blue_river_passed = False
+        self.fort_kearney_passed = False
+        self.chimney_rock = False
+        self.fort_laramie_passed = False
+        self.independence_rock_passed = False
+        self.south_pass_passed = False
+        self.fort_bridger_passed = False
+        self.green_river_passed = False
+        self.fort_boise_passed = False
+        self.grande_ronde_valley_passed = False
+        self.blue_mountains_passed = False
+        self.fort_walla_walla_passed = False
+        self.the_dalles_passed = False
     dates = ["MARCH",
              "APRIL",
              "MAY",
@@ -88,7 +104,7 @@ class GameGlobals:
         print("█"*79)
         input("-->")
 
-    def cont():
+    def cont(self):
         """Function for "Press enter to continue" """
         while True:
             option = input("Press Enter to Continue:")
@@ -100,7 +116,7 @@ class GameGlobals:
     def increment_turn(self):
         """Function for adding to the turn value"""
         self.current_date += 1
-        
+
     def print_too_long(self):
         """Function for when the player has been on the trail too long"""
         print("[red]You have been on the trail for too long...[/red]")
@@ -127,18 +143,18 @@ class GameGlobals:
                 self.text_2_int = None
         return self.text_2_int
 
-    def shooting(self, shooting_level):
+    def shooting(self):
         """Function for determining if the player wins a gun battle"""
 
         words = ["\nBANG\n", "\nBLAM\n", "\nPOW\n", "\nWHAM\n"]
         word = random.choice(words)
         t0 = time.time()
-        typed_word = input("{}".format(word))
+        typed_word = input(word)
         t1 = time.time()
-        B1 = (t1-t0)-(self.shooting_level)
+        B1 = int(t1-t0)-(self.shooting_level)
         if typed_word != word:
             return 9
-        return max(B1, 0)
+        return B1
 
     def illness(self):
         """Function for determining which illness the player recieves"""

@@ -11,15 +11,13 @@ weekdays = ["SATURDAY", "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY",
             "THURSDAY", "FRIDAY"]
 
 
-def print_date():
+def get_date():
     """Determines which turn it is, creates a date based off turn #
 
     Args:
         turn_number (Month, Day): Sets possible dates
     """
-    print("=" * 53)
-    print(f"{vars.dates[0]}, {vars.increment_turn}")
-    print("=" * 53)
+    return f"{vars.dates[0]}, {vars.current_date}"
 
 
 def print_weekday(amount):

@@ -23,30 +23,18 @@ def cold_weather():
             vars.dead = True
             vars.death()
             return False
-        while True:
-            option = input("Press Enter to Continue:")
-            if option == "exit":
-                return False
-            else:
-                break
 
 
 def heavy_rains():
     """Random event for heavy rain"""
-    while True:
-        vars.raining = True
-        print("\nHeavy rains...Time and supplies lost!\n")
-    # Removes random amount of food, bullets, random supplies
-        vars.amount_spent_on_food -= 10
-        vars.amount_spent_on_bullets -= 500
-        vars.amount_spent_on_miscellaneous -= 15
-        vars.total_mileage -= (10 * random.random()) - 5
-        while True:
-            option = input("Press Enter to Continue:")
-            if option == "exit":
-                return False
-            else:
-                break
+    vars.raining = True
+    print("\n[red]Heavy rains...Time and supplies lost![/red]\n")
+# Removes random amount of food, bullets, random supplies
+    vars.amount_spent_on_food -= 10
+    vars.amount_spent_on_bullets -= 500
+    vars.amount_spent_on_miscellaneous -= 15
+    vars.total_mileage -= random.randint(5, 10)
+    vars.raining = False
 
 
 def got_shot():
@@ -58,12 +46,6 @@ def got_shot():
     vars.is_injured = True
     vars.amount_spent_on_miscellaneous -= 5
     vars.amount_spent_on_animals -= 20
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def weather():
@@ -73,12 +55,6 @@ def weather():
         cold_weather()
     else:
         heavy_rains()
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def wagon_break_down():
@@ -86,14 +62,8 @@ def wagon_break_down():
     print("\n[red]Your wagon breaks down! Time and supplies \
 have been lost during repairs.[/red]\n")
     # Removes random amount of supplies, adds random miles
-    vars.total_mileage -= 15 - (5 * random.random())
+    vars.total_mileage -= random.randint(10, 15)
     vars.amount_spent_on_miscellaneous -= 8
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def ox_injuries():
@@ -103,12 +73,6 @@ for the rest of the trip...[/red]\n")
     # Increases amount spent on oxen, mileage
     vars.total_mileage -= 25
     vars.amount_spent_on_animals -= 20
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def arm_broke():
@@ -116,14 +80,8 @@ def arm_broke():
     print("\n[red]Uh oh! Your daughter broke her arm![/red]\n")
     print("\n[blue]You stop and use some supplies to make a sling.[/blue]\n")
     # Increases amount spent on supplies, mileage
-    vars.total_mileage -= 5 - (4 * random.random())
-    vars.amount_spent_on_miscellaneous -= 2 - (3 * random.random())
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
+    vars.total_mileage -= random.randint(5, 10)
+    vars.amount_spent_on_miscellaneous -= random.randint(5, 10)
 
 
 def ox_wander():
@@ -131,12 +89,6 @@ def ox_wander():
     print("\n[red]An ox wanders off, you take time to look for it.[/red]\n")
     # Adds 17 to mileage
     vars.total_mileage -= 17
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def helpful_indians():
@@ -144,12 +96,6 @@ def helpful_indians():
     print("\n[cyan]Helpful Native Americans help you look for food![/cyan]\n")
     # Adds extra food to inventory
     vars.amount_spent_on_food += 14
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def lost_son():
@@ -158,26 +104,14 @@ def lost_son():
  You spend the day looking for him...[/red]\n")
     # Adds 10 to mileage
     vars.total_mileage -= 10
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def unsafe_water():
     """Random event for using unsafe water"""
-    print("\n[red]The water is contaminated, you take the time looking for a\
+    print("\n[red]Your water is contaminated, you take the time looking for a\
  fresh spring.[/red]\n")
     # Adds random amount to mileage
-    vars.total_mileage -= (10*random.random()) - 2
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
+    vars.total_mileage -= random.randint(0, 8)
 
 
 def wagon_fire():
@@ -187,14 +121,8 @@ def wagon_fire():
     # Removes random amount of food, bullets, supplies. Adds to mileage
     vars.amount_spent_on_food -= 40
     vars.amount_spent_on_bullets -= 400
-    vars.amount_spent_on_miscellaneous -= (8*random.random()) - 3
+    vars.amount_spent_on_miscellaneous -= random.randint(5, 8)
     vars.total_mileage -= 15
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def heavy_fog():
@@ -202,13 +130,7 @@ def heavy_fog():
     print("\n[red]A thick fog rolls in and you spend \
 time navigating through it[/red]\n")
     # Adds random amount to mileage
-    vars.total_mileage -= 10 - (5*random.random())
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
+    vars.total_mileage -= random.randint(5, 10)
 
 
 def snake_poison():
@@ -224,28 +146,16 @@ def snake_poison():
         vars.dead = True
         vars.death()
         return False
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def wagon_swamped():
     """Random event for getting your wagon swamped"""
-    print("\n[red]The wagon gets swamped while traversing a river, \
+    print("\n[red]The wagon gets swamped while traversing the river, \
 some of your food and clothing gets lost.[/red]\n")
     # Removes some food, clothing. Adds mileage
     vars.amount_spent_on_food -= 30
     vars.amount_spent_on_clothing -= 20
-    vars.total_mileage -= 20 - (20*random.random())
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
+    vars.total_mileage -= random.randint(0, 20)
 
 
 def hail_storm():
@@ -253,15 +163,9 @@ def hail_storm():
     print("\n[red]A hail storm rolls in!\
  some of your supplies are damaged.[/red]\n")
     # Adds random amount to mileage, removes bullets and supplies
-    vars.total_mileage -= 5 - (10*random.random())
+    vars.total_mileage -= random.randint(5, 10)
     vars.amount_spent_on_bullets -= 200
-    vars.amount_spent_on_miscellaneous -= 4 - (3*random.random())
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
+    vars.amount_spent_on_miscellaneous -= random.randint(4, 5)
 
 
 def eating():
@@ -275,12 +179,6 @@ def eating():
     else:
         if RND < .25:
             vars.illness()
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def animals_attack():
@@ -305,12 +203,6 @@ they took your food and clothes![/red]\n")
         vars.amount_spent_on_bullets -= (20 * response_time)
         vars.amount_spent_on_clothing -= (4 * response_time)
         vars.amount_spent_on_food -= (8 * response_time)
-    while True:
-        option = input("Press Enter to Continue:")
-        if option == "exit":
-            return False
-        else:
-            break
 
 
 def bandits_attack():
@@ -323,27 +215,17 @@ def bandits_attack():
     if vars.amount_spent_on_bullets < 0:
         print("\n[red]You ran out of bullets! They take a bunch of\
  your [/red][green]money![/green]\n")
-        vars.cash_total /= 3
+        vars.cash_total //= 3
         vars.got_shot = True
-        while True:
-            option = input("Press Enter to Continue:")
-            if option == "exit":
-                return False
-            else:
-                break
     # Determines if you were fast enough to win the battle
     else:
-        if response_time > 1:
+        if response_time > 1.5:
+            print("\n[red]Too slow! They shot you.\
+ Seek medical attention![/red]")
             vars.got_shot = True
         else:
             print("\nQUICKEST DRAW OUTSIDE OF DODGE CITY!!\n")
             print("\nYou got 'em!\n")
-            while True:
-                option = input("Press Enter to Continue:")
-                if option == "exit":
-                    return False
-                else:
-                    break
 
 
 def hunt():
@@ -352,8 +234,8 @@ def hunt():
         choices()
     else:
         vars.total_mileage -= 45
-        RND = random.random()
-        response_time = vars.shooting(vars.shooting_level)
+        RND = random.randint(30, 50)
+        response_time = vars.shooting()
         if response_time <= 1:
             print("\nYou begin to look for animals...\n")
             time.sleep(2)
@@ -361,10 +243,8 @@ def hunt():
             print("Right between the eyes, you got a big one!!!")
             print("Full bellies tonight!")
             input("\n-->")
-            vars.amount_spent_on_food = (
-                vars.amount_spent_on_food+52)+(RND*6)
-            vars.amount_spent_on_bullets = (
-                vars.amount_spent_on_bullets-10)-(RND*4)
+            vars.amount_spent_on_food = RND//2
+            vars.amount_spent_on_bullets = RND//3
         elif 100*RND < 2*response_time:
             print("You missed and your dinner got away...")
             input("\nPress Enter to Continue...")
@@ -411,29 +291,31 @@ starve to death[/red]\n")
 
 
 def fort():
-    print("[cyan]Enter what you wish to spend on the following:\n[/cyan]")
-    vars.cash_total, P, is_purchase = spend(
-        vars.input_int('[blue]Food[/blue]'), vars.cash_total)
-    if is_purchase and P > 0:
-        vars.amount_spent_on_food += (
-            vars.amount_spent_on_food+2)/(3*P)
-    vars.cash_total, P, is_purchase = spend(
-        vars.input_int('[blue]Ammunition[/blue]'), vars.cash_total)
-    if is_purchase and P > 0:
-        vars.amount_spent_on_bullets += int(
-            (vars.amount_spent_on_bullets+2)/(3*P*50))
-    vars.cash_total, P, is_purchase = spend(
-        vars.input_int('[blue]Clothing[/blue]'), vars.cash_total)
-    if is_purchase and P > 0:
-        vars.amount_spent_on_clothing += (
-            vars.amount_spent_on_clothing+2)/(3*P)
-    vars.cash_total, P, is_purchase = spend(
-        vars.input_int('[blue]Misc. Supplies[/blue]'), vars.cash_total)
-    if is_purchase and P > 0:
-        vars.amount_spent_on_miscellaneous += (
-            vars.amount_spent_on_miscellaneous+2)/(3*P)
-    vars.total_mileage -= 45
-    continue_on()
+    while True:
+        print("\n\n[cyan]Enter what you wish to spend on the following:\n[/cyan]")
+        vars.cash_total, P, is_purchase = spend(
+            vars.input_int('[blue]Food[/blue]'), vars.cash_total)
+        if is_purchase and P > 0:
+            vars.amount_spent_on_food += (
+                vars.amount_spent_on_food+2)/(3*P)
+        vars.cash_total, P, is_purchase = spend(
+            vars.input_int('[blue]Ammunition[/blue]'), vars.cash_total)
+        if is_purchase and P > 0:
+            vars.amount_spent_on_bullets += int(
+                (vars.amount_spent_on_bullets+2)/(3*P*50))
+        vars.cash_total, P, is_purchase = spend(
+            vars.input_int('[blue]Clothing[/blue]'), vars.cash_total)
+        if is_purchase and P > 0:
+            vars.amount_spent_on_clothing += (
+                vars.amount_spent_on_clothing+2)/(3*P)
+        vars.cash_total, P, is_purchase = spend(
+            vars.input_int('[blue]Misc. Supplies[/blue]'), vars.cash_total)
+        if is_purchase and P > 0:
+            vars.amount_spent_on_miscellaneous += (
+                vars.amount_spent_on_miscellaneous+2)/(3*P)
+        if vars.total_mileage > 0:
+            vars.total_mileage -= 45
+        break
 
 
 def spend(value, purse):
@@ -444,7 +326,7 @@ def spend(value, purse):
     return purse - value, value, True
 
 
-def eating(vars):
+def eating_quality():
     vars.choice_of_eating = 0
     while vars.choice_of_eating < 1 or vars.choice_of_eating > 3:
         vars.choice_of_eating = vars.input_int(
@@ -455,17 +337,18 @@ def eating(vars):
     else:
         vars.amount_spent_on_food = eaten
         vars.total_mileage += (vars.total_mileage+200+(
-            vars.amount_spent_on_animals-220)) / (5+(10*random.random()))
+            vars.amount_spent_on_animals-220)) // random.randint(5, 10)
         vars.is_blizzard = vars.is_sufficient_clothing = False
 
 
 # events array
 events_list = [weather, wagon_break_down, ox_injuries, arm_broke,
                ox_wander, helpful_indians, lost_son, unsafe_water,
-               wagon_fire, heavy_fog, snake_poison, wagon_swamped,
+               wagon_fire, heavy_fog, snake_poison,
                hail_storm, eating, animals_attack, bandits_attack]
 
 
 def events():
     """Function for determining which event occurs"""
     random.choice(events_list)()
+    input("Press enter to Continue...")
