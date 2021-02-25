@@ -1,6 +1,7 @@
 import random
 from functools import partial
 from queue import SimpleQueue
+from time import sleep, time
 
 import pynput
 from pynput import keyboard
@@ -13,6 +14,14 @@ from or_globalvars import vars
 from or_map import map
 
 console = Console()
+
+
+def update():
+    vars.current_date += 1
+    print(vars.current_date)
+    RND = random.random()
+    if 30*RND > 9:
+        or_events.events()
 
 
 def weather():
@@ -86,20 +95,23 @@ def begin():
                 print("\n[cyan]Doctor's bill is[/cyan] [green]$20[/green]\n")
                 vars.is_injured = vars.has_illness = False
         else:
-
-            queue = SimpleQueue()
-
-            def on_press(key):
-                """Function handling menu navigation"""
-                queue.put(key)
-
-            listener = keyboard.Listener(
-                on_press=on_press, suppress=True)
-            listener.start()
-
             while True:
-                console.clear()
-                print(f"""
+                if vars.current_date < 7:
+                    sleep(60 - time() % 60)
+                    update()
+                queue = SimpleQueue()
+
+                def on_press(key):
+                    """Function handling menu navigation"""
+                    queue.put(key)
+
+                listener = keyboard.Listener(
+                    on_press=on_press, suppress=True)
+                listener.start()
+
+                while True:
+                    console.clear()
+                    print(f"""
                      Press ENTER to size up the situation
 ███████████████████████████████████████████████████████████████████████████████
     
@@ -109,23 +121,22 @@ def begin():
     [cyan italic]Food: {vars.amount_spent_on_food}[/cyan italic]
     [cyan italic]Next Landmark:[/cyan italic]
     [cyan italic]Miles Traveled: {vars.total_mileage}[/cyan italic]
-
 ███████████████████████████████████████████████████████████████████████████████
                         Press SPACE BAR to continue
 """)
 
-                key = queue.get()
-                if key == keyboard.Key.space:
-                    listener.stop()
-                    walking_trail()
-                    break
-                elif key == keyboard.Key.enter:
-                    listener.stop()
-                    walking_trail()
-                    break
-                elif key == keyboard.Key.esc:
-                    listener.stop()
-                    break
+                    key = queue.get()
+                    if key == keyboard.Key.space:
+                        listener.stop()
+                        walking_trail()
+                        break
+                    elif key == keyboard.Key.enter:
+                        listener.stop()
+                        walking_trail()
+                        break
+                    elif key == keyboard.Key.esc:
+                        listener.stop()
+                        break
 
 
 walking_trail()

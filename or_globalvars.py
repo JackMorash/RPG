@@ -50,6 +50,24 @@ class GameGlobals:
              "NOVEMBER",
              "DECEMBER"]
 
+    locations = ["Kansas River",
+                 "Big Blue River",
+                 "Fort Kearney",
+                 "Chimney Rock",
+                 "Fort Laramie",
+                 "Independence Rock",
+                 "South Pass",
+                 "Fort Bridger",
+                 "Green River",
+                 "Soda Springs",
+                 "Fort Hall",
+                 "Snake River",
+                 "Fort Boise",
+                 "Grande Ronde Valley",
+                 "Blue Mountains",
+                 "Fort Walla Walla",
+                 "The Dalles"]
+
     def print_inventory(self):
         """Function for printing the inventory"""
         # Determines what how much of each item is in the inventory
@@ -82,7 +100,7 @@ class GameGlobals:
     def increment_turn(self):
         """Function for adding to the turn value"""
         self.current_date += 1
-
+        
     def print_too_long(self):
         """Function for when the player has been on the trail too long"""
         print("[red]You have been on the trail for too long...[/red]")
