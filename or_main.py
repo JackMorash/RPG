@@ -10,6 +10,9 @@
 # xlib package. You must also click into the VM window in order to operate
 # the UI elements
 
+from functools import partial
+from queue import SimpleQueue
+
 from colorama import Back, Fore, Style
 from pynput import keyboard
 from rich.console import Console
@@ -40,7 +43,7 @@ def main_menu():
 \ \_/ / | |  __/ |_| | |_| | | | |   | | | | |_| | | |
  \___/|_|  \___|\__, |\___/|_| |_|   \_/_|  \__,_|_|_|
                  __/ |
-                |___/    
+                |___/
         \n \nWelcome to {Fore.RED}Oregon Trail: \
 {Fore.RESET}Python Edition!\n""")
 
@@ -62,23 +65,23 @@ def message():
     You had saved {Fore.GREEN}$90{Fore.RESET} to spend for the trip,\
 and you've just
     paid {Fore.GREEN}$200{Fore.RESET} for a wagon.
-    You will need to spend the rest of your money on the 
+    You will need to spend the rest of your money on the
     following items:
     {Fore.CYAN}
         Oxen - you can spend {Fore.GREEN}$200-$300{Fore.CYAN} on your team
         the more you spend, the faster you'll go
         because you'll have better animals
-        
+
         Food - the more you have, the less chance there
         is of getting sick
-        
+
         Ammunition - 81 buys a belt of 50 bullets
         you will need bullets for attacks by animals
         and bandits, and for hunting food
-        
+
         Clothing - this is especially important for the cold
         weather you will encounter when crossing the mountains
-        
+
         Miscellaneous supplies - this includes medicine and
         other things you will need for sickness
         and emergency repairs
@@ -101,9 +104,8 @@ and you've just
     console.clear()
 
 
-def op():
+def op(selected):
     """Function for determining what each selected option does"""
-    global selected
     if selected == 0:
         console.clear()
         or_jobs.job()
@@ -116,32 +118,32 @@ def op():
         console.print(markdown)
         input(f"\nPress Enter to Continue")
         console.clear()
-    elif selected == 3:
-        return False
-# main_menu()
+
+
+queue = SimpleQueue()
+selected = 0
 
 
 def on_press(key):
     """Function handling menu navigation"""
-    global selected
-    # Determines which key is pressed,
-    # the list "selected" is modified accordingly
-    if key == keyboard.Key.esc:
-        # Stop listener
-        return False
-    if key == keyboard.Key.up and selected != 0:
+    queue.put(key)
+
+
+listener = keyboard.Listener(
+    on_press=on_press, suppress=True)
+listener.start()
+
+while True:
+    main_menu()
+    key = queue.get()
+    if key == keyboard.Key.up and selected > 0:
         selected -= 1
-    elif key == keyboard.Key.down and selected != len(options)-1:
+    elif key == keyboard.Key.down and selected < len(options) - 1:
         selected += 1
     elif key == keyboard.Key.enter:
-        op()
-        return False
-    main_menu()
-
-
-main_menu()
-with keyboard.Listener(
-        on_press=on_press, suppress=True) as listener:
-    listener.join()
-
-main_menu()
+        listener.stop()
+        op(selected)
+        break
+    elif key == keyboard.Key.esc:
+        listener.stop()
+        break

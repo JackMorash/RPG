@@ -360,18 +360,21 @@ def hunt():
             print("\nFound one!\n")
             print("Right between the eyes, you got a big one!!!")
             print("Full bellies tonight!")
+            input("\n-->")
             vars.amount_spent_on_food = (
                 vars.amount_spent_on_food+52)+(RND*6)
             vars.amount_spent_on_bullets = (
                 vars.amount_spent_on_bullets-10)-(RND*4)
-        elif 100*RND < 13*response_time:
+        elif 100*RND < 2*response_time:
             print("You missed and your dinner got away...")
+            input("\nPress Enter to Continue...")
         else:
             print("Nice shot--Right on target--Good eatin' tonight!")
             vars.amount_spent_on_food = (
                 vars.amount_spent_on_food+48)-(2*response_time)
             vars.amount_spent_on_bullets = (
                 vars.amount_spent_on_bullets-10)-(3*response_time)
+        input("\n-->")
         continue_on()
 
 

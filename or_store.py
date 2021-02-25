@@ -292,7 +292,7 @@ Type 'leave' to exit the store[/cyan italic]")
  journey ahead of you...[/cyan italic]")
             input("Press Enter to Continue...")
             console.clear()
-            walking_trail(1)
+            walking_trail()
             break
         else:
             print("\n[red]Invalid Selection[/red]\n")

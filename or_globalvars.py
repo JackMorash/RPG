@@ -39,6 +39,17 @@ class GameGlobals:
         self.weather = "Fine"
         self.health = "Healthy"
 
+    dates = ["MARCH",
+             "APRIL",
+             "MAY",
+             "JUNE",
+             "JULY",
+             "AUGUST",
+             "SEPTEMBER",
+             "OCTOBER",
+             "NOVEMBER",
+             "DECEMBER"]
+
     def print_inventory(self):
         """Function for printing the inventory"""
         # Determines what how much of each item is in the inventory
@@ -90,18 +101,18 @@ class GameGlobals:
 
     def input_int(self, message):
         """Function for inputing only integers (unused so far)"""
-        text_2_int = None
-        while text_2_int == None:
+        self.text_2_int = None
+        while self.text_2_int == None:
             try:
-                text_2_int = int(input(message))
+                self.text_2_int = int(input(message))
             except:
-                text_2_int = None
-        return text_2_int
+                self.text_2_int = None
+        return self.text_2_int
 
     def shooting(self, shooting_level):
         """Function for determining if the player wins a gun battle"""
 
-        words = ["BANG", "BLAM", "POW", "WHAM"]
+        words = ["\nBANG\n", "\nBLAM\n", "\nPOW\n", "\nWHAM\n"]
         word = random.choice(words)
         t0 = time.time()
         typed_word = input("{}".format(word))
@@ -114,29 +125,29 @@ class GameGlobals:
     def illness(self):
         """Function for determining which illness the player recieves"""
         RND = random.random()
-        if 100*RND < 10+35*(vars.choice_of_eating-1):
+        if 100*RND < 10+35*(self.choice_of_eating-1):
             print("\n[red]MILD ILLNESS---MEDICINE USED[/red]\n")
-            vars.total_mileage -= 5
-            vars.amount_spent_on_miscellaneous -= 2
-        elif 100*RND < 100-(40/4**(vars.choice_of_eating-1)):
+            self.total_mileage -= 5
+            self.amount_spent_on_miscellaneous -= 2
+        elif 100*RND < 100-(40/4**(self.choice_of_eating-1)):
             print("\n[red]BAD ILLNESS---MEDICINE USED[/red]\n")
-            vars.total_mileage -= 5
-            vars.amount_spent_on_miscellaneous -= 5
+            self.total_mileage -= 5
+            self.amount_spent_on_miscellaneous -= 5
         else:
             print("\n[red]SERIOUS ILLNESS[/red]\n")
             print("\n[red]YOU MUST STOP FOR MEDICAL ATTENTION[/red]\n")
-            vars.amount_spent_on_miscellaneous -= 10
-            vars.has_illness = True
+            self.amount_spent_on_miscellaneous -= 10
+            self.has_illness = True
 
     def hp(self):
         """Function for general player health"""
-        if vars.is_injured == True:
+        if self.is_injured == True:
             health = "Injured"
-        elif vars.is_injured == False:
+        elif self.is_injured == False:
             health = "Healthy"
 
     def death(self):
-        if vars.dead == True:
+        if self.dead == True:
             print("""
                        uuuuuuuuuuuuuuuuuuuuu.
                    .u$$$$$$$$$$$$$$$$$$$$$$$$$$W.

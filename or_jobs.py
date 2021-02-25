@@ -3,8 +3,8 @@ import time
 from rich import print
 from rich.console import Console
 
-import or_dates
 from or_player import player
+from or_store import matt_message
 
 console = Console()
 
@@ -77,7 +77,7 @@ def members():
     mem_names.append(member3)
     mem_names.append(member4)
     console.clear()
-    or_dates.choose_date()
+    choose_date()
 
 
 def name():
@@ -89,3 +89,48 @@ def name():
         return None
     console.clear()
     members()
+
+
+def choose_date():
+    """Displays storyline message, selects date for departure"""
+    print("\nIt is 1848, your jumping off place for Oregon is \
+[red]Independence, Missouri[/red]. You must decide which month to \
+leave [red]Independence[/red]")
+    print("\n [green]1. March[green/]\n [green]2. April[/green]\n [green]\
+3. May[/green]\n [green]4. June[/green]\n [green]5. July[/green]")
+# Options for month of departure
+    while True:
+        month = input("\n-->")
+        if month == "1":
+            console.clear()
+            matt_message()
+            break
+        elif month == "2":
+            del vars.dates[0]
+            console.clear()
+            matt_message()
+            break
+        elif month == "3":
+            del vars.dates[0:1]
+            console.clear()
+            matt_message()
+            break
+        elif month == "4":
+            del vars.dates[0:2]
+            console.clear()
+            matt_message()
+            break
+        elif month == "5":
+            del vars.dates[0:3]
+            console.clear()
+            matt_message()
+            break
+        elif month == "exit":
+            console.clear()
+            return None
+        elif ValueError:
+            print("\n[red]Invalid Selection, please enter a number[/red]")
+        else:
+            print("\n[red]Invalid Selection, please enter a number[/red]")
+        continue
+    console.clear()

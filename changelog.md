@@ -24,18 +24,16 @@
 
 [v0.6] - 2021-02-21
 - Added trail
-
-[v0.7] - 2021-02-21
 - Added random events
 
-[v0.8] 2021-02-22
+[v0.7] 2021-02-22
 - Fixed issue with date storing
 - Added functions to set weather type
 - Added Weather globals
 - Removed redundacies
 - Added new options to trail.py
 
-[v0.9] 2021-02-23
+[v0.8] 2021-02-23
 - Fixed error where main.py was replaced with map.py
 - Missing comments and docstrings added
 - Fixed comment mistypes on 2 comments

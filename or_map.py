@@ -1,56 +1,57 @@
 from rich import print
 from rich.console import Console
 
-import or_trail
-
 console = Console()
 
 
 def map():
     """Array for locations in the game, each " "*x creates spaces between
 locations."""
-    console.clear()
-    map = [["[blue bold]OREGON \n CITY[/blue bold]", "   FORT WALLA WALLA"],
-           ["  ★", " "*10, "☐", "\n", " "*10, "◼"],
-           [" "*6, "THE DALLES", "\n", " "*14, "◼"],
-           [" "*14, "BLUE", " "*2, "FORT BOISE"],
-           [" "*12, "MOUNTAINS", " ", "☐"],
-           ["\n\n", " "*30, "FORT HALL"],
-           [" "*34, "☐",  " "*17, "INDEPENDENCE ROCK"],
-           [" "*40, "SODA SPRINGS", " "*3, "◼"],
-           [" "*40, "◼", " "*7, "◼"],
-           [" "*50, "SOUTH PASS", " "*4, "☐", " "*4, "CHIMNEY ROCK"],
-           [" "*63, "LARAMIE", " "*4, "◼"],
-           [" "*85, "☐\n", " "*76, "FORT KEARNEY"],
-           [" "*101, "[bold red]START[/bold red]"],
-           [" "*103, "★"],
-           [" "*98, "INDEPENDENCE"],
-           ]
-
-    # Displays the title
-    spacer = " "*40
-    print(f"\n{spacer}[u italic cyan]Map of the Oregon Trail[/u italic cyan]")
-    # prints each value in the map array, as well as prints the legend
-    for i in map:
-        for j in i:
-            print(j, end=" ")
-        print()
-    print("""
-
-* * * * * * * * * * * * *
-*                       *
-*      ☐ FORTS          *
-*      ◼ LANDMARKS      *
-*      _ YOUR ROUTE     *
-*      ★ HOME           *
-*                       *
-* * * * * * * * * * * * *
-
-    """)
-    # Option for continueing
-    option = input("\n--> ")
-    if option == "exit":
-        return False
-    else:
+    while True:
         console.clear()
-        or_trail.walking_trail(1)
+        map = [["[blue bold]OREGON \n CITY[/blue bold]", "  FORT WALLA WALLA"],
+               ["  ★", " "*10, "☐", "\n", " "*10, "◼"],
+               [" "*6, "THE DALLES", "\n", " "*14, "◼"],
+               [" "*14, "BLUE", " "*2, "FORT BOISE"],
+               [" "*12, "MOUNTAINS", " ", "☐"],
+               ["\n\n", " "*30, "FORT HALL"],
+               [" "*34, "☐",  " "*17, "INDEPENDENCE ROCK"],
+               [" "*40, "SODA SPRINGS", " "*3, "◼"],
+               [" "*40, "◼", " "*7, "◼"],
+               [" "*50, "SOUTH PASS", " "*4, "☐", " "*4, "CHIMNEY ROCK"],
+               [" "*63, "LARAMIE", " "*4, "◼"],
+               [" "*85, "☐\n", " "*76, "FORT KEARNEY"],
+               [" "*101, "[bold red]START[/bold red]"],
+               [" "*103, "★"],
+               [" "*98, "INDEPENDENCE"],
+               ]
+
+        # Displays the title
+        spacer = " "*40
+        print(
+            f"\n{spacer}[u italic cyan]Map of the\
+ Oregon Trail[/u italic cyan]")
+        # prints each value in the map array, as well as prints the legend
+        for i in map:
+            for j in i:
+                print(j, end=" ")
+            print()
+        print("""
+
+    * * * * * * * * * * * * *
+    *                       *
+    *      ☐ FORTS          *
+    *      ◼ LANDMARKS      *
+    *      _ YOUR ROUTE     *
+    *      ★ HOME           *
+    *                       *
+    * * * * * * * * * * * * *
+
+        """)
+        # Option for continueing
+        option = input("\nPress Enter to Continue... ")
+        if option == "exit":
+            return False
+        else:
+            console.clear()
+            break
