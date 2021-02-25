@@ -183,7 +183,7 @@ class GameGlobals:
 
     def death(self):
         if self.dead == True:
-            print("""
+            print(f"""[white]
                        uuuuuuuuuuuuuuuuuuuuu.
                    .u$$$$$$$$$$$$$$$$$$$$$$$$$$W.
                  u$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Wu.
@@ -231,8 +231,8 @@ $$         $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                               $$$$$$$$$$$$$$$$$$$$$$!
                             $$$$$$$$$$$$$$$$$$$$$$$`
                              $$$$$$$$$$$$$$$$$$$$"
-            """)
-            return False
+            [/white]""")
+        return False
 
 
 def health():

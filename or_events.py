@@ -294,22 +294,22 @@ def fort():
     while True:
         print("\n\n[cyan]Enter what you wish to spend on the following:\n[/cyan]")
         vars.cash_total, P, is_purchase = spend(
-            vars.input_int('[blue]Food[/blue]'), vars.cash_total)
+            vars.input_int(f"[blue]Food[/blue]"), vars.cash_total)
         if is_purchase and P > 0:
             vars.amount_spent_on_food += (
                 vars.amount_spent_on_food+2)/(3*P)
         vars.cash_total, P, is_purchase = spend(
-            vars.input_int('[blue]Ammunition[/blue]'), vars.cash_total)
+            vars.input_int(f"[blue]Ammunition[/blue]"), vars.cash_total)
         if is_purchase and P > 0:
             vars.amount_spent_on_bullets += int(
                 (vars.amount_spent_on_bullets+2)/(3*P*50))
         vars.cash_total, P, is_purchase = spend(
-            vars.input_int('[blue]Clothing[/blue]'), vars.cash_total)
+            vars.input_int(f"[blue]Clothing[/blue]"), vars.cash_total)
         if is_purchase and P > 0:
             vars.amount_spent_on_clothing += (
                 vars.amount_spent_on_clothing+2)/(3*P)
         vars.cash_total, P, is_purchase = spend(
-            vars.input_int('[blue]Misc. Supplies[/blue]'), vars.cash_total)
+            vars.input_int(f"[blue]Misc. Supplies[/blue]"), vars.cash_total)
         if is_purchase and P > 0:
             vars.amount_spent_on_miscellaneous += (
                 vars.amount_spent_on_miscellaneous+2)/(3*P)
