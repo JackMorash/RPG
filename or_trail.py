@@ -127,9 +127,9 @@ def landmark():
     if vars.total_mileage > 300:
         if vars.fort_kearney_passed == False:
             fort_kearney()
-    else:
+    if vars.total_mileage > 2080:
         print("\n[green]Congratulations! You have finally made it to Oregon\
-City. You've braved the periless west and can finally settle your family!")
+ City. You've braved the periless west and can finally settle your family!")
     return False
 
 
