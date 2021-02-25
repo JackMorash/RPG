@@ -89,7 +89,7 @@ for the rest of the trip...[/red]\n"
 
 def arm_broke():
     """Random event for a broken arm"""
-    print(f"\n[red]Uh oh! {vars.random_member} broke their arm![/red]\n")
+    print(f"\n[red]Uh oh! {vars.member} broke their arm![/red]\n")
     print("\n[blue]You stop and use some supplies to make a sling.[/blue]\n")
     # Increases amount spent on supplies, mileage
     vars.total_mileage -= random.randint(5, 10)
@@ -113,7 +113,7 @@ def helpful_indians():
 def lost_member():
     """Random event for your son getting lost"""
     print(
-        f"\n[red]{vars.random_member} gets lost!\
+        f"\n[red]{vars.member} gets lost!\
  You spend the day looking for them...[/red]\n"
     )
     # Adds 10 to mileage
@@ -171,22 +171,23 @@ def snake_poison():
 
 
 def dysentary():
-    print(f"\n[red]{vars.random_member} has dysentary.[/red]\n")
+    vars.random_member()
+    print(f"\n[red]{vars.member} has dysentary.[/red]\n")
     print(
         f"\n[cyan]You can use medicine on them or \
 wait to see if they pull through.[/cyan]\n"
     )
     option = input("Use medicine? (Y/N): ").lower
     if option == "y":
-        print(f"[cyan]You give medicine to {vars.random_member}.[cyan]\n")
+        print(f"[cyan]You give medicine to {vars.member}.[cyan]\n")
     elif option == "n":
         print(
             f"\n[blue]You decide not to \
-give {vars.random_member} medicine.[blue]\n"
+give {vars.member} medicine.[blue]\n"
         )
         if random.randint(0, 10) > 5:
-            print(f"[red]{vars.random_member} has died of dysentary.\n")
-            vars.dead_member()
+            print(f"[red]{vars.member} has died of dysentary.\n")
+            vars.member_is_dead = True
     elif option == "exit":
         return False
 

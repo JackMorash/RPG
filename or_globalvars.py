@@ -30,7 +30,7 @@ class GameGlobals:
         self.fraction_of_2_weeks = 0
         self.is_injured = False
         self.is_blizzard = False
-        self.total_mileage = 0
+        self.total_mileage = player.miles
         self.amount_spent_on_miscellaneous = player.parts
         self.total_mileage_previous_turn = 0
         self.has_illness = False
@@ -46,6 +46,7 @@ class GameGlobals:
         self.fort_kearney_passed = False
         self.chimney_rock = False
         self.fort_laramie_passed = False
+        self.chimney_rock_passed = False
         self.independence_rock_passed = False
         self.south_pass_passed = False
         self.snake_river_passed = False
@@ -57,6 +58,8 @@ class GameGlobals:
         self.fort_walla_walla_passed = False
         self.the_dalles_passed = False
         self.member = ""
+        self.member_is_dead = False
+        self.distance_to_landmark = 0
 
     dates = [
         "MARCH",
@@ -186,30 +189,23 @@ class GameGlobals:
             self.has_illness = True
 
     def random_member(self):
-        global random_member
-        x = random.randint(1, 4)
-        if x == 1:
-            random_member = player.members[0]
-            self.member = player.members[0]
+        x = random.randint(0, 3)
+        if x == 0:
+            vars.member = player.members[0]
+            if self.member_is_dead == True:
+                del player.members[0]
+        elif x == 1:
+            vars.member = player.members[1]
+            if self.member_is_dead == True:
+                del player.members[1]
         elif x == 2:
-            random_member = player.members[1]
-            self.member = player.members[1]
+            vars.member = player.members[2]
+            if self.member_is_dead == True:
+                del player.members[2]
         elif x == 3:
-            random_member = player.members[2]
-            self.member = player.members[2]
-        elif x == 4:
-            random_member = player.members[3]
-            self.member = player.members[3]
-
-    def dead_member(self):
-        if random_member == 1:
-            del player.members[0]
-        elif random_member == 2:
-            del player.members[1]
-        elif random_member == 3:
-            del player.members[2]
-        elif random_member == 4:
-            del player.members[3]
+            vars.member = player.members[3]
+            if self.member_is_dead == True:
+                del player.members[3]
 
     def hp(self):
         """Function for general player health"""

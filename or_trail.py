@@ -51,7 +51,7 @@ def walking_trail():
 ███████████████████████████████████████████████████████████████████████████████
 
 [u italic]You May[/u italic]:
-
+    
     [blue]1. Continue on Trail[/blue]
     [blue]2. Check map[/blue]
     [blue]3. Check Supplies[/blue]
@@ -119,19 +119,34 @@ yourself treated by a doctor[/blue]"
         console.clear()
         print(
             f"""
-                     Press ENTER to size up the situation
+                     Type "stop" to size up the situation
 ███████████████████████████████████████████████████████████████████████████████
-
+    
     [cyan italic]Date: {get_date()}[/cyan italic]
     [cyan italic]Weather: {vars.weather}[/cyan italic]
     [cyan italic]Health: {vars.health}[/cyan italic]
     [cyan italic]Food: {vars.amount_spent_on_food}[/cyan italic]
-    [cyan italic]Next Landmark:[/cyan italic]
+    [cyan italic]Next Landmark: {vars.distance_to_landmark} miles[/cyan italic]
     [cyan italic]Miles Traveled: {vars.total_mileage} miles[/cyan italic]
 
 ███████████████████████████████████████████████████████████████████████████████
 """
         )
+
+
+def next_landmark():
+    if vars.total_mileage > 100:
+        if vars.kansas_river_passed == False:
+            vars.distance_to_landmark -= vars.total_mileage
+    if vars.total_mileage > 185:
+        if vars.big_blue_river_passed == False:
+            vars.distance_to_landmark -= vars.total_mileage + 185
+    if vars.total_mileage > 300:
+        if vars.fort_kearney_passed == False:
+            vars.distance_to_landmark -= vars.total_mileage + 300
+    if vars.total_mileage > 550:
+        if vars.chimney_rock_passed == False:
+            vars.distance_to_landmark -= vars.total_mileage + 550
 
 
 def landmark():
@@ -245,8 +260,8 @@ def big_blue_river():
         y = random.randint(0, b)
         console.clear()
         print(
-            "\n[italic blue]You are now at the \
-Big Blue River Crossing[/italic blue]"
+            "\n[italic blue]You are now at the [/italic blue]\
+[cyan]Big Blue River Crossing[/cyan]"
         )
         print(
             "\n[italic blue]You must cross the river in order to continue. \
@@ -326,8 +341,8 @@ by the river for the night.[/blue]\n"
 def fort_kearney():
     console.clear()
     print(
-        "[italic cyan]You have arrived at Fort Kearney, take the time to \
-buy some supplies...[/italic cyan]"
+        "[italic blue]You have arrived at [cyan]Fort Kearney[/cyan], \
+take the time to buy some supplies...[/italic blue]"
     )
     input("Press Enter to Continue...")
     or_events.fort()
@@ -338,8 +353,8 @@ buy some supplies...[/italic cyan]"
 def fort_laramie():
     console.clear()
     print(
-        "[italic cyan]You have arrived at Fort Laramie, take the time to \
-buy some supplies...[/italic cyan]"
+        "[italic blue]You have arrived at [cyan]Fort Laramie[/cyan], \
+take the time to buy some supplies...[/italic blue]"
     )
     input("Press Enter to Continue...")
     or_events.fort()
@@ -350,8 +365,8 @@ buy some supplies...[/italic cyan]"
 def fort_bridger():
     console.clear()
     print(
-        "[italic cyan]You have arrived at Fort Bridger, take the time to \
-buy some supplies...[/italic cyan]"
+        "[italic blue]You have arrived at [cyan]Fort Bridger[/cyan], \
+take the time to buy some supplies...[/italic blue]"
     )
     input("Press Enter to Continue...")
     or_events.fort()
@@ -365,8 +380,8 @@ def green_river():
         y = random.randint(0, b)
         console.clear()
         print(
-            "\n[italic blue]You are now at the \
-Green River Crossing[/italic blue]"
+            "\n[italic blue]You are now at the [/italic blue]\
+[cyan]Green River Crossing[/cyan]"
         )
         print(
             "\n[italic blue]You must cross the river in order to continue. \
@@ -448,8 +463,8 @@ by the river for the night.[/blue]\n"
 def fort_hall():
     console.clear()
     print(
-        "[italic cyan]You have arrived at Fort Bridger, take the time to \
-buy some supplies...[/italic cyan]"
+        "[italic blue]You have arrived at [cyan]Fort Hall[/cyan], \
+take the time to buy some supplies...[/italic blue]"
     )
     input("Press Enter to Continue...")
     or_events.fort()
@@ -463,8 +478,8 @@ def snake_river():
         y = random.randint(0, b)
         console.clear()
         print(
-            "\n[italic blue]You are now at the \
-Snake River Crossing[/italic blue]"
+            "\n[italic blue]You are now at the [/italic blue]\
+[cyan]Snake River Crossing[/cyan]"
         )
         print(
             "\n[italic blue]You must cross the river in order to continue. \
@@ -545,8 +560,8 @@ take your wagon\n across the river.\n"
 def fort_boise():
     console.clear()
     print(
-        "[italic cyan]You have arrived at Fort Boise, take the time to \
-buy some supplies...[/italic cyan]"
+        "[italic blue]You have arrived at [cyan]Fort Boise[/cyan], \
+take the time to buy some supplies...[/italic blue]"
     )
     input("Press Enter to Continue...")
     or_events.fort()
@@ -557,8 +572,8 @@ buy some supplies...[/italic cyan]"
 def fort_walla_walla():
     console.clear()
     print(
-        "[italic cyan]You have arrived at Fort Walla Walla, take the time to\
- buy some supplies...[/italic cyan]"
+        "[italic blue]You have arrived at [cyan]Fort Boise[/cyan], \
+take the time to buy some supplies...[/italic blue]"
     )
     input("Press Enter to Continue...")
     or_events.fort()

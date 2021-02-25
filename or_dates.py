@@ -20,7 +20,6 @@ weekdays = [
 
 def get_date():
     """Determines which turn it is, creates a date based off turn #
-
     Args:
         turn_number (Month, Day): Sets possible dates
     """

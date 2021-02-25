@@ -40,7 +40,6 @@ def map():
             print()
         print(
             """
-
     * * * * * * * * * * * * *
     *                       *
     *      ☐ FORTS          *
@@ -49,7 +48,6 @@ def map():
     *      ★ HOME           *
     *                       *
     * * * * * * * * * * * * *
-
         """
         )
         # Option for continueing
