@@ -87,7 +87,7 @@ def begin():
                 vars.dead = True
             else:
                 print("\n[blue]You go to get \
-    yourself treated by a doctor[/blue]\n")
+yourself treated by a doctor[/blue]")
                 print("\n[cyan]Doctor's bill is[/cyan] [green]$20[/green]\n")
                 vars.is_injured = vars.has_illness = False
         else:
@@ -125,6 +125,10 @@ def landmark():
     if vars.total_mileage > 300:
         if vars.fort_kearney_passed == False:
             fort_kearney()
+    else:
+        print("\n[green]Congratulations! You have finally made it to Oregon\
+City. You've braved the periless west and can finally settle your family!")
+    return False
 
 
 def kansas_river():
