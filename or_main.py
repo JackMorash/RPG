@@ -37,7 +37,7 @@ def main_menu():
     """Function for displaying main menu and options"""
     console.clear()
     print(
-        f"""
+        fr"""
  _____                              _____         _ _
 |  _  |                            |_   _|       |_  |
 | | | |_ __ ___  __ _  ___  _ __     | |_ __ __ _ _| |
@@ -46,8 +46,10 @@ def main_menu():
  \___/|_|  \___|\__, |\___/|_| |_|   \_/_|  \__,_|_|_|
                  __/ |
                 |___/
-        \n \nWelcome to {Fore.RED}Oregon Trail: \
-{Fore.RESET}Python Edition!\n"""
+        
+Welcome to {Fore.RED}Oregon Trail: {Fore.RESET}Python Edition!
+
+"""
     )
 
     for i, option in enumerate(options):

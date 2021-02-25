@@ -37,8 +37,8 @@ I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
             store()
             continue
         elif player.money > 0:
-            player.money = player.money - (oxen_total * 40.00)
-            player.oxen = player.oxen + oxen_total
+            player.money = int(player.money - (oxen_total * 40.00))
+            player.oxen = int(player.oxen + oxen_total)
             store()
             break
         elif ValueError:
@@ -70,8 +70,8 @@ def food():
             store()
             continue
         elif player.money > 0:
-            player.money = player.money - (food_total * 0.20)
-            player.food = player.food + food_total
+            player.money = int(player.money - (food_total * 0.20))
+            player.food = int(player.food + food_total)
             console.clear()
             store()
             break
@@ -105,8 +105,8 @@ def clothes():
             store()
             break
         elif player.money > 0:
-            player.money = player.money - (clothes_total * 40.00)
-            player.clothes = player.clothes + clothes_total
+            player.money = int(player.money - (clothes_total * 40.00))
+            player.clothes = int(player.clothes + clothes_total)
             console.clear()
             store()
             break
@@ -143,8 +143,8 @@ you are an American or something...oh wait[/red]"
             break
         # Adds bullets to total player bullets
         elif player.money > 0:
-            player.money = player.money - (bullets_total * 2.00)
-            player.bullets = player.bullets + bullets_total
+            player.money = int(player.money - (bullets_total * 2.00))
+            player.bullets = int(player.bullets + bullets_total)
             console.clear()
             store()
             break
@@ -183,8 +183,8 @@ def parts():
             store()
             break
         elif player.money > 0:
-            player.money = player.money - (parts_total * 10.00)
-            player.parts = player.parts + parts_total
+            player.money = int(player.money - (parts_total * 10.00))
+            player.parts = int(player.parts + parts_total)
             console.clear()
             store()
             break

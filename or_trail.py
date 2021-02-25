@@ -562,6 +562,3 @@ def fort_walla_walla():
     input("Press Enter to Continue...")
     or_events.fort()
     # def the_dalles
-
-
-walking_trail()

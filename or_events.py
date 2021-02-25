@@ -53,7 +53,7 @@ def got_shot():
     # Applies injured var. Removes random amount of supplies, oxen
     vars.is_injured = True
     vars.amount_spent_on_miscellaneous -= 5
-    vars.vars.amount_spent_on_animals -= 20
+    vars.amount_spent_on_animals -= 20
 
 
 def weather():
@@ -84,7 +84,7 @@ for the rest of the trip...[/red]\n"
     )
     # Increases amount spent on oxen, mileage
     vars.total_mileage -= 25
-    vars.vars.amount_spent_on_animals -= 20
+    vars.amount_spent_on_animals -= 20
 
 
 def arm_broke():
@@ -353,9 +353,9 @@ I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
             fort()
             continue
         elif vars.cash_total > 0:
-            vars.cash_total = vars.cash_total - (oxen_total * 40.00)
-            vars.amount_spent_on_animals = (
-                vars.amount_spent_on_animals + oxen_total
+            vars.cash_total = int(vars.cash_total - (oxen_total * 40.00))
+            vars.amount_spent_on_animals = int(
+                (vars.amount_spent_on_animals + oxen_total)
             )
             fort()
             break
@@ -388,8 +388,10 @@ def food():
             fort()
             continue
         elif vars.cash_total > 0:
-            vars.cash_total = vars.cash_total - (food_total * 0.20)
-            vars.amount_spent_on_food = vars.amount_spent_on_food + food_total
+            vars.cash_total = int(vars.cash_total - (food_total * 0.20))
+            vars.amount_spent_on_food = int(
+                vars.amount_spent_on_food + food_total
+            )
             console.clear()
             fort()
             break
@@ -423,8 +425,8 @@ def clothes():
             fort()
             break
         elif vars.cash_total > 0:
-            vars.cash_total = vars.cash_total - (clothes_total * 40.00)
-            vars.amount_spent_on_clothing = (
+            vars.cash_total = int(vars.cash_total - (clothes_total * 40.00))
+            vars.amount_spent_on_clothing = int(
                 vars.amount_spent_on_clothing + clothes_total
             )
             console.clear()
@@ -463,8 +465,8 @@ you are an American or something...oh wait[/red]"
             break
         # Adds bullets to total player bullets
         elif vars.cash_total > 0:
-            vars.cash_total = vars.cash_total - (bullets_total * 2.00)
-            vars.amount_spent_on_bullets = (
+            vars.cash_total = int(vars.cash_total - (bullets_total * 2.00))
+            vars.amount_spent_on_bullets = int(
                 vars.amount_spent_on_bullets + bullets_total
             )
             console.clear()
@@ -505,8 +507,8 @@ def parts():
             fort()
             break
         elif vars.cash_total > 0:
-            vars.cash_total = vars.cash_total - (parts_total * 10.00)
-            vars.amount_spent_on_miscellaneous = (
+            vars.cash_total = int(vars.cash_total - (parts_total * 10.00))
+            vars.amount_spent_on_miscellaneous = int(
                 vars.amount_spent_on_miscellaneous + parts_total
             )
             console.clear()
@@ -627,9 +629,7 @@ def eating_quality():
     else:
         vars.amount_spent_on_food = eaten
         vars.total_mileage += (
-            vars.total_mileage
-            + 200
-            + (vars.vars.amount_spent_on_animals - 220)
+            vars.total_mileage + 200 + (vars.amount_spent_on_animals - 220)
         ) // random.randint(5, 10)
         vars.is_blizzard = vars.is_sufficient_clothing = False
 
