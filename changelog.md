@@ -41,3 +41,8 @@
 - Fixed error when getting shot 
 - Improved main menu by adding keyboard selection
 - Fixed bug where only banker could be selected for a job
+
+[v0.9] 2021-02-24
+- Added locations
+- Added loops
+- Added
