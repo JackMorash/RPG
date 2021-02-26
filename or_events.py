@@ -5,7 +5,7 @@ from rich import print
 from rich.console import Console
 from rich.table import Table
 
-from or_globalvars import vars
+from or_globalvars import vars, vars2
 
 console = Console()
 
@@ -87,15 +87,6 @@ for the rest of the trip...[/red]\n"
     vars.amount_spent_on_animals -= 20
 
 
-def arm_broke():
-    """Random event for a broken arm"""
-    print(f"\n[red]Uh oh! {vars.random_member} broke their arm![/red]\n")
-    print("\n[blue]You stop and use some supplies to make a sling.[/blue]\n")
-    # Increases amount spent on supplies, mileage
-    vars.total_mileage -= random.randint(5, 10)
-    vars.amount_spent_on_miscellaneous -= random.randint(5, 10)
-
-
 def ox_wander():
     """Random event for an ox wandering off"""
     print("\n[red]An ox wanders off, you take time to look for it.[/red]\n")
@@ -108,16 +99,6 @@ def helpful_indians():
     print("\n[cyan]Helpful Native Americans help you look for food![/cyan]\n")
     # Adds extra food to inventory
     vars.amount_spent_on_food += 14
-
-
-def lost_member():
-    """Random event for your son getting lost"""
-    print(
-        f"\n[red]{vars.random_member} gets lost!\
- You spend the day looking for them...[/red]\n"
-    )
-    # Adds 10 to mileage
-    vars.total_mileage -= 10
 
 
 def unsafe_water():
@@ -170,27 +151,6 @@ def snake_poison():
         return False
 
 
-def dysentary():
-    print(f"\n[red]{vars.random_member} has dysentary.[/red]\n")
-    print(
-        f"\n[cyan]You can use medicine on them or \
-wait to see if they pull through.[/cyan]\n"
-    )
-    option = input("Use medicine? (Y/N): ").lower
-    if option == "y":
-        print(f"[cyan]You give medicine to {vars.random_member}.[cyan]\n")
-    elif option == "n":
-        print(
-            f"\n[blue]You decide not to \
-give {vars.random_member} medicine.[blue]\n"
-        )
-        if random.randint(0, 10) > 5:
-            print(f"[red]{vars.random_member} has died of dysentary.\n")
-            vars.dead_member()
-    elif option == "exit":
-        return False
-
-
 def wagon_swamped():
     """Random event for getting your wagon swamped"""
     print(
@@ -206,13 +166,57 @@ some of your food and clothing gets lost.[/red]\n"
 def hail_storm():
     """Random event for a hail storm"""
     print(
-        "\n[red]A hail storm rolls in!\
- some of your supplies are damaged.[/red]\n"
+        "\n[red]A hail storm rolls in! \
+some of your supplies are damaged.[/red]\n"
     )
     # Adds random amount to mileage, removes bullets and supplies
     vars.total_mileage -= random.randint(5, 10)
     vars.amount_spent_on_bullets -= 200
     vars.amount_spent_on_miscellaneous -= random.randint(4, 5)
+
+
+def disease():
+    vars2.rndmem()
+    vars2.random_disease()
+    print(f"\n[red]{vars2.random_member} has {vars2.disease}.[/red]\n")
+    print(
+        f"[cyan]You can use medicine on them or \
+wait to see if they pull through.[/cyan]\n"
+    )
+    option = input("Use medicine? (Y/N): ")
+    if option == "y":
+        print(f"\n[cyan]You give medicine to {vars2.random_member}.[cyan]\n")
+    elif option == "n":
+        print(
+            f"[blue]You decide not to \
+give {vars2.random_member} medicine.[blue]\n"
+        )
+        if random.randint(0, 10) > 5:
+            print(f"[red]{vars2.random_member} has died of {vars2.disease}.\n")
+            vars2.dead_member()
+    elif option == "exit":
+        return False
+
+
+def lost_member():
+    """Random event for your son getting lost"""
+    vars2.rndmem()
+    print(
+        f"\n[red]{vars2.random_member} gets lost!\
+ You spend the day looking for them...[/red]\n"
+    )
+    # Adds 10 to mileage
+    vars.total_mileage -= 10
+
+
+def arm_broke():
+    """Random event for a broken arm"""
+    vars2.rndmem()
+    print(f"\n[red]Uh oh! {vars2.random_member} broke their arm![/red]\n")
+    print("\n[blue]You stop and use some supplies to make a sling.[/blue]\n")
+    # Increases amount spent on supplies, mileage
+    vars.total_mileage -= random.randint(5, 10)
+    vars.amount_spent_on_miscellaneous -= random.randint(5, 10)
 
 
 def eating():
@@ -231,6 +235,8 @@ def eating():
 def animals_attack():
     """Random event for a wolf attack"""
     print("\n[red]Wild animals attack your group![/red]\n")
+    print("\n[red]Prepare to draw...[/red]")
+    time.sleep(random.randint(1, 3))
     # Determines shooting level, whether you miss or not, or have enough bullets
     response_time = vars.shooting()
     if vars.amount_spent_on_bullets <= 20:
@@ -259,6 +265,8 @@ they took your food and clothes![/red]\n"
 def bandits_attack():
     """Random event for a bandit attack"""
     print("\n[red]Bandits attack![/red]\n")
+    print("\n[red]Prepare to draw...[/red]")
+    time.sleep(random.randint(1, 3))
     # Determines shooting level, whether you miss or not, or have enough bullets
     response_time = vars.shooting()
     vars.amount_spent_on_bullets -= 20 * response_time
@@ -671,7 +679,7 @@ events_list = [
     eating,
     animals_attack,
     bandits_attack,
-    dysentary,
+    disease,
 ]
 
 

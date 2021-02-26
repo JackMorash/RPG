@@ -56,6 +56,8 @@ def walking_trail():
     [blue]2. Check map[/blue]
     [blue]3. Check Supplies[/blue]
     [blue]4. Hunt for food[/blue]
+    [blue]5. Change food rations[/blue]
+    [blue]6. Stop to rest[/blue]
     """
         )
         # Determines which option the player selects from the UI
@@ -144,6 +146,9 @@ def landmark():
     if vars.total_mileage > 300:
         if vars.fort_kearney_passed == False:
             fort_kearney()
+    if vars.total_mileage > 550:
+        if vars.chimney_rock_passed == False:
+            chimney_rock()
     if vars.total_mileage > 2080:
         print(
             "\n[green]Congratulations! You have finally made it to Oregon\
@@ -332,7 +337,14 @@ buy some supplies...[/italic cyan]"
     input("Press Enter to Continue...")
     or_events.fort()
 
-    # def chimney_rock():
+
+def chimney_rock():
+    console.clear()
+    print(
+        "[italic cyan]You have reached Chimney rock, what a \
+beautiful sight![/italic cyan]"
+    )
+    input("Press Enter to Continue...")
 
 
 def fort_laramie():
@@ -565,4 +577,4 @@ def fort_walla_walla():
     # def the_dalles
 
 
-walking_trail()
+or_events.disease()

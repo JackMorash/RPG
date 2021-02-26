@@ -56,7 +56,8 @@ class GameGlobals:
         self.blue_mountains_passed = False
         self.fort_walla_walla_passed = False
         self.the_dalles_passed = False
-        self.member = ""
+        self.chimney_rock_passed = False
+        self.member = False
 
     dates = [
         "MARCH",
@@ -185,32 +186,6 @@ class GameGlobals:
             self.amount_spent_on_miscellaneous -= 10
             self.has_illness = True
 
-    def random_member(self):
-        global random_member
-        x = random.randint(1, 4)
-        if x == 1:
-            random_member = player.members[0]
-            self.member = player.members[0]
-        elif x == 2:
-            random_member = player.members[1]
-            self.member = player.members[1]
-        elif x == 3:
-            random_member = player.members[2]
-            self.member = player.members[2]
-        elif x == 4:
-            random_member = player.members[3]
-            self.member = player.members[3]
-
-    def dead_member(self):
-        if random_member == 1:
-            del player.members[0]
-        elif random_member == 2:
-            del player.members[1]
-        elif random_member == 3:
-            del player.members[2]
-        elif random_member == 4:
-            del player.members[3]
-
     def hp(self):
         """Function for general player health"""
         if self.is_injured == True:
@@ -283,4 +258,49 @@ def health():
         health = "Good"
 
 
+class Random_Selection:
+    def __init__(self):
+        self.random_member = ""
+        self.selected_member = 0
+        self.disease = ""
+
+    def rndmem(self):
+        x = random.randint(0, 3)
+        if x == 0:
+            self.random_member = player.members[0]
+            self.selected_member = 0
+        elif x == 1:
+            self.random_member = player.members[1]
+            self.selected_member = 1
+        elif x == 2:
+            self.random_member = player.members[2]
+            self.selected_member = 2
+        elif x == 3:
+            self.random_member = player.members[3]
+            self.selected_member = 3
+
+    def random_disease(self):
+        """Function for determining which event occurs"""
+        self.disease = random.choice(self.diseases)
+
+    def dead_member(self):
+        if self.selected_member == 0:
+            del player.members[0]
+        elif self.selected_member == 1:
+            del player.members[1]
+        elif self.selected_member == 2:
+            del player.members[2]
+        elif self.selected_member == 3:
+            del player.members[3]
+
+    diseases = [
+        "typhoid",
+        "cholera",
+        "measles",
+        "dysentery",
+        "fever",
+    ]
+
+
+vars2 = Random_Selection()
 vars = GameGlobals()
