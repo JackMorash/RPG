@@ -26,7 +26,7 @@ class Player:
         self.cold = False
         self.alive = True
         self.repair = False
-        self.miles = 500
+        self.miles = 0
 
 
 player = Player()

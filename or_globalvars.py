@@ -30,7 +30,7 @@ class GameGlobals:
         self.fraction_of_2_weeks = 0
         self.is_injured = False
         self.is_blizzard = False
-        self.total_mileage = 0
+        self.total_mileage = player.miles
         self.amount_spent_on_miscellaneous = player.parts
         self.total_mileage_previous_turn = 0
         self.has_illness = False
@@ -46,6 +46,7 @@ class GameGlobals:
         self.fort_kearney_passed = False
         self.chimney_rock = False
         self.fort_laramie_passed = False
+        self.chimney_rock_passed = False
         self.independence_rock_passed = False
         self.south_pass_passed = False
         self.snake_river_passed = False

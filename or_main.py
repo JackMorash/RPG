@@ -48,7 +48,6 @@ def main_menu():
                 |___/
         
 Welcome to {Fore.RED}Oregon Trail: {Fore.RESET}Python Edition!
-
 """
     )
 
@@ -77,17 +76,13 @@ and you've just
         Oxen - you can spend {Fore.GREEN}$200-$300{Fore.CYAN} on your team
         the more you spend, the faster you'll go
         because you'll have better animals
-
         Food - the more you have, the less chance there
         is of getting sick
-
         Ammunition - 81 buys a belt of 50 bullets
         you will need bullets for attacks by animals
         and bandits, and for hunting food
-
         Clothing - this is especially important for the cold
         weather you will encounter when crossing the mountains
-
         Miscellaneous supplies - this includes medicine and
         other things you will need for sickness
         and emergency repairs
