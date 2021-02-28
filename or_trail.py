@@ -362,6 +362,7 @@ and can finally settle yourself and your party members![/green]"
                 "\n[red]You'd better do some hunting \
 or buy some food...And soon!![/red]\n"
             )
+            input("\nPress Enter to Continue...")
         vars.total_mileage_previous_turn = vars.total_mileage
         # Determines if player can afford a doctor
         if vars.has_illness or vars.is_injured:
@@ -372,6 +373,7 @@ or buy some food...And soon!![/red]\n"
 for a doctor... Guess you should have been born in a different country...\
 And a different century...[/red]"
                 )
+                input("\nPress Enter to Continue...")
                 vars.dead = True
                 vars.death()
             # If player can afford a doctor, player is treated
@@ -384,6 +386,7 @@ yourself treated by a doctor[/blue]"
                     "\n[cyan]Doctor's bill is[/cyan] \
 [green]$20[/green]\n"
                 )
+                input("\nPress Enter to Continue...")
                 vars.is_injured = vars.has_illness = False
         # Calls function for determining if the player has reached landmark
         # assuming all prior if statements have been passed
@@ -1073,3 +1076,6 @@ def the_dalles():
 not far until Oregon City now![/italic cyan]"
     )
     input("Press Enter to Continue...")
+
+
+walking_trail()
