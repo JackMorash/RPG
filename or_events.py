@@ -13,39 +13,38 @@ console = Console()
 
 
 def cold_weather():
+    print("cold_weather")
     """Random event for cold weather"""
     # Checks for sufficient clothing
-    while True:
-        vars.cold_weather = True
-        enough_clothes = vars.amount_spent_on_clothing > 22 + (
-            4 * random.random()
-        )
-        c_message = "" if enough_clothes else "Don't "
-        message = "\nCold weather, BRRRR! You {} have enough \
+    vars.cold_weather = True
+    enough_clothes = vars.amount_spent_on_clothing > 22 + (4 * random.random())
+    c_message = "" if enough_clothes else "Don't "
+    message = "\nCold weather, BRRRR! You {} have enough \
     clothing to keep you warm.\n".format(
-            c_message
-        )
-        print(message)
-        if not enough_clothes:
-            vars.is_sufficient_clothing = True
-            vars.dead = True
-            vars.death()
-            return False
+        c_message
+    )
+    print(message)
+    if not enough_clothes:
+        vars.is_sufficient_clothing = True
+        vars.dead = True
+        vars.death()
 
 
 def heavy_rains():
+    print("heavy_rains")
     """Random event for heavy rain"""
     vars.raining = True
     print(f"\n{Fore.RED}Heavy rains...Time and supplies lost!{Fore.RESET}\n")
     # Removes random amount of food, bullets, random supplies
     vars.amount_spent_on_food -= 10
-    vars.amount_spent_on_bullets -= 500
+    vars.amount_spent_on_bullets -= 30
     vars.amount_spent_on_miscellaneous -= 15
     vars.total_mileage -= random.randint(5, 10)
     vars.raining = False
 
 
 def got_shot():
+    print("got_shot")
     """Random event for getting shot"""
     print(
         f"\n{Fore.RED}You've been shot in the leg!\
@@ -62,6 +61,7 @@ your wound!{Fore.RESET}\n"
 
 
 def weather():
+    print("weather")
     """Random event for handling both weather events"""
     # Determines what weather event to use
     if vars.total_mileage > vars.SOUTH_PASS_IN_MILES:
@@ -71,6 +71,7 @@ def weather():
 
 
 def wagon_break_down():
+    print("wagon_break_down")
     """Random event for wagon breaking down"""
     print(
         f"\n{Fore.RED}Your wagon breaks down! Time and supplies \
@@ -82,6 +83,7 @@ have been lost during repairs.{Fore.RESET}\n"
 
 
 def ox_injuries():
+    print("ox_injuries")
     """Random event for an ox injury"""
     print(
         f"\n{Fore.RED}An ox injures your leg! You are slowed \
@@ -93,6 +95,7 @@ for the rest of the trip...{Fore.RESET}\n"
 
 
 def ox_wander():
+    print("ox_wander")
     """Random event for an ox wandering off"""
     print(
         f"\n{Fore.RED}An ox wanders off, you take time to look for it.{Fore.RESET}\n"
@@ -102,6 +105,7 @@ def ox_wander():
 
 
 def helpful_indians():
+    print("helpful_indians")
     """Random event for appearence of helpful indians"""
     print(
         f"\n{Fore.CYAN}Helpful Native Americans help you \
@@ -112,6 +116,7 @@ look for food!{Fore.RESET}\n"
 
 
 def unsafe_water():
+    print("unsafe_water")
     """Random event for using unsafe water"""
     print(
         f"\n{Fore.RED}Your water is contaminated, you take the time looking for a\
@@ -122,6 +127,7 @@ def unsafe_water():
 
 
 def wagon_fire():
+    print("wagon_fire")
     """Random event for a wagon fire"""
     print(
         f"\n{Fore.RED}A fire has erupted in your wagon!\
@@ -129,12 +135,13 @@ def wagon_fire():
     )
     # Removes random amount of food, bullets, supplies. Adds to mileage
     vars.amount_spent_on_food -= 40
-    vars.amount_spent_on_bullets -= 400
+    vars.amount_spent_on_bullets -= 25
     vars.amount_spent_on_miscellaneous -= random.randint(5, 8)
     vars.total_mileage -= 15
 
 
 def heavy_fog():
+    print("heavy_fog")
     """Random event for heavy fog"""
     print(
         f"\n{Fore.RED}A thick fog rolls in and you spend \
@@ -145,25 +152,28 @@ time navigating through it{Fore.RESET}\n"
 
 
 def snake_poison():
+    print("snake_poison")
     """Random event for getting bitten"""
-    print(
-        f"\n{Fore.RED}A poisonous snake bites you!{Fore.RESET}\
- {Fore.BLUE}Luckily you manage to kill it before it harms anybody else.\n"
-    )
-    # Removes bullets, supplies.
-    vars.amount_spent_on_bullets -= 10
-    vars.amount_spent_on_miscellaneous -= 5
-    # Determines if player has enough supplies to live, if not, player dies.
     if vars.amount_spent_on_miscellaneous < 0:
         print(
             f"\n{Fore.RED}You die of a snakebite as you have no medicine.{Fore.RESET}\n"
         )
         vars.dead = True
         vars.death()
-        return False
+    else:
+        print(
+            f"\n{Fore.RED}A poisonous snake bites you!{Fore.RESET}\
+ {Fore.BLUE}Luckily you manage to kill it before it harms anybody else.\
+{Fore.RESET}\n"
+        )
+        # Removes bullets, supplies.
+        vars.amount_spent_on_bullets -= 10
+        vars.amount_spent_on_miscellaneous -= 5
+        # Determines if player has enough supplies to live, if not, player dies.
 
 
 def wagon_swamped():
+    print("wagon_swamped")
     """Random event for getting your wagon swamped"""
     print(
         f"\n{Fore.RED}The wagon gets swamped while traversing the river, \
@@ -176,6 +186,7 @@ some of your food and clothing gets lost.{Fore.RESET}\n"
 
 
 def hail_storm():
+    print("hail_storm")
     """Random event for a hail storm"""
     print(
         f"\n{Fore.RED}A hail storm rolls in! \
@@ -183,11 +194,12 @@ some of your supplies are damaged.{Fore.RESET}\n"
     )
     # Adds random amount to mileage, removes bullets and supplies
     vars.total_mileage -= random.randint(5, 10)
-    vars.amount_spent_on_bullets -= 200
+    vars.amount_spent_on_bullets -= 20
     vars.amount_spent_on_miscellaneous -= random.randint(4, 5)
 
 
 def wrong_trail():
+    print("wrong_trail")
     """Random event for taking the wrong trail"""
     # Takes random number of days to add to current_date
     x = random.randint(2, 5)
@@ -196,6 +208,7 @@ def wrong_trail():
 
 
 def disease():
+    print("disease")
     """Random event for party member catching a disease"""
     vars2.rndmem()
     vars2.random_disease()
@@ -210,7 +223,10 @@ wait to see if they pull through.{Fore.RESET}\n"
     # or not
     option = input("Use medicine? (Y/N): ")
     if option == "y":
-        print(f"\n{Fore.CYAN}You give medicine to {vars2.random_member}.\n")
+        print(
+            f"\n{Fore.CYAN}You give medicine to \
+{vars2.random_member}.{Fore.RESET}\n"
+        )
     elif option == "n":
         print(
             f"{Fore.BLUE}You decide not to \
@@ -222,6 +238,7 @@ give {vars2.random_member} medicine.{Fore.RESET}\n"
 
 
 def lost_member():
+    print("lost_member")
     """Random event for your son getting lost"""
     vars2.rndmem()
     print(
@@ -233,6 +250,7 @@ def lost_member():
 
 
 def arm_broke():
+    print("arm_broke")
     """Random event for a broken arm"""
     vars2.rndmem()
     print(
@@ -249,6 +267,7 @@ sling.{Fore.RESET}\n"
 
 
 def eating():
+    print("eating")
     """Determines if the food you eat will get you sick"""
     RND = random.random()
     if vars.choice_of_eating == 1:
@@ -262,6 +281,7 @@ def eating():
 
 
 def animals_attack():
+    print("animals_attack")
     """Random event for a wolf attack"""
     print(f"\n{Fore.RED}Wild animals attack your group!{Fore.RESET}\n")
     print(f"\n{Fore.RED}Prepare to draw...{Fore.RESET}")
@@ -273,7 +293,6 @@ def animals_attack():
         print(f"\n{Fore.RED}The wolves overpower your group!{Fore.RESET}\n")
         vars.dead = True
         vars.death()
-        return False
     # Determines if you were fast enough to win the battle
     if response_time <= 3.5:
         print(
@@ -291,6 +310,7 @@ they took your food and clothes!{Fore.RESET}\n"
 
 
 def bandits_attack():
+    print("bandits_attack")
     """Random event for a bandit attack"""
     print(f"\n{Fore.RED}Bandits attack!{Fore.RESET}\n")
     print(f"\n{Fore.RED}Prepare to draw...{Fore.RESET}")
@@ -308,7 +328,7 @@ def bandits_attack():
         vars.got_shot = True
     # Determines if you were fast enough to win the battle
     else:
-        if response_time > 3.5:
+        if response_time > 3:
             print(
                 f"\n{Fore.RED}Too slow! They shot you.\
  Seek medical attention!{Fore.RESET}"
@@ -320,41 +340,35 @@ def bandits_attack():
 
 
 def hunt():
+    print("hunt")
     """Event for if the player chooses to hunt for more food"""
     # Determines if the player has enough bullets to hunt
-    if vars.amount_spent_on_bullets <= 39:
+    if vars.amount_spent_on_bullets <= 0:
         print("\nTough...You need more bullets to go hunting\n")
-        choices()
     else:
-        vars.total_mileage -= 45
+        if vars.total_mileage > 45:
+            vars.total_mileage -= 45
         RND = random.randint(30, 50)
-        response_time = vars.shooting()
         # Determines if the player typed the word fast enough
-        if response_time <= 1:
-            print("\nYou begin to look for animals...\n")
-            time.sleep(2)
-            print("\nFound one!\n")
+        print("\nYou begin to look for animals...\n")
+        time.sleep(2)
+        print("\nFound one!\n")
+        response_time = vars.shooting()
+        if response_time < 2:
             print("Right between the eyes, you got a big one!!!")
             print("Full bellies tonight!")
-            input("\n-->")
-            vars.amount_spent_on_food = RND // 2
-            vars.amount_spent_on_bullets = RND // 3
-        elif 100 * RND < 2 * response_time:
+            input("\nPress Enter to Continue...")
+            vars.amount_spent_on_food -= RND // 2
+            vars.amount_spent_on_bullets -= RND // 3
+        else:
             print("You missed and your dinner got away...")
             input("\nPress Enter to Continue...")
-        else:
-            print("Nice shot--Right on target--Good eatin' tonight!")
-            vars.amount_spent_on_food = (vars.amount_spent_on_food + 48) - (
-                2 * response_time
-            )
-            vars.amount_spent_on_bullets = (
-                vars.amount_spent_on_bullets - 10
-            ) - (3 * response_time)
-        input("\n-->")
-        continue_on()
+        if vars.amount_spent_on_bullets <= 0 and vars.cash_total <= 0:
+            continue_on()
 
 
 def choices():
+    print("choices")
     """Choices for what the player wants to do when passing a fort landmark"""
     console.clear()
     print(
@@ -372,6 +386,7 @@ def choices():
 
 
 def continue_on():
+    print("continue_on")
     """Determines if the player has enough food to live and if they have
     enough ammo to hunt"""
     if vars.amount_spent_on_food < 13:
@@ -383,10 +398,12 @@ starve to death{Fore.RESET}\n"
         )
         input("\n-->")
         vars.death()
-        return False
+    else:
+        return True
 
 
 def oxen():
+    print("oxen")
     """Function for handling the purchase of oxen"""
     while True:
         print(
@@ -420,6 +437,7 @@ I recommend at least 3 yoke.\nI charge {Fore.GREEN}$40{Fore.RESET} a yoke.\n"
 
 
 def food():
+    print("food")
     """Function for handling the purchase of food"""
     while True:
         print(
@@ -455,6 +473,7 @@ def food():
 
 
 def clothes():
+    print("clothes")
     """Function for handling the purchase of clothes"""
     while True:
         print(
@@ -489,12 +508,12 @@ def clothes():
             break
         else:
             print(f"\n{Fore.RED}Please enter a number{Fore.RESET}\n")
-            continue
-        console.clear()
-        fort()
+            console.clear()
+            fort()
 
 
 def bullets():
+    print("bullets")
     """Function for handling the purchase of bullets"""
     while True:
         print(
@@ -529,12 +548,12 @@ you are an American or something...oh wait{Fore.RESET}"
             break
         else:
             print(f"\n{Fore.RED}Please enter a number{Fore.RESET}\n")
-            continue
-        console.clear()
-        fort()
+            console.clear()
+            fort()
 
 
 def parts():
+    print("parts")
     """Function for handling the purchase of misc. parts"""
     while True:
         print(
@@ -573,12 +592,12 @@ def parts():
             break
         else:
             print(f"{Fore.RED}Please enter a number{Fore.RESET}")
-            continue
-        console.clear()
-        fort()
+            console.clear()
+            fort()
 
 
 def fort():
+    print("fort")
     spacer = " " * 20
     oxen_price = 25.00
     clothing_price = 12.50
@@ -590,25 +609,32 @@ def fort():
 
     console.clear()
     options = [
-        f"{Back.WHITE + Fore.BLACK}  1. Oxen         {spacer}{oxen_price} per ox      ".ljust(
+        f"{Back.WHITE + Fore.BLACK}  1. Oxen         {spacer}{oxen_price} \
+per ox      ".ljust(
             50
         ),
-        f"{Back.RESET + Fore.RESET}  2. Clothing     {spacer}{clothing_price} per set".ljust(
+        f"{Back.RESET + Fore.RESET}  2. Clothing     {spacer}{clothing_price} \
+per set".ljust(
             50
         ),
-        f"{Back.WHITE + Fore.BLACK}  3. Ammunition   {spacer}{ammunition_price} per box      ".ljust(
+        f"{Back.WHITE + Fore.BLACK}  3. Ammunition   {spacer}{ammunition_price} \
+per box      ".ljust(
             50
         ),
-        f"{Back.RESET + Fore.RESET}  4. Wagon wheels {spacer}{wheels_price} per wheel".ljust(
+        f"{Back.RESET + Fore.RESET}  4. Wagon wheels {spacer}{wheels_price} \
+per wheel".ljust(
             50
         ),
-        f"{Back.WHITE + Fore.BLACK}  5. Wagon axles  {spacer}{axles_price} per axle    ".ljust(
+        f"{Back.WHITE + Fore.BLACK}  5. Wagon axles  {spacer}{axles_price} \
+per axle    ".ljust(
             50
         ),
-        f"{Back.RESET + Fore.RESET}  6. Wagon tounges{spacer}{tounges_price} per tounge  ".ljust(
+        f"{Back.RESET + Fore.RESET}  6. Wagon tounges{spacer}{tounges_price} \
+per tounge  ".ljust(
             50
         ),
-        f"{Back.WHITE + Fore.BLACK}  7. Food         {spacer}{food_price} per pound   ".ljust(
+        f"{Back.WHITE + Fore.BLACK}  7. Food         {spacer}{food_price} \
+per pound   ".ljust(
             50
         ),
         f"{Back.RESET + Fore.RESET}  8. Leave store".ljust(50),
@@ -771,6 +797,7 @@ def fort():
 
 
 def eating_quality():
+    print("eating_quality")
     """Function for choosing how well the
     player wants to divide their rations"""
     console.clear()
@@ -810,6 +837,7 @@ eat each day can change. These amounts are: {Fore.RESET}"
 
 
 def wait():
+    print("wait")
     console.clear()
     vars.current_date += int(input("How many days would you like to wait?: "))
     if vars.current_date > 31:

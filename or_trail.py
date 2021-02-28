@@ -70,7 +70,6 @@ def walking_trail():
         console.clear()
         if vars.dead == True:
             vars.death()
-            break
         # Prints UI
 
         print(
@@ -81,7 +80,6 @@ def walking_trail():
 
     [cyan italic]Weather: {vars.weather}[/cyan italic]
     [cyan italic]Health: {vars.health}[/cyan italic]
-    [cyan italic]Pace:[/cyan italic]
     [cyan italic]Rations: {vars.food_quality}[/cyan italic]
     [cyan italic]Next Landmark: {vars.distance_to_landmark} miles[/cyan italic]
     [cyan italic]Miles Traveled: {vars.total_mileage} miles[/cyan italic]
@@ -351,12 +349,15 @@ def begin():
     while True:
         # Determines if player has reached Oregon City
         if vars.total_mileage >= vars.GOAL_IN_MILES:
+            console.clear()
             print(
                 "\n[green]Congratulations! You have finally made it to \
 Oregon City. You've braved the periless west \
 and can finally settle yourself and your party members![/green]"
             )
-            return False
+            input("Press Enter to Continue...")
+            exit()
+
         # Determines if player has enough food to not starve to death
         if vars.amount_spent_on_food < 13:
             print(
@@ -414,13 +415,14 @@ yourself treated by a doctor[/blue]"
         # Ui for game loop
         print(
             f"""
+                            {vars.location}
                      Press SPACE to size up the situation
 ███████████████████████████████████████████████████████████████████████████████
 
     [cyan italic]Date: {get_date()}[/cyan italic]
     [cyan italic]Weather: {vars.weather}[/cyan italic]
     [cyan italic]Health: {vars.health}[/cyan italic]
-    [cyan italic]Food: {vars.amount_spent_on_food}[/cyan italic]
+    [cyan italic]Food: {vars.amount_spent_on_food/0.2}[/cyan italic]
     [cyan italic]Next Landmark: {vars.distance_to_landmark} miles[/cyan italic]
     [cyan italic]Miles Traveled: {vars.total_mileage} miles[/cyan italic]
 
@@ -576,14 +578,6 @@ def landmark():
                 vars.location = "The Dalles"
                 the_dalles()
                 vars.the_dalles_passed = True
-    # Landmark flag for ending
-    if vars.total_mileage > 2080:
-        console.clear()
-        print(
-            "\n[green]Congratulations! You have finally made it to Oregon\
- City. You've braved the periless west and can finally settle your family!"
-        )
-    return False
 
 
 def kansas_river():

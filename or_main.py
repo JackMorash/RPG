@@ -84,7 +84,7 @@ and you've just
         and bandits, and for hunting food
         Clothing - this is especially important for the cold
         weather you will encounter when crossing the mountains
-        Miscellaneous supplies - this includes medicine and
+        Miscellaneous supplies - this includes medicine and1
         other things you will need for sickness
         and emergency repairs
     {Fore.RESET}

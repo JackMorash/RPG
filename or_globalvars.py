@@ -10,13 +10,6 @@ console = Console()
 class Character:
     def __init__(self):
         self.money = 1600
-        self.bullets = vars.amount_spent_on_bullets / 2
-        self.water = vars.amount_spent_on_miscellaneous / 20
-        self.oxen = vars.amount_spent_on_miscellaneous / 20
-        self.parts = vars.amount_spent_on_miscellaneous / 20
-        self.medicine = vars.amount_spent_on_miscellaneous / 20
-        self.clothes = vars.amount_spent_on_clothing / 40
-        self.food = vars.amount_spent_on_food / 0.20
 
 
 class Player(Character):
@@ -25,11 +18,11 @@ class Player(Character):
         super().__init__()
         self.name = ""
         self.job = ""
-        self.members = ["Player 1", "Player 2", "Player 3", "Player 4"]
+        self.members = []
         self.cold = False
         self.alive = True
         self.repair = False
-        self.miles = 0
+        self.miles = 2000
 
 
 player = Player()
@@ -51,7 +44,6 @@ class GameGlobals:
         self.total_mileage = player.miles
         self.is_sufficient_clothing = False
         self.current_date = 1
-        self.shooting_level = 5
         self.choice_of_eating = 1
         self.has_cleared_south_pass = False
         self.has_cleared_blue_montains = False
@@ -134,23 +126,21 @@ class GameGlobals:
         """Function for printing the inventory"""
         # Determines what how much of each item is in the inventory
         console.clear()
-        self.amount_spent_on_food = max(int(self.amount_spent_on_food), 0)
-        self.amount_spent_on_bullets = max(
-            int(self.amount_spent_on_bullets), 0
-        )
-        self.amount_spent_on_clothing = max(
-            int(self.amount_spent_on_clothing), 0
-        )
-        self.amount_spent_on_miscellaneous = max(
-            int(self.amount_spent_on_miscellaneous), 0
-        )
         # Prints inventory
         print("█" * 79)
         print("")
-        print("[cyan]Food: [/cyan]", self.amount_spent_on_food)
-        print("[cyan]Bullets: [/cyan]", self.amount_spent_on_bullets)
-        print("[cyan]Clothing: [/cyan]", self.amount_spent_on_clothing)
-        print("[cyan]Supplies: [/cyan]", self.amount_spent_on_miscellaneous)
+        print("[cyan]Food: [/cyan]", int(self.amount_spent_on_food / 0.20))
+        print(
+            "[cyan]Bullets: [/cyan]", int(self.amount_spent_on_bullets / 2.00)
+        )
+        print(
+            "[cyan]Clothing: [/cyan]",
+            int(self.amount_spent_on_clothing / 10.00),
+        )
+        print(
+            "[cyan]Supplies: [/cyan]",
+            int(self.amount_spent_on_miscellaneous / 10.00),
+        )
         print("[green]Money : $[/green]", player.money)
         print("")
         print("█" * 79)
@@ -198,18 +188,18 @@ class GameGlobals:
         """Function for determining if the player wins a gun battle"""
 
         words = [
-            "\nType: BANG\n",
-            "\nType: BLAM\n",
-            "\nType: POW\n",
-            "\nType: WHAM\n",
+            "BANG",
+            "BLAM",
+            "POW",
+            "WHAM",
         ]
         word = random.choice(words)
         t0 = time.time()
-        typed_word = input(word)
+        typed_word = input(f"\nType: {word}\n")
         t1 = time.time()
-        B1 = int(t1 - t0) - (self.shooting_level)
-        if typed_word != word:
-            return 9
+        B1 = int(t1 - t0)
+        if typed_word.lower() != word.lower():
+            return 999
         return B1
 
     def illness(self):
@@ -309,30 +299,9 @@ class RandomSelection:
         self.member_is_sick = False
 
     def rndmem(self):
-        y = len(player.members)
-        x = random.randint(0, y)
-        while True:
-            if x == 0:
-                if y > 1:
-                    self.random_member = player.members[0]
-                    self.selected_member = 0
-            elif x == 1:
-                if y > 2:
-                    self.random_member = player.members[1]
-                    self.selected_member = 1
-                    break
-            elif x == 2:
-                if y > 3:
-                    self.random_member = player.members[2]
-                    self.selected_member = 2
-                    break
-            elif x == 3:
-                if y > 4:
-                    self.random_member = player.members[3]
-                    self.selected_member = 3
-                    break
-                else:
-                    continue
+        i = random.choice(range(len(player.members)))
+        self.random_member = player.members[i]
+        self.selected_member = i
 
     def random_disease(self):
         """Function for determining which event occurs"""

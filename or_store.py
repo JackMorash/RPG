@@ -5,7 +5,7 @@ from rich.console import Console
 from rich.progress import track
 from rich.table import Table
 
-from or_globalvars import player
+from or_globalvars import player, vars
 from or_trail import walking_trail
 
 console = Console()
@@ -34,14 +34,15 @@ I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
             continue
         elif player.money > 0:
             player.money = int(player.money - (oxen_total * 40.00))
-            player.oxen = int(player.oxen + oxen_total)
+            vars.amount_spent_on_animals = int(
+                vars.amount_spent_on_animals + oxen_total * 40.00
+            )
             store()
             break
         elif ValueError:
             print("\n[red]Please enter a number[/red]\n")
             continue
         console.clear()
-        player.oxen = oxen_total
         store()
 
 
@@ -68,14 +69,15 @@ def food():
             continue
         elif player.money > 0:
             player.money = int(player.money - (food_total * 0.20))
-            player.food = int(player.food + food_total)
+            vars.amount_spent_on_food = int(
+                vars.amount_spent_on_food + food_total * 0.20
+            )
             console.clear()
             store()
             break
         elif ValueError:
             print("\n[red]Please enter a number[/red]\n")
         console.clear()
-        player.food = food_total
         store()
 
 
@@ -103,8 +105,10 @@ def clothes():
             store()
             break
         elif player.money > 0:
-            player.money = int(player.money - (clothes_total * 40.00))
-            player.clothes = int(player.clothes + clothes_total)
+            player.money = int(player.money - (clothes_total * 10.00))
+            vars.amount_spent_on_clothing = int(
+                vars.amount_spent_on_clothing + clothes_total * 10.00
+            )
             console.clear()
             store()
             break
@@ -112,7 +116,6 @@ def clothes():
             print("\n[red]Please enter a number[/red]\n")
             continue
         console.clear()
-        player.clothes = clothes_total
         store()
 
 
@@ -143,7 +146,9 @@ you are an American or something...oh wait[/red]"
         # Adds bullets to total player bullets
         elif player.money > 0:
             player.money = int(player.money - (bullets_total * 2.00))
-            player.bullets = int(player.bullets + bullets_total)
+            vars.amount_spent_on_bullets = int(
+                vars.amount_spent_on_bullets + bullets_total * 2.00
+            )
             console.clear()
             store()
             break
@@ -151,7 +156,6 @@ you are an American or something...oh wait[/red]"
             print("\n[red]Please enter a number[/red]\n")
             continue
         console.clear()
-        player.bullets = bullets_total
         store()
 
 
@@ -184,7 +188,9 @@ def parts():
             break
         elif player.money > 0:
             player.money = int(player.money - (parts_total * 10.00))
-            player.parts = int(player.parts + parts_total)
+            vars.amount_spent_on_miscellaneous = int(
+                vars.amount_spent_on_miscellaneous + parts_total * 10.00
+            )
             console.clear()
             store()
             break
@@ -192,7 +198,6 @@ def parts():
             print("[red]Please enter a number[/red]")
             continue
         console.clear()
-        player.parts = parts_total
         store()
 
 
@@ -224,28 +229,37 @@ wagon\
 def store():
     """Function for creating the store UI"""
     # Determines price of each type of item
-    p = player.parts * 10.00
-    b = player.bullets * 2.00
-    c = player.clothes * 40.00
-    f = player.food * 0.20
-    o = player.oxen * 40.00
+    p = vars.amount_spent_on_miscellaneous
+    b = vars.amount_spent_on_bullets
+    c = vars.amount_spent_on_clothing
+    f = vars.amount_spent_on_food
+    o = vars.amount_spent_on_animals
     # Creates store UI using table library
     table = Table(show_header=True, header_style="bold magenta")
     table.add_column("Goods")
     table.add_column("Spent", justify="right")
     # Creates "oxen" portion of the table
-    table.add_row("1. Oxen", f"[green]${player.oxen * 40.00}[/green]")
+    table.add_row("1. Oxen", f"[green]${o}[/green]")
     # Creates "food" portion of the table
     table.add_row(
         "2. Food",
-        f"[green]${player.food * 0.20}[/green]",
+        f"[green]${f}[/green]",
     )
     # Creates "clothing" portion of the table
-    table.add_row("3. Clothing", f"[green]${player.clothes * 40.00}[/green]")
+    table.add_row(
+        "3. Clothing",
+        f"[green]${c}[/green]",
+    )
     # Creates "ammunition" portion of the table
-    table.add_row("4. Ammunition", f"[green]${player.bullets * 2.00}[/green]")
+    table.add_row(
+        "4. Ammunition",
+        f"[green]${b}[/green]",
+    )
     # Creates "parts" portion of the table
-    table.add_row("5. Spare Parts", f"[green]${player.parts * 10.00}[/green]")
+    table.add_row(
+        "5. Spare Parts",
+        f"[green]${p}[/green]",
+    )
     # Creates the total spent portion of the table
     table.add_row("\nTotal", f"\n[green]${o+f+c+b+p}[/green]")
     console.print(table)
@@ -284,7 +298,7 @@ Type 'leave' to exit the store[/cyan italic]"
             print("[bold red]Invalid Selection[/bold red]")
         elif selection == "leave":
             # Determines if the player has enough oxen to play the game
-            if player.oxen < 1:
+            if vars.amount_spent_on_animals < 1:
                 print(
                     "[cyan italic] Don't forget,\
  you'll need oxen to pull your wagon![/cyan italic]"
@@ -292,7 +306,7 @@ Type 'leave' to exit the store[/cyan italic]"
                 input("Press Enter to Continue...")
                 console.clear()
                 store()
-            elif player.oxen > 1:
+            elif vars.amount_spent_on_animals > 1:
                 console.clear()
                 print(
                     "[cyan italic]Well then, you are ready to start.\
