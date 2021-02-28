@@ -31,20 +31,20 @@ def print_weekday(amount):
     return weekdays[amount % 7]
 
 
-def print_final_date(D3):
+def print_final_date(d3):
     """Determines final date based off origin"""
     # mar 29 -> dec 20 1847 = 266 days
-    weekday = print_weekday(D3)
+    weekday = print_weekday(d3)
     # dec 1 = 246 days
-    if D3 > 246:
-        return "{} DECEMBER {} 1847".format(weekday, D3 - 246)
-    elif D3 > 216:
-        return "{} NOVEMBER {} 1847".format(weekday, D3 - 216)
-    elif D3 > 185:
-        return "{} OCTOBER {} 1847".format(weekday, D3 - 185)
-    elif D3 > 155:
-        return "{} SEPTEMBER {} 1847".format(weekday, D3 - 155)
-    elif D3 > 125:
-        return "{} AUGUST {} 1847".format(weekday, D3 - 124)
+    if d3 > 246:
+        return "{} DECEMBER {} 1847".format(weekday, d3 - 246)
+    elif d3 > 216:
+        return "{} NOVEMBER {} 1847".format(weekday, d3 - 216)
+    elif d3 > 185:
+        return "{} OCTOBER {} 1847".format(weekday, d3 - 185)
+    elif d3 > 155:
+        return "{} SEPTEMBER {} 1847".format(weekday, d3 - 155)
+    elif d3 > 125:
+        return "{} AUGUST {} 1847".format(weekday, d3 - 124)
     else:
-        return "{} JULY {} 1847".format(weekday, D3 - 93)
+        return "{} JULY {} 1847".format(weekday, d3 - 93)

@@ -161,8 +161,6 @@ class GameGlobals:
         option = input("Press Enter to Continue:")
         if option == "exit":
             return False
-        elif ValueError():
-            return False
 
     def increment_turn(self):
         """Function for adding to the turn value"""
@@ -192,7 +190,7 @@ class GameGlobals:
         while self.text_2_int == None:
             try:
                 self.text_2_int = int(input(message))
-            except:
+            except ValueError:
                 self.text_2_int = None
         return self.text_2_int
 
@@ -234,9 +232,9 @@ class GameGlobals:
     def hp(self):
         """Function for general player health"""
         if self.is_injured == True:
-            health = "Injured"
+            vars.health = "Injured"
         elif self.is_injured == False:
-            health = "Healthy"
+            vars.health = "Healthy"
 
     def death(self):
         if self.dead == True:
@@ -296,14 +294,14 @@ $$         $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 def health():
     if vars.is_injured == True:
-        health = "Injured"
+        vars.health = "Injured"
     elif vars.got_shot == True:
-        health = "Critical"
+        vars.health = "Critical"
     else:
-        health = "Good"
+        vars.health = "Good"
 
 
-class Random_Selection:
+class RandomSelection:
     def __init__(self):
         self.random_member = ""
         self.selected_member = 0
@@ -359,5 +357,5 @@ class Random_Selection:
     ]
 
 
-vars2 = Random_Selection()
+vars2 = RandomSelection()
 vars = GameGlobals()

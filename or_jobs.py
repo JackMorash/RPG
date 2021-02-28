@@ -49,12 +49,11 @@ def job():
             break
         elif job == "exit":
             return None
-        elif ValueError:
+        else:
             print(
                 "\n[bold red]Invalid selection, please enter a number \
 [/bold red]\n"
             )
-        continue
     console.clear()
     name()
 
@@ -139,9 +138,6 @@ leave [red]Independence[/red]"
         elif month == "exit":
             console.clear()
             return None
-        elif ValueError:
-            print("\n[red]Invalid Selection, please enter a number[/red]")
         else:
             print("\n[red]Invalid Selection, please enter a number[/red]")
-        continue
     console.clear()

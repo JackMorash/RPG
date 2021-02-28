@@ -281,7 +281,6 @@ Type 'leave' to exit the store[/cyan italic]"
             return None
         elif selection == ValueError:
             print("[bold red]Invalid Selection[/bold red]")
-            continue
         elif selection == "leave":
             # Determines if the player has enough oxen to play the game
             if player.oxen < 1:
@@ -305,4 +304,3 @@ Type 'leave' to exit the store[/cyan italic]"
             break
         else:
             print("\n[red]Invalid Selection[/red]\n")
-            continue

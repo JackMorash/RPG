@@ -56,11 +56,11 @@ has died of {vars2.disease}.\n"
 def weather():
     """Function for determining weather type"""
     if vars.cold_weather == True:
-        vars.weather == "Cold"
+        vars.weather = "Cold"
     elif vars.raining == True:
-        vars.weather == "Rainy"
+        vars.weather = "Rainy"
     else:
-        vars.weather == "Fine"
+        vars.weather = "Fine"
 
 
 def walking_trail():
@@ -362,8 +362,6 @@ and can finally settle yourself and your party members![/green]"
                 "\n[red]You'd better do some hunting \
 or buy some food...And soon!![/red]\n"
             )
-        vars.cash_total = vars.cash_total
-        vars.total_mileage = vars.total_mileage
         vars.total_mileage_previous_turn = vars.total_mileage
         # Determines if player can afford a doctor
         if vars.has_illness or vars.is_injured:

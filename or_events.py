@@ -17,7 +17,7 @@ def cold_weather():
     """Random event for cold weather"""
     # Checks for sufficient clothing
     while True:
-        vars.cold_weather == True
+        vars.cold_weather = True
         enough_clothes = vars.amount_spent_on_clothing > 22 + (
             4 * random.random()
         )
@@ -357,19 +357,16 @@ def choices():
 def continue_on():
     """Determines if the player has enough food to live and if they have
     enough ammo to hunt"""
-    while True:
-        if vars.amount_spent_on_food < 13:
-            vars.dead = True
-            print(
-                "[red]\nYou decide to continue on with no food or ammunition\
- With no food and no ability to hunt, you \
+    if vars.amount_spent_on_food < 13:
+        vars.dead = True
+        print(
+            "[red]\nYou decide to continue on with no food or ammunition \
+With no food and no ability to hunt, you \
 starve to death[/red]\n"
-            )
-            input("\n-->")
-            vars.death()
-            return False
-        else:
-            break
+        )
+        input("\n-->")
+        vars.death()
+        return False
 
 
 def oxen():
@@ -399,7 +396,7 @@ I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
             )
             fort()
             break
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
             continue
         console.clear()
@@ -435,7 +432,7 @@ def food():
             console.clear()
             fort()
             break
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
         console.clear()
         fort()
@@ -472,7 +469,7 @@ def clothes():
             console.clear()
             fort()
             break
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
             continue
         console.clear()
@@ -512,7 +509,7 @@ you are an American or something...oh wait[/red]"
             console.clear()
             fort()
             break
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
             continue
         console.clear()
@@ -554,7 +551,7 @@ def parts():
             console.clear()
             fort()
             break
-        elif ValueError:
+        else:
             print("[red]Please enter a number[/red]")
             continue
         console.clear()
@@ -619,7 +616,7 @@ def fort():
                 (vars.amount_spent_on_animals + int(amount_ox))
             )
             fort()
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
         console.clear()
 
@@ -642,7 +639,7 @@ def fort():
                 (vars.amount_spent_on_clothing + int(amount_sets))
             )
             fort()
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
         console.clear()
 
@@ -663,7 +660,7 @@ def fort():
                 (vars.amount_spent_on_bullets + int(amount_boxes))
             )
             fort()
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
         console.clear()
     if selected == "4":
@@ -683,7 +680,7 @@ def fort():
                 (vars.amount_spent_on_miscellaneous + int(amount_wheels))
             )
             fort()
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
         console.clear()
 
@@ -704,7 +701,7 @@ def fort():
                 (vars.amount_spent_on_miscellaneous + int(amount_axles))
             )
             fort()
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
         console.clear()
 
@@ -727,7 +724,7 @@ def fort():
                 (vars.amount_spent_on_miscellaneous + int(amount_tounges))
             )
             fort()
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
         console.clear()
 
@@ -748,7 +745,7 @@ def fort():
                 (vars.amount_spent_on_food + int(amount_pounds))
             )
             fort()
-        elif ValueError:
+        else:
             print("\n[red]Please enter a number[/red]\n")
         console.clear()
 
@@ -783,7 +780,6 @@ eat each day can change. These amounts are: [/cyan]"
         if eaten < 0:
             print("[red]You can't eat that well.[/red]\n")
             input("Press Enter to Continue... ")
-            continue
         else:
             vars.amount_spent_on_food -= 200
             vars.total_mileage += (
@@ -822,7 +818,7 @@ events_list = [
     wrong_trail,
 ]
 
-if len(player.members) < 0:
+if len(player.members) == 0:
     del events_list[15]
 
 
