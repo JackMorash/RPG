@@ -104,7 +104,8 @@ def ox_wander():
 def helpful_indians():
     """Random event for appearence of helpful indians"""
     print(
-        f"\n{Fore.CYAN}Helpful Native Americans help you look for food![/cyan]\n"
+        f"\n{Fore.CYAN}Helpful Native Americans help you \
+look for food!{Fore.RESET}\n"
     )
     # Adds extra food to inventory
     vars.amount_spent_on_food += 14
@@ -203,7 +204,7 @@ def disease():
     )
     print(
         f"{Fore.CYAN}You can use medicine on them or \
-wait to see if they pull through.[/cyan]\n"
+wait to see if they pull through.{Fore.RESET}\n"
     )
     # Input for if the player decides to give afflicted party member medicine
     # or not
@@ -267,7 +268,7 @@ def animals_attack():
     time.sleep(random.randint(1, 3))
     # Determines shooting level, whether you miss or not, or have enough bullets
     response_time = vars.shooting()
-    if vars.amount_spent_on_bullets <= 20:
+    if vars.amount_spent_on_bullets < 0:
         print(f"\n{Fore.RED}You were too low on bullets!{Fore.RESET}\n")
         print(f"\n{Fore.RED}The wolves overpower your group!{Fore.RESET}\n")
         vars.dead = True
@@ -301,7 +302,7 @@ def bandits_attack():
     if vars.amount_spent_on_bullets < 0:
         print(
             f"\n{Fore.RED}You ran out of bullets! They take a bunch of\
- your {Fore.RESET}{Fore.GREEN}money![/green]\n"
+ your {Fore.GREEN}money!{Fore.RESET}\n"
         )
         vars.cash_total //= 3
         vars.got_shot = True

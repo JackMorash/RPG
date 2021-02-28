@@ -3,7 +3,7 @@ import time
 from rich import print
 from rich.console import Console
 
-from or_globalvars import player
+from or_globalvars import player, vars
 from or_store import matt_message
 
 console = Console()

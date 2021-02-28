@@ -8,11 +8,6 @@ from rich.table import Table
 from or_globalvars import player
 from or_trail import walking_trail
 
-oxen_total = 0
-food_total = 0
-clothes_total = 0
-bullets_total = 0
-parts_total = 0
 console = Console()
 
 
@@ -25,7 +20,8 @@ I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
 [/cyan italic]"
         )
         amount = input("How many yoke do you want?: ")
-        oxen_total = float(amount)
+        oxen_total = int(amount)
+
         if (oxen_total * 40.00) > player.money:
             print("[red]You can't spend that much on oxen[/red]")
             time.sleep(1.5)
@@ -45,6 +41,7 @@ I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
             print("\n[red]Please enter a number[/red]\n")
             continue
         console.clear()
+        player.oxen = oxen_total
         store()
 
 
@@ -58,7 +55,7 @@ def food():
  My total is [green]¢20 a pound[/green][/cyan italic]\n"
         )
         amount = input("\nHow many pounds of food do you want?: ")
-        food_total = float(amount)
+        food_total = int(amount)
         if (food_total * 0.20) > player.money:
             print("[red]You can't spend that much on food[/red]")
             time.sleep(1.5)
@@ -78,6 +75,7 @@ def food():
         elif ValueError:
             print("\n[red]Please enter a number[/red]\n")
         console.clear()
+        player.food = food_total
         store()
 
 
@@ -93,7 +91,7 @@ def clothes():
             "\nHow many sets of\
  clothes do you want?: "
         )
-        clothes_total = float(amount)
+        clothes_total = int(amount)
         if (clothes_total * 40.00) > player.money:
             print("[red]You can't spend that much on clothes[/red]")
             time.sleep(1.5)
@@ -114,6 +112,7 @@ def clothes():
             print("\n[red]Please enter a number[/red]\n")
             continue
         console.clear()
+        player.clothes = clothes_total
         store()
 
 
@@ -125,11 +124,11 @@ def bullets():
 box costs [green]$2.00.[/green][/cyan italic]\n"
         )
         amount = input("\nHow many boxes do you want?: ")
-        bullets_total = float(amount)
+        bullets_total = int(amount)
         # Determines if the player can spend enough bullets
         if (bullets_total * 2.00) > player.money:
             print(
-                "[red]You can't buy that many bullets, it's not like\
+                "[red]You can't buy that many bullets, it's not like \
 you are an American or something...oh wait[/red]"
             )
             time.sleep(1.5)
@@ -152,6 +151,7 @@ you are an American or something...oh wait[/red]"
             print("\n[red]Please enter a number[/red]\n")
             continue
         console.clear()
+        player.bullets = bullets_total
         store()
 
 
@@ -168,9 +168,9 @@ def parts():
         amount1 = input("How many wagon wheels do you want?: ")
         amount2 = input("How many wagon axles do you want?: ")
         amount3 = input("How many wagon tongues do you want?: ")
-        wheels = float(amount1)
-        axles = float(amount2)
-        tongues = float(amount3)
+        wheels = int(amount1)
+        axles = int(amount2)
+        tongues = int(amount3)
         parts_total = wheels + axles + tongues
         if (parts_total) > player.money:
             print("[red]You can't spend that much on spare parts[/red]")
@@ -192,6 +192,7 @@ def parts():
             print("[red]Please enter a number[/red]")
             continue
         console.clear()
+        player.parts = parts_total
         store()
 
 

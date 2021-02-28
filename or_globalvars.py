@@ -10,13 +10,13 @@ console = Console()
 class Character:
     def __init__(self):
         self.money = 1600
-        self.bullets = 999
-        self.water = 0
-        self.oxen = 999
-        self.parts = 999
-        self.medicine = 999
-        self.clothes = 999
-        self.food = 9999
+        self.bullets = vars.amount_spent_on_bullets / 2
+        self.water = vars.amount_spent_on_miscellaneous / 20
+        self.oxen = vars.amount_spent_on_miscellaneous / 20
+        self.parts = vars.amount_spent_on_miscellaneous / 20
+        self.medicine = vars.amount_spent_on_miscellaneous / 20
+        self.clothes = vars.amount_spent_on_clothing / 40
+        self.food = vars.amount_spent_on_food / 0.20
 
 
 class Player(Character):
@@ -42,12 +42,12 @@ class GameGlobals:
         self.dead = False
         self.GOAL_IN_MILES = 2040
         self.SOUTH_PASS_IN_MILES = 950
-        self.amount_spent_on_animals = player.oxen
-        self.amount_spent_on_bullets = player.bullets
-        self.amount_spent_on_clothing = player.clothes
+        self.amount_spent_on_animals = 0
+        self.amount_spent_on_bullets = 0
+        self.amount_spent_on_clothing = 0
         self.cash_total = player.money
-        self.amount_spent_on_miscellaneous = player.parts
-        self.amount_spent_on_food = player.food
+        self.amount_spent_on_miscellaneous = 0
+        self.amount_spent_on_food = 0
         self.total_mileage = player.miles
         self.is_sufficient_clothing = False
         self.current_date = 1
@@ -289,7 +289,7 @@ $$         $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                              $$$$$$$$$$$$$$$$$$$$"
             [/white]"""
             )
-        return False
+        quit()
 
 
 def health():
