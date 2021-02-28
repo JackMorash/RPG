@@ -449,49 +449,49 @@ def landmark():
     if vars.total_mileage > 100:
         if vars.kansas_river_passed == False:
             vars.location = "Kansas River"
-            vars.distance_to_landmark = 100 - vars.total_mileage
+            vars.distance_to_landmark = int(100 - vars.total_mileage)
             kansas_river()
             vars.kansas_river_passed = True
     # Landmark flag for "Big Blue River"
     if vars.total_mileage > 185:
         if vars.big_blue_river_passed == False:
             vars.location = "Big Blue River"
-            vars.distance_to_landmark = 185 - vars.total_mileage
+            vars.distance_to_landmark = int(185 - vars.total_mileage)
             big_blue_river()
             vars.big_blue_river_passed = True
     # Landmark flag for "Fort Kearney"
     if vars.total_mileage > 300:
         if vars.fort_kearney_passed == False:
             vars.location = "Fort Kearney"
-            vars.distance_to_landmark = 300 - vars.total_mileage
+            vars.distance_to_landmark = int(300 - vars.total_mileage)
             fort_kearney()
             vars.fort_kearney_passed = True
     # Landmark flag for "Chimney Rock"
     if vars.total_mileage > 550:
         if vars.chimney_rock_passed == False:
             vars.location = "Chimney Rock"
-            vars.distance_to_landmark = 550 - vars.total_mileage
+            vars.distance_to_landmark = int(550 - vars.total_mileage)
             chimney_rock()
             vars.chimney_rock_passed = True
     # Landmark flag for "Fort Laramie"
     if vars.current_date > 650:
         if vars.fort_laramie_passed == False:
             vars.location = "Fort Laramie"
-            vars.distance_to_landmark = 650 - vars.total_mileage
+            vars.distance_to_landmark = int(650 - vars.total_mileage)
             fort_laramie()
             vars.fort_laramie_passed = True
     # Landmark flag for "Independence Rock"
     if vars.total_mileage > 850:
         if vars.independence_rock_passed == False:
             vars.location = "Independence Rock"
-            vars.distance_to_landmark = 850 - vars.total_mileage
+            vars.distance_to_landmark = int(850 - vars.total_mileage)
             independence_rock()
             vars.independence_rock_passed = True
     # Landmark flag for "South Pass"
     if vars.total_mileage > 950:
         if vars.south_pass_passed == False:
             vars.location = "South Pass"
-            vars.distance_to_landmark = 950 - vars.total_mileage
+            vars.distance_to_landmark = int(950 - vars.total_mileage)
             south_pass()
             vars.south_pass_passed = True
     # Landmark flag for "Green River"
@@ -499,14 +499,14 @@ def landmark():
         if vars.green_river_passed == False:
             if green_river == True:
                 vars.location = "Green River"
-                vars.distance_to_landmark = 980 - vars.total_mileage
+                vars.distance_to_landmark = int(980 - vars.total_mileage)
                 green_river()
                 vars.green_river_passed = True
     # Landmark flag for "Soda Springs"
     if vars.total_mileage > 1000:
         if vars.soda_springs_passed == False:
             vars.location = "Soda Springs"
-            vars.distance_to_landmark = 1000 - vars.total_mileage
+            vars.distance_to_landmark = int(1000 - vars.total_mileage)
             soda_springs()
             vars.soda_springs_passed = True
     # Landmark flag for "Fort Bridger"
@@ -514,42 +514,42 @@ def landmark():
         if vars.fort_bridger_passed == False:
             if fort_bridger == True:
                 vars.location = "Fort Bridger"
-                vars.distance_to_landmark = 1100 - vars.total_mileage
+                vars.distance_to_landmark = int(1100 - vars.total_mileage)
                 fort_bridger()
                 vars.fort_bridger_passed = True
     # Landmark flag for "Fort Hall"
     if vars.total_mileage > 1200:
         if vars.fort_hall_passed == False:
             vars.location = "Fort Hall"
-            vars.distance_to_landmark = 1200 - vars.total_mileage
+            vars.distance_to_landmark = int(1200 - vars.total_mileage)
             fort_hall()
             vars.fort_hall_passed = True
     # Landmark flag for "Snake River"
     if vars.total_mileage > 1370:
         if vars.snake_river_passed == False:
             vars.location = "Snake River"
-            vars.distance_to_landmark = 1370 - vars.total_mileage
+            vars.distance_to_landmark = int(1370 - vars.total_mileage)
             snake_river()
             vars.snake_river_passed = True
     # Landmark flag for "Fort Boise"
     if vars.total_mileage > 1500:
         if vars.fort_boise_passed == False:
             vars.location = "Fort Boise"
-            vars.distance_to_landmark = 1500 - vars.total_mileage
+            vars.distance_to_landmark = int(1500 - vars.total_mileage)
             fort_boise()
             vars.fort_boise_passed = True
     # Landmark flag for "Grande Ronde Valley"
     if vars.total_mileage > 1650:
         if vars.grande_ronde_valley_passed == False:
             vars.location = "Grande Ronde Valley"
-            vars.distance_to_landmark = 1650 - vars.total_mileage
+            vars.distance_to_landmark = int(1650 - vars.total_mileage)
             grande_ronde_valley()
             vars.grande_ronde_valley_passed = True
     # Landmark flag for "Blue Mountains"
     if vars.total_mileage > 1700:
         if vars.blue_mountains_passed == False:
             vars.location = "Blue Mountains"
-            vars.distance_to_landmark = 1700 - vars.total_mileage
+            vars.distance_to_landmark = int(1700 - vars.total_mileage)
             blue_mountains()
             vars.blue_mountains_passed = True
     # Landmark flag for "Fort Walla Walla"
@@ -557,7 +557,7 @@ def landmark():
         if vars.fort_walla_walla_passed == False:
             if vars.fort_walla_walla == True:
                 vars.location = "Fort Walla Walla"
-                vars.distance_to_landmark = 1800 - vars.total_mileage
+                vars.distance_to_landmark = int(1800 - vars.total_mileage)
                 fort_walla_walla()
                 vars.fort_walla_walla_passed = True
     # Landmark flag for "The Dalles"
@@ -565,13 +565,13 @@ def landmark():
         if vars.the_dalles_passed == False:
             if vars.the_dalles == True:
                 vars.location = "The Dalles"
-                vars.distance_to_landmark = 1770 - vars.total_mileage
+                vars.distance_to_landmark = int(1770 - vars.total_mileage)
                 the_dalles()
                 vars.the_dalles_passed = True
     # Landmark flag for ending
     if vars.total_mileage > 2080:
         console.clear()
-        vars.distance_to_landmark = 2080 - vars.total_mileage
+        vars.distance_to_landmark = int(2080 - vars.total_mileage)
         print(
             "\n[green]Congratulations! You have finally made it to Oregon\
  City. You've braved the periless west and can finally settle your family!"
@@ -1075,4 +1075,3 @@ def the_dalles():
 not far until Oregon City now![/italic cyan]"
     )
     input("Press Enter to Continue...")
-
