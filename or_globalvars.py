@@ -52,7 +52,7 @@ class GameGlobals:
         self.is_sufficient_clothing = False
         self.current_date = 1
         self.shooting_level = 5
-        self.choice_of_eating = 0
+        self.choice_of_eating = 1
         self.has_cleared_south_pass = False
         self.has_cleared_blue_montains = False
         self.fraction_of_2_weeks = 0
@@ -95,6 +95,7 @@ class GameGlobals:
         self.member = False
         self.reached_landmark = True
         self.playing = False
+        self.message = ""
 
     dates = [
         "MARCH",
@@ -129,20 +130,10 @@ class GameGlobals:
         "The Dalles",
     ]
 
-    def landmark_message(self):
-        if self.location == "Kansas River":
-            console.clear()
-            print(
-                """[cyan]A Ferry Operator tells you:\n "Don't try to ford any river\ndeeper than the wagon bed --\nabout two and a half feet" 
-
-
-
-"""
-            )
-
     def print_inventory(self):
         """Function for printing the inventory"""
         # Determines what how much of each item is in the inventory
+        console.clear()
         self.amount_spent_on_food = max(int(self.amount_spent_on_food), 0)
         self.amount_spent_on_bullets = max(
             int(self.amount_spent_on_bullets), 0
@@ -155,13 +146,15 @@ class GameGlobals:
         )
         # Prints inventory
         print("█" * 79)
+        print("")
         print("[cyan]Food: [/cyan]", self.amount_spent_on_food)
         print("[cyan]Bullets: [/cyan]", self.amount_spent_on_bullets)
         print("[cyan]Clothing: [/cyan]", self.amount_spent_on_clothing)
         print("[cyan]Supplies: [/cyan]", self.amount_spent_on_miscellaneous)
         print("[green]Money : $[/green]", player.money)
+        print("")
         print("█" * 79)
-        input("-->")
+        input("\nPress Enter to Continue...")
 
     def cont(self):
         """Function for "Press enter to continue" """
@@ -318,19 +311,30 @@ class Random_Selection:
         self.member_is_sick = False
 
     def rndmem(self):
-        x = random.randint(0, 3)
-        if x == 0:
-            self.random_member = player.members[0]
-            self.selected_member = 0
-        elif x == 1:
-            self.random_member = player.members[1]
-            self.selected_member = 1
-        elif x == 2:
-            self.random_member = player.members[2]
-            self.selected_member = 2
-        elif x == 3:
-            self.random_member = player.members[3]
-            self.selected_member = 3
+        y = len(player.members)
+        x = random.randint(0, y)
+        while True:
+            if x == 0:
+                if y > 1:
+                    self.random_member = player.members[0]
+                    self.selected_member = 0
+            elif x == 1:
+                if y > 2:
+                    self.random_member = player.members[1]
+                    self.selected_member = 1
+                    break
+            elif x == 2:
+                if y > 3:
+                    self.random_member = player.members[2]
+                    self.selected_member = 2
+                    break
+            elif x == 3:
+                if y > 4:
+                    self.random_member = player.members[3]
+                    self.selected_member = 3
+                    break
+                else:
+                    continue
 
     def random_disease(self):
         """Function for determining which event occurs"""

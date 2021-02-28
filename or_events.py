@@ -5,7 +5,7 @@ from rich import print
 from rich.console import Console
 from rich.table import Table
 
-from or_globalvars import vars, vars2
+from or_globalvars import player, vars, vars2
 
 console = Console()
 
@@ -176,12 +176,15 @@ some of your supplies are damaged.[/red]\n"
 
 
 def wrong_trail():
+    """Random event for taking the wrong trail"""
+    # Takes random number of days to add to current_date
     x = random.randint(2, 5)
     print(f"[red]Wrong trail...You loose {x} days[/red]")
     vars.current_date += x
 
 
 def disease():
+    """Random event for party member catching a disease"""
     vars2.rndmem()
     vars2.random_disease()
     print(f"\n[red]{vars2.random_member} has {vars2.disease}.[/red]\n")
@@ -189,6 +192,8 @@ def disease():
         f"[cyan]You can use medicine on them or \
 wait to see if they pull through.[/cyan]\n"
     )
+    # Input for if the player decides to give afflicted party member medicine
+    # or not
     option = input("Use medicine? (Y/N): ")
     if option == "y":
         print(f"\n[cyan]You give medicine to {vars2.random_member}.[cyan]\n")
@@ -246,12 +251,11 @@ def animals_attack():
     if vars.amount_spent_on_bullets <= 20:
         print("\n[red]You were too low on bullets![/red]\n")
         print("\n[red]The wolves overpower your group![/red]\n")
-        vars.is_injured = True
         vars.dead = True
         vars.death()
         return False
     # Determines if you were fast enough to win the battle
-    if response_time <= 3:
+    if response_time <= 3.5:
         print(
             "\n[cyan italic]Nice shootin'! \
 They didn't get much.[/cyan italic]\n"
@@ -284,7 +288,7 @@ def bandits_attack():
         vars.got_shot = True
     # Determines if you were fast enough to win the battle
     else:
-        if response_time > 1.5:
+        if response_time > 3.5:
             print(
                 "\n[red]Too slow! They shot you.\
  Seek medical attention![/red]"
@@ -296,6 +300,8 @@ def bandits_attack():
 
 
 def hunt():
+    """Event for if the player chooses to hunt for more food"""
+    # Determines if the player has enough bullets to hunt
     if vars.amount_spent_on_bullets <= 39:
         print("\nTough...You need more bullets to go hunting\n")
         choices()
@@ -303,6 +309,7 @@ def hunt():
         vars.total_mileage -= 45
         RND = random.randint(30, 50)
         response_time = vars.shooting()
+        # Determines if the player typed the word fast enough
         if response_time <= 1:
             print("\nYou begin to look for animals...\n")
             time.sleep(2)
@@ -328,28 +335,25 @@ def hunt():
 
 
 def choices():
-    choice = 0
-    choices_1 = []
-    if vars.has_fort:
-        while choice < 1 or choice > 3:
-            print(
-                "[u]Do you want to:[/u] \n\n [blue]1. Stop at the next fort\
-\n 2. Hunt\n 3. Continue[/blue]"
-            )
-            choice = vars.input_int("\n-->")
-        choices_1 = [fort, hunt, continue_on]
-    else:
-        while choice < 1 or choice > 2:
-            print(
-                "[u]Do you want to:[/u] \n\n [blue]1. Stop at the next fort\
-\n 2. Hunt\n 3. Continue[/blue]"
-            )
-            choice = vars.input_int("\n-->")
-        choices_1 = [hunt, continue_on]
-    choices_1[choice - 1]()
+    """Choices for what the player wants to do when passing a fort landmark"""
+    console.clear()
+    print(
+        "[u]Do you want to:[/u] \n\n [blue]1. Stop at the fort\
+\n 2. Hunt\n 3. Continue[/blue]\n"
+    )
+    # Handles which option the player selects
+    option = input("-->")
+    if option == "1":
+        fort()
+    elif option == "2":
+        hunt()
+    elif option == "3":
+        return True
 
 
 def continue_on():
+    """Determines if the player has enough food to live and if they have
+    enough ammo to hunt"""
     while True:
         if vars.amount_spent_on_food < 13:
             vars.dead = True
@@ -637,12 +641,14 @@ you'll need oxen to pull your wagon![/cyan italic]"
                 )
                 input("Press Enter to Continue...")
                 console.clear()
-                continue
+                break
             else:
                 break
 
 
 def eating_quality():
+    """Function for choosing how well the
+    player wants to divide their rations"""
     console.clear()
     while vars.choice_of_eating > 0 or vars.choice_of_eating < 4:
         print("[u cyan]Change food rations[/u cyan]")
@@ -659,10 +665,13 @@ eat each day can change. These amounts are: [/cyan]"
         vars.choice_of_eating = vars.input_int("What is your choice? ")
         if vars.choice_of_eating == 1:
             vars.food_quality = "Filling"
+            vars.choice_of_eating = 1
         if vars.choice_of_eating == 2:
             vars.food_quality = "Meager"
+            vars.choice_of_eating = 2
         if vars.choice_of_eating == 3:
             vars.food_quality = "Bare Bones"
+            vars.choice_of_eating = 3
         eaten = (vars.amount_spent_on_food - 8) - (5 * vars.choice_of_eating)
         if eaten < 0:
             print("[red]You can't eat that well.[/red]\n")
@@ -706,9 +715,11 @@ events_list = [
     wrong_trail,
 ]
 
+if len(player.members) < 0:
+    del events_list[15]
+
 
 def events():
     """Function for determining which event occurs"""
     random.choice(events_list)()
     input("Press enter to Continue...")
-    
