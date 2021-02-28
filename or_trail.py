@@ -1,14 +1,16 @@
 import random
+from queue import SimpleQueue
 from re import A
 from time import sleep
 
+from pynput import keyboard
 from rich import print
 from rich.console import Console
 
 import or_events
 from or_dates import get_date
-from or_globalvars import vars
-from or_map import map
+from or_globalvars import vars, vars2
+from or_map import print_map
 
 console = Console()
 
@@ -16,6 +18,15 @@ console = Console()
 def update():
     vars.current_date += 1
     vars.total_mileage += 15
+    if vars2.member_is_sick == True:
+        if random.randint(0, 100) < 15:
+            print(
+                f"[red]{vars2.random_member} \
+has died of {vars2.disease}.\n"
+            )
+            vars2.dead_member()
+            vars2.member_is_sick = False
+            input("Press Enter to Continue... ")
     if random.random() < 0.3:
         or_events.events()
 
@@ -41,54 +52,65 @@ def walking_trail():
 
         print(
             f"""
+                            {get_date()}
+                     {vars.location}
 ███████████████████████████████████████████████████████████████████████████████
 
     [cyan italic]Weather: {vars.weather}[/cyan italic]
     [cyan italic]Health: {vars.health}[/cyan italic]
     [cyan italic]Pace:[/cyan italic]
-    [cyan italic]Rations: {vars.amount_spent_on_food} lb of food [/cyan italic]
+    [cyan italic]Rations: {vars.food_quality}[/cyan italic]
+    [cyan italic]Next Landmark: {vars.distance_to_landmark} miles[/cyan italic]
+    [cyan italic]Miles Traveled: {vars.total_mileage} miles[/cyan italic]
 
 ███████████████████████████████████████████████████████████████████████████████
 
 [u italic]You May[/u italic]:
-    
+
     [blue]1. Continue on Trail[/blue]
     [blue]2. Check map[/blue]
     [blue]3. Check Supplies[/blue]
     [blue]4. Hunt for food[/blue]
     [blue]5. Change food rations[/blue]
-    [blue]6. Stop to rest[/blue]
-    """
+    [blue]6. Stop to rest[/blue]"""
         )
+        if vars.reached_landmark == True:
+            print("[blue]    7. Talk to people[/blue]\n")
+
         # Determines which option the player selects from the UI
         option = input("What is your choice? ")
         if option == "1":
             begin()
         elif option == "2":
-            map()
+            print_map()
         elif option == "3":
             vars.print_inventory()
         elif option == "4":
             or_events.hunt()
         elif option == "exit".lower:
             return False
+        elif option == "5":
+            or_events.eating_quality()
+        elif option == "6":
+            or_events.wait()
+        if vars.reached_landmark == True:
+            if option == "7":
+                print(vars.landmark_message)
 
 
 def begin():
     while True:
-        if vars.dead:
-            return False
-        if vars.total_mileage > 2080:
+        if vars.total_mileage >= vars.GOAL_IN_MILES:
             print(
                 "\n[green]Congratulations! You have finally made it to \
 Oregon City. You've braved the periless west \
-and can finally settle your family!"
+and can finally settle yourself and your party members![/green]"
             )
             return False
         if vars.amount_spent_on_food < 13:
             print(
-                "\n[red]You'd better do some hunting\
-    or buy some food...And soon!![/red]\n"
+                "\n[red]You'd better do some hunting \
+or buy some food...And soon!![/red]\n"
             )
         vars.cash_total = vars.cash_total
         vars.total_mileage = vars.total_mileage
@@ -98,16 +120,20 @@ and can finally settle your family!"
             if vars.cash_total < 0:
                 print(
                     "[red]Looks like you don't have enough money \
-    for a doctor... Guess you should have been born in a different country...\
-    And a different century...Unlucky[/red]"
+for a doctor... Guess you should have been born in a different country...\
+And a different century...[/red]"
                 )
                 vars.dead = True
+                vars.death()
             else:
                 print(
                     "\n[blue]You go to get \
 yourself treated by a doctor[/blue]"
                 )
-                print("\n[cyan]Doctor's bill is[/cyan] [green]$20[/green]\n")
+                print(
+                    "\n[cyan]Doctor's bill is[/cyan] \
+[green]$20[/green]\n"
+                )
                 vars.is_injured = vars.has_illness = False
         else:
             landmark()
@@ -118,10 +144,10 @@ yourself treated by a doctor[/blue]"
             del vars.dates[0]
             vars.current_date = 1
 
-        console.clear()
-        print(
-            f"""
-                     Type "stop" to size up the situation
+            console.clear()
+            print(
+                f"""
+                     Press SPACE to size up the situation
 ███████████████████████████████████████████████████████████████████████████████
     
     [cyan italic]Date: {get_date()}[/cyan italic]
@@ -132,8 +158,8 @@ yourself treated by a doctor[/blue]"
     [cyan italic]Miles Traveled: {vars.total_mileage} miles[/cyan italic]
 
 ███████████████████████████████████████████████████████████████████████████████
-"""
-        )
+            """
+            )
 
 
 def next_landmark():
@@ -154,17 +180,78 @@ def next_landmark():
 def landmark():
     if vars.total_mileage > 100:
         if vars.kansas_river_passed == False:
+            vars.location = "Kansas River"
             kansas_river()
     if vars.total_mileage > 185:
         if vars.big_blue_river_passed == False:
+            vars.location = "Big Blue River"
             big_blue_river()
     if vars.total_mileage > 300:
         if vars.fort_kearney_passed == False:
+            vars.location = "Fort Kearney"
             fort_kearney()
     if vars.total_mileage > 550:
         if vars.chimney_rock_passed == False:
+            vars.location = "Chimney Rock"
             chimney_rock()
+    if vars.current_date > 650:
+        if vars.fort_laramie_passed == False:
+            vars.location = "Fort Laramie"
+            fort_laramie()
+    if vars.total_mileage > 850:
+        if vars.independence_rock_passed == False:
+            vars.location = "Independence Rock"
+            independence_rock()
+    if vars.total_mileage > 950:
+        if vars.south_pass_passed == False:
+            vars.location = "South Pass"
+            south_pass()
+    if vars.total_mileage > 980:
+        if vars.green_river_passed == False:
+            if green_river == True:
+                vars.location = "Green River"
+                green_river()
+    if vars.total_mileage > 1000:
+        if vars.soda_springs_passed == False:
+            vars.location = "Soda Springs"
+            soda_springs()
+    if vars.total_mileage > 1100:
+        if vars.fort_bridger_passed == False:
+            if fort_bridger == True:
+                vars.location = "Fort Bridger"
+                fort_bridger()
+    if vars.total_mileage > 1200:
+        if vars.fort_hall_passed == False:
+            vars.location = "Fort Hall"
+            fort_hall()
+    if vars.total_mileage > 1370:
+        if vars.snake_river_passed == False:
+            vars.location = "Snake River"
+            snake_river()
+    if vars.total_mileage > 1500:
+        if vars.fort_boise_passed == False:
+            vars.location = "Fort Boise"
+            fort_boise()
+    if vars.total_mileage > 1650:
+        if vars.grande_ronde_valley_passed == False:
+            vars.location = "Grande Ronde Valley"
+            grande_ronde_valley()
+    if vars.total_mileage > 1700:
+        if vars.blue_mountains_passed == False:
+            vars.location = "Blue Mountains"
+            blue_mountains()
+    if vars.total_mileage > 1800:
+        if vars.fort_walla_walla_passed == False:
+            if vars.fort_walla_walla == True:
+                vars.location = "Fort Walla Walla"
+                fort_walla_walla()
+    if vars.total_mileage > 1770:
+        if vars.the_dalles_passed == False:
+            if vars.the_dalles == True:
+                vars.location = "The Dalles"
+                the_dalles()
     if vars.total_mileage > 2080:
+        console.clear()
         print(
             "\n[green]Congratulations! You have finally made it to Oregon\
  City. You've braved the periless west and can finally settle your family!"
@@ -356,7 +443,7 @@ take the time to buy some supplies...[/italic blue]"
 def chimney_rock():
     console.clear()
     print(
-        "[italic cyan]You have reached Chimney rock, what a \
+        "[italic cyan]You have reached Chimney Rock, what a \
 beautiful sight![/italic cyan]"
     )
     input("Press Enter to Continue...")
@@ -370,8 +457,31 @@ take the time to buy some supplies...[/italic blue]"
     )
     input("Press Enter to Continue...")
     or_events.fort()
-    # def independence_rock():
-    # def south_pass():
+
+
+def independence_rock():
+    console.clear()
+    print(
+        "[italic cyan]You have reached Independence rock, \
+it appears to be even grander than chimney rock...[/italic cyan]"
+    )
+    input("Press Enter to Continue...")
+
+
+def south_pass():
+    print(
+        "[cyan]The trail divides here. You may:\n \
+1. Head for Green River Crossing\n 2. Head for Fort Bridger\n 3. See the map"
+    )
+    direction = vars.input_int("What is your choice? ")
+    if direction == 1:
+        vars.green_river_crossing = True
+        vars.has_cleared_south_pass = True
+    elif direction == 2:
+        vars.fort_bridger = True
+        vars.has_cleared_south_pass = True
+    elif direction == 3:
+        print_map()
 
 
 def fort_bridger():
@@ -469,7 +579,14 @@ by the river for the night.[/blue]\n"
         elif option == "exit":
             return False
 
-    # def soda_springs():
+
+def soda_springs():
+    console.clear()
+    print(
+        "[italic cyan]You have reached Soda Springs, what a \
+beautiful sight![/italic cyan]"
+    )
+    input("Press Enter to Continue...")
 
 
 def fort_hall():
@@ -577,8 +694,31 @@ take the time to buy some supplies...[/italic blue]"
     )
     input("Press Enter to Continue...")
     or_events.fort()
-    # def grande_ronde_valley():
-    # def blue_mountains
+
+
+def grande_ronde_valley():
+    console.clear()
+    print(
+        "[italic cyan]You have reached Grande Ronde Valley, what a \
+beautiful sight![/italic cyan]"
+    )
+    input("Press Enter to Continue...")
+
+
+def blue_mountains():
+    print(
+        "[cyan]The trail divides here. You may:\n \
+1. Head for Fort Walla Walla\n 2. Head for The Dalles\n 3. See the map"
+    )
+    direction = vars.input_int("What is your choice? ")
+    if direction == 1:
+        vars.fort_walla_walla = True
+        vars.has_cleared_blue_montains = True
+    elif direction == 2:
+        vars.the_dalles = True
+        vars.has_cleared_blue_montains = True
+    elif direction == 3:
+        print_map()
 
 
 def fort_walla_walla():
@@ -589,7 +729,15 @@ take the time to buy some supplies...[/italic blue]"
     )
     input("Press Enter to Continue...")
     or_events.fort()
-    # def the_dalles
 
 
-or_events.disease()
+def the_dalles():
+    console.clear()
+    print(
+        "[italic cyan]You have arrived in The Dalles, \
+not far until Oregon City now![/italic cyan]"
+    )
+    input("Press Enter to Continue...")
+
+
+walking_trail()

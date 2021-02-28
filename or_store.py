@@ -5,7 +5,7 @@ from rich.console import Console
 from rich.progress import track
 from rich.table import Table
 
-from or_player import player
+from or_globalvars import player
 from or_trail import walking_trail
 
 oxen_total = 0
@@ -231,7 +231,7 @@ def store():
     # Creates store UI using table library
     table = Table(show_header=True, header_style="bold magenta")
     table.add_column("Goods")
-    table.add_column("Cost", justify="right")
+    table.add_column("Spent", justify="right")
     # Creates "oxen" portion of the table
     table.add_row("1. Oxen", f"[green]${player.oxen * 40.00}[/green]")
     # Creates "food" portion of the table

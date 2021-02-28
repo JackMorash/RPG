@@ -31,6 +31,7 @@ options = [
 ]
 
 selected = 0
+queue = SimpleQueue()
 
 
 def main_menu():
@@ -124,10 +125,6 @@ def op(selected):
         exit()
 
 
-queue = SimpleQueue()
-selected = 0
-
-
 def on_press(key):
     """Function handling menu navigation"""
     queue.put(key)
@@ -152,3 +149,4 @@ while True:
     elif key == keyboard.Key.esc:
         listener.stop()
         break
+main_menu()

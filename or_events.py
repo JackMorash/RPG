@@ -175,6 +175,12 @@ some of your supplies are damaged.[/red]\n"
     vars.amount_spent_on_miscellaneous -= random.randint(4, 5)
 
 
+def wrong_trail():
+    x = random.randint(2, 5)
+    print(f"[red]Wrong trail...You loose {x} days[/red]")
+    vars.current_date += x
+
+
 def disease():
     vars2.rndmem()
     vars2.random_disease()
@@ -191,9 +197,7 @@ wait to see if they pull through.[/cyan]\n"
             f"[blue]You decide not to \
 give {vars2.random_member} medicine.[blue]\n"
         )
-        if random.randint(0, 10) > 5:
-            print(f"[red]{vars2.random_member} has died of {vars2.disease}.\n")
-            vars2.dead_member()
+        vars2.member_is_sick = True
     elif option == "exit":
         return False
 
@@ -552,114 +556,133 @@ def parts():
 
 def fort():
     """Function for creating the fort UI"""
+    # Determines price of each type of item
+    p = vars.amount_spent_on_miscellaneous * 10.00
+    b = vars.amount_spent_on_bullets * 2.00
+    c = vars.amount_spent_on_clothing * 40.00
+    f = vars.amount_spent_on_food * 0.20
+    o = vars.amount_spent_on_animals * 40.00
+    # Creates fort UI using table library
+    table = Table(show_header=True, header_style="bold magenta")
+    table.add_column("Goods")
+    table.add_column("Spent", justify="right")
+    # Creates "oxen" portion of the table
+    table.add_row(
+        "1. Oxen",
+        f"[green]${vars.amount_spent_on_animals * 40.00}[/green]",
+    )
+    # Creates "food" portion of the table
+    table.add_row(
+        "2. Food",
+        f"[green]${vars.amount_spent_on_food * 0.20}[/green]",
+    )
+    # Creates "clothing" portion of the table
+    table.add_row(
+        "3. Clothing",
+        f"[green]${vars.amount_spent_on_clothing * 40.00}[/green]",
+    )
+    # Creates "ammunition" portion of the table
+    table.add_row(
+        "4. Ammunition",
+        f"[green]${vars.amount_spent_on_bullets * 2.00}[/green]",
+    )
+    # Creates "parts" portion of the table
+    table.add_row(
+        "5. Spare Parts",
+        f"[green]${vars.amount_spent_on_miscellaneous * 10.00}[/green]",
+    )
+    # Creates the total spent portion of the table
+    table.add_row("\nTotal", f"\n[green]${o+f+c+b+p}[/green]")
+    console.print(table)
+
     while True:
-
-        # Determines price of each type of item
-        p = vars.amount_spent_on_miscellaneous * 10.00
-        b = vars.amount_spent_on_bullets * 2.00
-        c = vars.amount_spent_on_clothing * 40.00
-        f = vars.amount_spent_on_food * 0.20
-        o = vars.amount_spent_on_animals * 40.00
-        # Creates fort UI using table library
-        table = Table(show_header=True, header_style="bold magenta")
-        table.add_column("Goods")
-        table.add_column("Cost", justify="right")
-        # Creates "oxen" portion of the table
-        table.add_row(
-            "1. Oxen",
-            f"[green]${vars.amount_spent_on_animals * 40.00}[/green]",
+        # Displays and handles fort options and which option the player selects
+        print(
+            "Which item would you like to buy?\n\n[cyan italic]\
+Type 'leave' to exit the fort[/cyan italic]"
         )
-        # Creates "food" portion of the table
-        table.add_row(
-            "2. Food",
-            f"[green]${vars.amount_spent_on_food * 0.20}[/green]",
-        )
-        # Creates "clothing" portion of the table
-        table.add_row(
-            "3. Clothing",
-            f"[green]${vars.amount_spent_on_clothing * 40.00}[/green]",
-        )
-        # Creates "ammunition" portion of the table
-        table.add_row(
-            "4. Ammunition",
-            f"[green]${vars.amount_spent_on_bullets * 2.00}[/green]",
-        )
-        # Creates "parts" portion of the table
-        table.add_row(
-            "5. Spare Parts",
-            f"[green]${vars.amount_spent_on_miscellaneous * 10.00}[/green]",
-        )
-        # Creates the total spent portion of the table
-        table.add_row("\nTotal", f"\n[green]${o+f+c+b+p}[/green]")
-        console.print(table)
-
-        while True:
-            # Displays and handles fort options and which option the player selects
-            print(
-                "Which item would you like to buy?\n\n[cyan italic]\
-    Type 'leave' to exit the fort[/cyan italic]"
-            )
-            selection = input("\n-->")
-            if selection == "1":
+        selection = input("\n-->")
+        if selection == "1":
+            console.clear()
+            oxen()
+            break
+        elif selection == "2":
+            console.clear()
+            food()
+            break
+        elif selection == "3":
+            console.clear()
+            clothes()
+            break
+        elif selection == "4":
+            console.clear()
+            bullets()
+            break
+        elif selection == "5":
+            console.clear()
+            parts()
+            break
+        elif selection == "exit":
+            console.clear()
+            return None
+        elif selection == ValueError:
+            print("[bold red]Invalid Selection[/bold red]")
+            continue
+        elif selection == "leave":
+            # Determines if the player has enough oxen to play the game
+            if vars.amount_spent_on_animals < 1:
+                print(
+                    "[cyan italic] Don't forget, \
+you'll need oxen to pull your wagon![/cyan italic]"
+                )
+                input("Press Enter to Continue...")
                 console.clear()
-                oxen()
-                break
-            elif selection == "2":
-                console.clear()
-                food()
-                break
-            elif selection == "3":
-                console.clear()
-                clothes()
-                break
-            elif selection == "4":
-                console.clear()
-                bullets()
-                break
-            elif selection == "5":
-                console.clear()
-                parts()
-                break
-            elif selection == "exit":
-                console.clear()
-                return None
-            elif selection == ValueError:
-                print("[bold red]Invalid Selection[/bold red]")
                 continue
-            elif selection == "leave":
-                # Determines if the player has enough oxen to play the game
-                if vars.amount_spent_on_animals < 1:
-                    print(
-                        "[cyan italic] Don't forget,\
-    you'll need oxen to pull your wagon![/cyan italic]"
-                    )
-                    input("Press Enter to Continue...")
-                    console.clear()
-
-
-def spend(value, purse):
-    if value > purse:
-        print("You don't have that much...Keep spending down.")
-        print("You missed your chance to spend on that item.")
-        return purse, value, False
-    return purse - value, value, True
+            else:
+                break
 
 
 def eating_quality():
-    vars.choice_of_eating = 0
-    while vars.choice_of_eating < 1 or vars.choice_of_eating > 3:
-        vars.choice_of_eating = vars.input_int(
-            "Do you want to eat \n1. Poorly\n2. Moderately\n3. Well"
+    console.clear()
+    while vars.choice_of_eating > 0 or vars.choice_of_eating < 4:
+        print("[u cyan]Change food rations[/u cyan]")
+        print(f"\nCurrently {vars.food_quality}\n")
+        print(
+            "[cyan]The amount of food the people in your party\n\
+eat each day can change. These amounts are: [/cyan]"
         )
-    eaten = (vars.amount_spent_on_food - 8) - (5 * vars.choice_of_eating)
-    if eaten < 0:
-        print("You can't eat that well.")
-    else:
-        vars.amount_spent_on_food = eaten
-        vars.total_mileage += (
-            vars.total_mileage + 200 + (vars.amount_spent_on_animals - 220)
-        ) // random.randint(5, 10)
-        vars.is_blizzard = vars.is_sufficient_clothing = False
+        print(
+            "\n[blue]  1. Filling - mesals are large and generous\n\
+  2. Meager - meals are small, but adequate\n\
+  3. Bare Bones - meals are very small; everyone stays hungry[/blue]\n"
+        )
+        vars.choice_of_eating = vars.input_int("What is your choice? ")
+        if vars.choice_of_eating == 1:
+            vars.food_quality = "Filling"
+        if vars.choice_of_eating == 2:
+            vars.food_quality = "Meager"
+        if vars.choice_of_eating == 3:
+            vars.food_quality = "Bare Bones"
+        eaten = (vars.amount_spent_on_food - 8) - (5 * vars.choice_of_eating)
+        if eaten < 0:
+            print("[red]You can't eat that well.[/red]\n")
+            input("Press Enter to Continue... ")
+            continue
+        else:
+            vars.amount_spent_on_food -= 200
+            vars.total_mileage += (
+                vars.total_mileage + 200 + (vars.amount_spent_on_animals - 220)
+            ) // random.randint(5, 10)
+            vars.is_blizzard = vars.is_sufficient_clothing = False
+            break
+
+
+def wait():
+    console.clear()
+    vars.current_date += int(input("How many days would you like to wait?: "))
+    if vars.current_date > 31:
+        del vars.dates[0]
+        vars.current_date = 1
 
 
 # events array
@@ -680,6 +703,7 @@ events_list = [
     animals_attack,
     bandits_attack,
     disease,
+    wrong_trail,
 ]
 
 
@@ -687,3 +711,4 @@ def events():
     """Function for determining which event occurs"""
     random.choice(events_list)()
     input("Press enter to Continue...")
+    

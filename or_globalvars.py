@@ -4,9 +4,35 @@ import time
 from rich import print
 from rich.console import Console
 
-from or_player import player
-
 console = Console()
+
+
+class Character:
+    def __init__(self):
+        self.money = 1600
+        self.bullets = 999
+        self.water = 0
+        self.oxen = 999
+        self.parts = 999
+        self.medicine = 999
+        self.clothes = 999
+        self.food = 9999
+
+
+class Player(Character):
+    def __init__(self):
+        """Function for creating player-based variables"""
+        super().__init__()
+        self.name = ""
+        self.job = ""
+        self.members = ["Player 1", "Player 2", "Player 3", "Player 4"]
+        self.cold = False
+        self.alive = True
+        self.repair = False
+        self.miles = 0
+
+
+player = Player()
 
 
 class GameGlobals:
@@ -20,19 +46,20 @@ class GameGlobals:
         self.amount_spent_on_bullets = player.bullets
         self.amount_spent_on_clothing = player.clothes
         self.cash_total = player.money
-        self.is_sufficient_clothing = False
-        self.current_date = 0
-        self.shooting_level = 5
-        self.choice_of_eating = 1
+        self.amount_spent_on_miscellaneous = player.parts
         self.amount_spent_on_food = player.food
+        self.total_mileage = player.miles
+        self.is_sufficient_clothing = False
+        self.current_date = 1
+        self.shooting_level = 5
+        self.choice_of_eating = 0
         self.has_cleared_south_pass = False
         self.has_cleared_blue_montains = False
         self.fraction_of_2_weeks = 0
         self.is_injured = False
         self.is_blizzard = False
-        self.total_mileage = player.miles
-        self.amount_spent_on_miscellaneous = player.parts
         self.total_mileage_previous_turn = 0
+        self.distance_to_landmark = 0
         self.has_illness = False
         self.hostility_of_riders = False
         self.has_fort = False
@@ -41,10 +68,16 @@ class GameGlobals:
         self.raining = False
         self.weather = "Fine"
         self.health = "Healthy"
+        self.food_quality = "Filling"
+        self.location = "Independence, Missouri"
+        self.chimney_rock = False
+        self.green_river_crossing = False
+        self.fort_bridger = False
+        self.fort_walla_walla = False
+        self.the_dalles = False
         self.kansas_river_passed = False
         self.big_blue_river_passed = False
         self.fort_kearney_passed = False
-        self.chimney_rock = False
         self.fort_laramie_passed = False
         self.chimney_rock_passed = False
         self.independence_rock_passed = False
@@ -52,13 +85,16 @@ class GameGlobals:
         self.snake_river_passed = False
         self.fort_bridger_passed = False
         self.green_river_passed = False
+        self.soda_springs_passed = False
+        self.fort_hall_passed = False
         self.fort_boise_passed = False
         self.grande_ronde_valley_passed = False
         self.blue_mountains_passed = False
         self.fort_walla_walla_passed = False
         self.the_dalles_passed = False
-        self.chimney_rock_passed = False
         self.member = False
+        self.reached_landmark = True
+        self.playing = False
 
     dates = [
         "MARCH",
@@ -93,6 +129,17 @@ class GameGlobals:
         "The Dalles",
     ]
 
+    def landmark_message(self):
+        if self.location == "Kansas River":
+            console.clear()
+            print(
+                """[cyan]A Ferry Operator tells you:\n "Don't try to ford any river\ndeeper than the wagon bed --\nabout two and a half feet" 
+
+
+
+"""
+            )
+
     def print_inventory(self):
         """Function for printing the inventory"""
         # Determines what how much of each item is in the inventory
@@ -118,12 +165,11 @@ class GameGlobals:
 
     def cont(self):
         """Function for "Press enter to continue" """
-        while True:
-            option = input("Press Enter to Continue:")
-            if option == "exit":
-                return False
-            else:
-                break
+        option = input("Press Enter to Continue:")
+        if option == "exit":
+            return False
+        elif ValueError():
+            return False
 
     def increment_turn(self):
         """Function for adding to the turn value"""
@@ -160,7 +206,12 @@ class GameGlobals:
     def shooting(self):
         """Function for determining if the player wins a gun battle"""
 
-        words = ["\nBANG\n", "\nBLAM\n", "\nPOW\n", "\nWHAM\n"]
+        words = [
+            "\nType: BANG\n",
+            "\nType: BLAM\n",
+            "\nType: POW\n",
+            "\nType: WHAM\n",
+        ]
         word = random.choice(words)
         t0 = time.time()
         typed_word = input(word)
@@ -174,16 +225,16 @@ class GameGlobals:
         """Function for determining which illness the player recieves"""
         RND = random.random()
         if 100 * RND < 10 + 35 * (self.choice_of_eating - 1):
-            print("\n[red]MILD ILLNESS---MEDICINE USED[/red]\n")
+            print("\n[red]Mild Illness---Medicine Used[/red]\n")
             self.total_mileage -= 5
             self.amount_spent_on_miscellaneous -= 2
         elif 100 * RND < 100 - (40 / 4 ** (self.choice_of_eating - 1)):
-            print("\n[red]BAD ILLNESS---MEDICINE USED[/red]\n")
+            print("\n[red]Bad Illness---Medicine Used[/red]\n")
             self.total_mileage -= 5
             self.amount_spent_on_miscellaneous -= 5
         else:
-            print("\n[red]SERIOUS ILLNESS[/red]\n")
-            print("\n[red]YOU MUST STOP FOR MEDICAL ATTENTION[/red]\n")
+            print("\n[red]Serious Illness[/red]\n")
+            print("\n[red]!YOU MUST SEEK FOR MEDICAL ATTENTION![/red]\n")
             self.amount_spent_on_miscellaneous -= 10
             self.has_illness = True
 
@@ -264,6 +315,7 @@ class Random_Selection:
         self.random_member = ""
         self.selected_member = 0
         self.disease = ""
+        self.member_is_sick = False
 
     def rndmem(self):
         x = random.randint(0, 3)
