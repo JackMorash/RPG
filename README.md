@@ -30,6 +30,10 @@ Enter this into the console:
   
 select or_main.py and click "Run"
 
+## What this program does
+This program is a recreation in python of the original 1971 text based adventure "Oregon Trail" developed in BASIC.
+some elements of the 1990's version have been included as well.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
