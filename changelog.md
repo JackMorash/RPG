@@ -71,3 +71,19 @@
   player to be unable to choose a path
 - Made food decrease as player walks the trail, amount decreses depending on
   food ration setting
+- Fixed bug where next landmark goes into the negatives
+- Fixed bug where choosing to look at the map at a crossroads makes it so you 
+  can't choose where to go
+- Fixed bug where player can die of a snake bite because there's no medicine
+  but was never given the option to buy medicine
+- Fixed bug when in the fort store the keyboard inputs only sometimes do what's
+  listed on screen
+- Fixed bug where player randomly lose thousands of bullets
+- Fixed bug where weather is always fine and player health is always healthy
+- Fixed bug where prices in the fort store don't match what's deducted from 
+  your balance
+- Fixed bug where money randomly resets back to 1600
+- Made something happen when selecting map option
+- Fixed bug where distance to landmark can be negative
+- Fixed bug where player can't return to main menu after opening changelog
+- Added more exceptions for ValueErrors
