@@ -8,6 +8,10 @@ Python 3.7 or above is needed to play this game. [Python](https://www.python.org
 
 ### Required packages: colorama, rich, xlib, pynput
 
+#### If using Repl.it:
+
+Search for and install required packages in the package manager
+
 #### If using CLI or vscode:
 
 Enter this into the console:
