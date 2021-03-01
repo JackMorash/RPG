@@ -42,6 +42,10 @@ the level of completeness I have achieved in my recreation. Many fall short of t
 version of the game included. I do not claim to feature everything from the original game, yet it is still the most feature
 rich recreation yet.
 
+## Who is the target audience?
+Those who have played the original and want to get the nostalgia of dying of cholera once again, but on a more modern
+computer. Those who like RPGs and adventure games will also love it.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
