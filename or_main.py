@@ -21,7 +21,7 @@ import or_jobs
 
 console = Console()
 
-
+# List of options
 options = [
     "Start".ljust(50),
     "Learn about Oregon Trail".ljust(50),
@@ -29,7 +29,7 @@ options = [
     "Exit".ljust(50),
 ]
 
-
+# Starts queue
 queue = SimpleQueue()
 
 
