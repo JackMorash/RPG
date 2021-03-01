@@ -1,14 +1,14 @@
 ===============================================================================
 Difficult----------------------------------------------------------------------
 ☐ Next landmark goes into the negatives
-☐ Choosing to look at the map at a crossroads makes it so you can't choose
-   where to go
 ===============================================================================
 Easy---------------------------------------------------------------------------
 ☐ Update Readme
-☐ Create Flowchart
 ===============================================================================
 Completed----------------------------------------------------------------------
+☑ Create Flowchart
+☑ Choosing to look at the map at a crossroads makes it so you can't choose
+   where to go
 ☑ Finish commenting and docstrings
 ☑ Die of a snake bite because there's no medicine but was never given the
    option to buy medicine

@@ -816,6 +816,7 @@ def south_pass():
         vars.has_cleared_south_pass = True
     elif direction == 3:
         print_map()
+        south_pass()
 
 
 def fort_bridger():
@@ -1055,6 +1056,7 @@ def blue_mountains():
         vars.has_cleared_blue_montains = True
     elif direction == 3:
         print_map()
+        blue_mountains()
 
 
 def fort_walla_walla():
