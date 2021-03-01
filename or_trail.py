@@ -1,5 +1,4 @@
 import random
-from re import A
 from threading import Event
 from time import sleep
 
@@ -143,7 +142,7 @@ tells you:[/blue][i cyan]\n
 folk start for Oregon without carrying spare parts, not even\n \
 an extra wagon axle. Must think\n \
 they grow on trees! Hope they're \
-lucky enough to find an abandoned wagon[/i cyan]" 
+lucky enough to find an abandoned wagon[/i cyan]"
 """
         print(vars.message)
         vars.cont()
@@ -448,39 +447,45 @@ yourself treated by a doctor[/blue]"
 def next_landmark():
     """Function determines how far the next landmark is"""
     if vars.location == "Independence, Missouri":
-        vars.distance_to_landmark = -vars.total_mileage + 100
-    if vars.location == "Kansas River":
-        vars.distance_to_landmark = -vars.total_mileage + 185
-    if vars.location == "Big Blue River":
-        vars.distance_to_landmark = -vars.total_mileage + 300
-    if vars.location == "Fort Kearney":
-        vars.distance_to_landmark = -vars.total_mileage + 550
-    if vars.location == "Chimney Rock":
-        vars.distance_to_landmark = -vars.total_mileage + 650
-    if vars.location == "Fort Laramie":
-        vars.distance_to_landmark = -vars.total_mileage + 850
-    if vars.location == "Independence Rock":
-        vars.distance_to_landmark = -vars.total_mileage + 950
-    if vars.location == "South Pass":
-        vars.distance_to_landmark = -vars.total_mileage + 980
-    if vars.location == "Green River" and vars.green_river_crossing == True:
-        vars.distance_to_landmark = -vars.total_mileage + 1000
-    if vars.location == "Soda Springs":
-        vars.distance_to_landmark = -vars.total_mileage + 1100
-    if vars.location == "Fort Bridger" and vars.fort_bridger == True:
-        vars.distance_to_landmark = -vars.total_mileage + 1200
-    if vars.location == "Snake River":
-        vars.distance_to_landmark = -vars.total_mileage + 1370
-    if vars.location == "Fort Boise":
-        vars.distance_to_landmark = -vars.total_mileage + 1500
-    if vars.location == "Grande Ronde Valley":
-        vars.distance_to_landmark = -vars.total_mileage + 1650
-    if vars.location == "Blue Mountains":
-        vars.distance_to_landmark = -vars.total_mileage + 1700
-    if vars.location == "Fort Walla Walla":
-        vars.distance_to_landmark = -vars.total_mileage + 1800
-    if vars.location == "The Dalles":
-        vars.distance_to_landmark = -vars.total_mileage + 1770
+        vars.distance_to_landmark = 100 - vars.total_mileage
+    elif vars.location == "Kansas River":
+        vars.distance_to_landmark = 185 - vars.total_mileage
+    elif vars.location == "Big Blue River":
+        vars.distance_to_landmark = 300 - vars.total_mileage
+    elif vars.location == "Fort Kearney":
+        vars.distance_to_landmark = 550 - vars.total_mileage
+    elif vars.location == "Chimney Rock":
+        vars.distance_to_landmark = 650 - vars.total_mileage
+    elif vars.location == "Fort Laramie":
+        vars.distance_to_landmark = 850 - vars.total_mileage
+    elif vars.location == "Independence Rock":
+        vars.distance_to_landmark = 950 - vars.total_mileage
+    elif vars.location == "South Pass":
+        vars.distance_to_landmark = 980 - vars.total_mileage
+    elif vars.location == "Green River":
+        vars.distance_to_landmark = 1000 - vars.total_mileage
+    elif vars.location == "Soda Springs":
+        vars.distance_to_landmark = 1100 - vars.total_mileage
+    elif vars.location == "Fort Bridger":
+        vars.distance_to_landmark = 1200 - vars.total_mileage
+    elif vars.location == "Fort Hall":
+        vars.distance_to_landmark = 1370 - vars.total_mileage
+    elif vars.location == "Snake River":
+        vars.distance_to_landmark = 1500 - vars.total_mileage
+    elif vars.location == "Fort Boise":
+        vars.distance_to_landmark = 1650 - vars.total_mileage
+    elif vars.location == "Grande Ronde Valley":
+        vars.distance_to_landmark = 1700 - vars.total_mileage
+    elif vars.location == "Blue Mountains":
+        vars.distance_to_landmark = 1800 - vars.total_mileage
+    elif vars.location == "Fort Walla Walla":
+        vars.distance_to_landmark = 1770 - vars.total_mileage
+    elif vars.location == "The Dalles":
+        vars.distance_to_landmark = 2080 - vars.total_mileage
+    else:
+        print("location: ", vars.location)
+        print(vars.total_mileage)
+        input("press enter")
 
 
 def landmark():
@@ -508,7 +513,7 @@ def landmark():
         chimney_rock()
         vars.chimney_rock_passed = True
     # Landmark flag for "Fort Laramie"
-    if vars.current_date > 650 and vars.fort_laramie_passed == False:
+    if vars.total_mileage > 650 and vars.fort_laramie_passed == False:
         vars.location = "Fort Laramie"
         fort_laramie()
         vars.fort_laramie_passed = True
