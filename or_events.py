@@ -13,7 +13,6 @@ console = Console()
 
 
 def cold_weather():
-    print("cold_weather")
     """Random event for cold weather"""
     # Checks for sufficient clothing
     vars.cold_weather = True
@@ -32,7 +31,6 @@ def cold_weather():
 
 
 def heavy_rains():
-    print("heavy_rains")
     """Random event for heavy rain"""
     vars.raining = True
     print(f"\n{Fore.RED}Heavy rains...Time and supplies lost!{Fore.RESET}\n")
@@ -45,7 +43,6 @@ def heavy_rains():
 
 
 def got_shot():
-    print("got_shot")
     """Random event for getting shot"""
     print(
         f"\n{Fore.RED}You've been shot in the leg!\
@@ -62,7 +59,6 @@ your wound!{Fore.RESET}\n"
 
 
 def weather():
-    print("weather")
     """Random event for handling both weather events"""
     # Determines what weather event to use
     if vars.total_mileage > vars.SOUTH_PASS_IN_MILES:
@@ -72,7 +68,6 @@ def weather():
 
 
 def wagon_break_down():
-    print("wagon_break_down")
     """Random event for wagon breaking down"""
     print(
         f"\n{Fore.RED}Your wagon breaks down! Time and supplies \
@@ -84,7 +79,6 @@ have been lost during repairs.{Fore.RESET}\n"
 
 
 def ox_injuries():
-    print("ox_injuries")
     """Random event for an ox injury"""
     print(
         f"\n{Fore.RED}An ox injures your leg! You are slowed \
@@ -96,7 +90,6 @@ for the rest of the trip...{Fore.RESET}\n"
 
 
 def ox_wander():
-    print("ox_wander")
     """Random event for an ox wandering off"""
     print(
         f"\n{Fore.RED}An ox wanders off, you take time to look for it.{Fore.RESET}\n"
@@ -106,7 +99,6 @@ def ox_wander():
 
 
 def helpful_indians():
-    print("helpful_indians")
     """Random event for appearence of helpful indians"""
     print(
         f"\n{Fore.CYAN}Helpful Native Americans help you \
@@ -117,7 +109,6 @@ look for food!{Fore.RESET}\n"
 
 
 def unsafe_water():
-    print("unsafe_water")
     """Random event for using unsafe water"""
     print(
         f"\n{Fore.RED}Your water is contaminated, you take the time looking for a\
@@ -128,7 +119,6 @@ def unsafe_water():
 
 
 def wagon_fire():
-    print("wagon_fire")
     """Random event for a wagon fire"""
     print(
         f"\n{Fore.RED}A fire has erupted in your wagon!\
@@ -142,7 +132,6 @@ def wagon_fire():
 
 
 def heavy_fog():
-    print("heavy_fog")
     """Random event for heavy fog"""
     print(
         f"\n{Fore.RED}A thick fog rolls in and you spend \
@@ -153,7 +142,6 @@ time navigating through it{Fore.RESET}\n"
 
 
 def snake_poison():
-    print("snake_poison")
     """Random event for getting bitten"""
     if vars.amount_spent_on_miscellaneous < 0:
         print(
@@ -174,7 +162,6 @@ def snake_poison():
 
 
 def wagon_swamped():
-    print("wagon_swamped")
     """Random event for getting your wagon swamped"""
     print(
         f"\n{Fore.RED}The wagon gets swamped while traversing the river, \
@@ -187,7 +174,6 @@ some of your food and clothing gets lost.{Fore.RESET}\n"
 
 
 def hail_storm():
-    print("hail_storm")
     """Random event for a hail storm"""
     print(
         f"\n{Fore.RED}A hail storm rolls in! \
@@ -200,7 +186,6 @@ some of your supplies are damaged.{Fore.RESET}\n"
 
 
 def wrong_trail():
-    print("wrong_trail")
     """Random event for taking the wrong trail"""
     # Takes random number of days to add to current_date
     x = random.randint(2, 5)
@@ -209,7 +194,6 @@ def wrong_trail():
 
 
 def disease():
-    print("disease")
     """Random event for party member catching a disease"""
     vars2.rndmem()
     vars2.random_disease()
@@ -239,7 +223,6 @@ give {vars2.random_member} medicine.{Fore.RESET}\n"
 
 
 def lost_member():
-    print("lost_member")
     """Random event for your son getting lost"""
     vars2.rndmem()
     print(
@@ -251,7 +234,6 @@ def lost_member():
 
 
 def arm_broke():
-    print("arm_broke")
     """Random event for a broken arm"""
     vars2.rndmem()
     print(
@@ -268,21 +250,19 @@ sling.{Fore.RESET}\n"
 
 
 def eating():
-    print("eating")
     """Determines if the food you eat will get you sick"""
     RND = random.random()
     if vars.choice_of_eating == 1:
-        vars.illness()
+        disease()
     elif vars.choice_of_eating == 3:
         if RND < 0.5:
-            vars.illness()
+            disease()
     else:
         if RND < 0.25:
-            vars.illness()
+            disease()
 
 
 def animals_attack():
-    print("animals_attack")
     """Random event for a wolf attack"""
     print(f"\n{Fore.RED}Wild animals attack your group!{Fore.RESET}\n")
     print(f"\n{Fore.RED}Prepare to draw...{Fore.RESET}")
@@ -311,7 +291,6 @@ they took your food and clothes!{Fore.RESET}\n"
 
 
 def bandits_attack():
-    print("bandits_attack")
     """Random event for a bandit attack"""
     print(f"\n{Fore.RED}Bandits attack!{Fore.RESET}\n")
     print(f"\n{Fore.RED}Prepare to draw...{Fore.RESET}")
@@ -343,7 +322,6 @@ def bandits_attack():
 
 
 def hunt():
-    print("hunt")
     """Event for if the player chooses to hunt for more food"""
     # Determines if the player has enough bullets to hunt
     if vars.amount_spent_on_bullets <= 0:
@@ -372,7 +350,6 @@ def hunt():
 
 
 def choices():
-    print("choices")
     """Choices for what the player wants to do when passing a fort landmark"""
     console.clear()
     print(
@@ -390,7 +367,6 @@ def choices():
 
 
 def continue_on():
-    print("continue_on")
     """Determines if the player has enough food to live and if they have
     enough ammo to hunt"""
     if vars.amount_spent_on_food < 13:
@@ -406,244 +382,39 @@ starve to death{Fore.RESET}\n"
         return True
 
 
-def oxen():
-    print("oxen")
-    """Function for handling the purchase of oxen"""
-    while True:
-        print(
-            f"\n{Fore.CYAN}There are 2 oxen in a yoke;\n\
-I recommend at least 3 yoke.\nI charge {Fore.GREEN}$40{Fore.RESET} a yoke.\n"
-        )
-        amount = input("How many yoke do you want?: ")
-        oxen_total = float(amount)
-        if (oxen_total * 40.00) > vars.cash_total:
-            print(f"{Fore.RED}You can't spend that much on oxen{Fore.RESET}")
-            time.sleep(1.5)
-            continue
-        if vars.cash_total <= 0:
-            print(f"\n{Fore.RED} You can't spend any more.{Fore.RESET}")
-            time.sleep(1.5)
-            console.clear()
-            fort()
-            continue
-        elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (oxen_total * 40.00))
-            vars.amount_spent_on_animals = int(
-                (vars.amount_spent_on_animals + oxen_total)
-            )
-            fort()
-            break
-        else:
-            print(f"\n{Fore.RED}Please enter a number{Fore.RESET}\n")
-            continue
-        console.clear()
-        fort()
-
-
-def food():
-    print("food")
-    """Function for handling the purchase of food"""
-    while True:
-        print(
-            f"\n{Fore.CYAN}I recommend you take at least 200 pounds of food\
- for each person in your group. I see that you have 5 people in total.\
- You'll need flour, sugar, bacon, and coffee.\
- My total is {Fore.GREEN}¢20{Fore.RESET}{Fore.CYAN} a pound{Fore.RESET}\n"
-        )
-        amount = input("\nHow many pounds of food do you want?: ")
-        food_total = float(amount)
-        if (food_total * 0.20) > vars.cash_total:
-            print(f"{Fore.RED}You can't spend that much on food{Fore.RESET}")
-            time.sleep(1.5)
-            continue
-        if vars.cash_total <= 0:
-            print(f"\n{Fore.RED} You can't spend any more.{Fore.RESET}")
-            time.sleep(1.5)
-            console.clear()
-            fort()
-            continue
-        elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (food_total * 0.20))
-            vars.amount_spent_on_food = int(
-                vars.amount_spent_on_food + food_total
-            )
-            console.clear()
-            fort()
-            break
-        else:
-            print(f"\n{Fore.RED}Please enter a number{Fore.RESET}\n")
-        console.clear()
-        fort()
-
-
-def clothes():
-    print("clothes")
-    """Function for handling the purchase of clothes"""
-    while True:
-        print(
-            f"\n{Fore.CYAN}You'll need warm clothing in the mountains.\
- I recommend taking at least 2 sets of clothes per person.\
- Each set is {Fore.GREEN}$10.00.{Fore.CYAN}{Fore.RESET}\n"
-        )
-        amount = input(
-            "\nHow many sets of\
- clothes do you want?: "
-        )
-        clothes_total = float(amount)
-        if (clothes_total * 40.00) > vars.cash_total:
-            print(
-                f"{Fore.RED}You can't spend that much on clothes{Fore.RESET}"
-            )
-            time.sleep(1.5)
-            continue
-        if vars.cash_total <= 0:
-            print(f"\n{Fore.RED} You can't spend any more.{Fore.RESET}")
-            time.sleep(1.5)
-            console.clear()
-            fort()
-            break
-        elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (clothes_total * 40.00))
-            vars.amount_spent_on_clothing = int(
-                vars.amount_spent_on_clothing + clothes_total
-            )
-            console.clear()
-            fort()
-            break
-        else:
-            print(f"\n{Fore.RED}Please enter a number{Fore.RESET}\n")
-            console.clear()
-            fort()
-
-
-def bullets():
-    print("bullets")
-    """Function for handling the purchase of bullets"""
-    while True:
-        print(
-            f"\n{Fore.CYAN}I sell ammunition in boxes of 20 bullets. Each\
-box costs {Fore.GREEN}$2.00.{Fore.CYAN}{Fore.RESET}\n"
-        )
-        amount = input("\nHow many boxes do you want?: ")
-        bullets_total = float(amount)
-        # Determines if the player can spend enough bullets
-        if (bullets_total * 2.00) > vars.cash_total:
-            print(
-                f"{Fore.RED}You can't buy that many bullets, it's not like\
-you are an American or something...oh wait{Fore.RESET}"
-            )
-            time.sleep(1.5)
-            continue
-        # Determines if the player can afford bullets
-        if vars.cash_total <= 0:
-            print(f"\n{Fore.RED} You can't spend any more.{Fore.RESET}\n")
-            time.sleep(1.5)
-            console.clear()
-            fort()
-            break
-        # Adds bullets to total player bullets
-        elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (bullets_total * 2.00))
-            vars.amount_spent_on_bullets = int(
-                vars.amount_spent_on_bullets + bullets_total
-            )
-            console.clear()
-            fort()
-            break
-        else:
-            print(f"\n{Fore.RED}Please enter a number{Fore.RESET}\n")
-            console.clear()
-            fort()
-
-
-def parts():
-    print("parts")
-    """Function for handling the purchase of misc. parts"""
-    while True:
-        print(
-            f"\n{Fore.CYAN}It's a good idea to have a few spare parts for\
- your wagon. Here are the totals:\
-\nWagon wheel - {Fore.GREEN}$10{Fore.CYAN} each\
-\nWagon axle - {Fore.GREEN}$10{Fore.CYAN} each\
-\nWagon tongue - {Fore.GREEN}$10{Fore.CYAN} each{Fore.RESET}\n"
-        )
-        amount1 = input("How many wagon wheels do you want?: ")
-        amount2 = input("How many wagon axles do you want?: ")
-        amount3 = input("How many wagon tongues do you want?: ")
-        wheels = float(amount1)
-        axles = float(amount2)
-        tongues = float(amount3)
-        parts_total = wheels + axles + tongues
-        if (parts_total) > vars.cash_total:
-            print(
-                f"{Fore.RED}You can't spend that much on spare parts{Fore.RESET}"
-            )
-            time.sleep(1.5)
-            continue
-        if vars.cash_total <= 0:
-            print(f"\n{Fore.RED} You can't spend any more.{Fore.RESET}")
-            time.sleep(1.5)
-            console.clear()
-            fort()
-            break
-        elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (parts_total * 10.00))
-            vars.amount_spent_on_miscellaneous = int(
-                vars.amount_spent_on_miscellaneous + parts_total
-            )
-            console.clear()
-            fort()
-            break
-        else:
-            print(f"{Fore.RED}Please enter a number{Fore.RESET}")
-            console.clear()
-            fort()
-
-
 def fort():
-    print("fort")
     spacer = " " * 20
     oxen_price = 25.00
     clothing_price = 12.50
     ammunition_price = 2.50
-    wheels_price = 12.50
-    axles_price = 12.50
-    tounges_price = 12.50
-    food_price = 0.25
+    misc_price = 20.00
+    food_price = 1.00
 
     console.clear()
     options = [
-        f"{Back.WHITE + Fore.BLACK}  1. Oxen         {spacer}{oxen_price} \
+        f"{Back.WHITE + Fore.BLACK}  1. Oxen             {spacer}{oxen_price} \
 per ox      ".ljust(
             50
         ),
-        f"{Back.RESET + Fore.RESET}  2. Clothing     {spacer}{clothing_price} \
-per set".ljust(
+        f"{Back.RESET + Fore.RESET}  2. Clothing         \
+{spacer}{clothing_price} per set".ljust(
             50
         ),
-        f"{Back.WHITE + Fore.BLACK}  3. Ammunition   {spacer}{ammunition_price} \
-per box      ".ljust(
+        f"{Back.WHITE + Fore.BLACK}  3. Ammunition       \
+{spacer}{ammunition_price} per box      ".ljust(
             50
         ),
-        f"{Back.RESET + Fore.RESET}  4. Wagon wheels {spacer}{wheels_price} \
-per wheel".ljust(
+        f"{Back.RESET + Fore.RESET}  4. Misc. Supplies   {spacer}{misc_price} \
+per crate".ljust(
             50
         ),
-        f"{Back.WHITE + Fore.BLACK}  5. Wagon axles  {spacer}{axles_price} \
-per axle    ".ljust(
+        f"{Back.WHITE + Fore.BLACK}  5. Food             {spacer}{food_price} \
+per pound    ".ljust(
             50
         ),
-        f"{Back.RESET + Fore.RESET}  6. Wagon tounges{spacer}{tounges_price} \
-per tounge  ".ljust(
-            50
-        ),
-        f"{Back.WHITE + Fore.BLACK}  7. Food         {spacer}{food_price} \
-per pound   ".ljust(
-            50
-        ),
-        f"{Back.RESET + Fore.RESET}  8. Leave store".ljust(50),
+        f"{Back.RESET + Fore.RESET}  6. Leave store".ljust(50),
     ]
-    print(f"\n{Fore.GREEN}{vars.cash_total}{Fore.RESET}\n")
+    print(f"\n{Fore.GREEN}You have ${vars.cash_total}{Fore.RESET}\n")
     print(f"{Fore.CYAN}You may buy:{Fore.RESET}\n")
     for i in options:
         print(i)
@@ -653,7 +424,7 @@ per pound   ".ljust(
     if selected == "1":
         amount_ox = input(f"\n{Fore.CYAN}How many ox? {Fore.RESET}")
 
-        if oxen_price * int(amount_ox) > vars.cash_total:
+        if oxen_price * int(amount_ox) * 25 > vars.cash_total:
             print(f"{Fore.RED}You can't spend that much on oxen{Fore.RESET}")
             input("Press Enter to Continue...")
             fort()
@@ -662,9 +433,9 @@ per pound   ".ljust(
             input("Press Enter to Continue...")
             fort()
         elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (int(amount_ox)))
+            vars.cash_total = int(vars.cash_total - (int(amount_ox) * 25))
             vars.amount_spent_on_animals = int(
-                (vars.amount_spent_on_animals + int(amount_ox))
+                (vars.amount_spent_on_animals + int(amount_ox) * 25)
             )
             fort()
         else:
@@ -674,7 +445,7 @@ per pound   ".ljust(
     if selected == "2":
         amount_sets = input(f"\n{Fore.CYAN}How many sets? {Fore.RESET}")
 
-        if clothing_price * int(amount_sets) > vars.cash_total:
+        if clothing_price * int(amount_sets) * 12.5 > vars.cash_total:
             print(
                 f"{Fore.RED}You can't spend that much on clothing{Fore.RESET}"
             )
@@ -685,9 +456,9 @@ per pound   ".ljust(
             input("Press Enter to Continue...")
             fort()
         elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (int(amount_sets)))
+            vars.cash_total = int(vars.cash_total - (int(amount_sets) * 12.5))
             vars.amount_spent_on_clothing = int(
-                (vars.amount_spent_on_clothing + int(amount_sets))
+                (vars.amount_spent_on_clothing + int(amount_sets) * 12.5)
             )
             fort()
         else:
@@ -697,7 +468,7 @@ per pound   ".ljust(
     if selected == "3":
         amount_boxes = input(f"\n{Fore.CYAN}How many boxes? {Fore.RESET}")
 
-        if ammunition_price * int(amount_boxes) > vars.cash_total:
+        if ammunition_price * int(amount_boxes) * 2.5 > vars.cash_total:
             print(f"{Fore.RED}You can't spend that much on ammo{Fore.RESET}")
             input("Press Enter to Continue...")
             fort()
@@ -706,80 +477,42 @@ per pound   ".ljust(
             input("Press Enter to Continue...")
             fort()
         elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (int(amount_boxes)))
+            vars.cash_total = int(vars.cash_total - (int(amount_boxes) * 2.5))
             vars.amount_spent_on_bullets = int(
-                (vars.amount_spent_on_bullets + int(amount_boxes))
+                (vars.amount_spent_on_bullets + int(amount_boxes) * 2.5)
             )
             fort()
         else:
             print(f"\n{Fore.RED}Please enter a number{Fore.RESET}\n")
         console.clear()
     if selected == "4":
-        amount_wheels = input(f"\n{Fore.CYAN}How many wheels? {Fore.RESET}")
+        amount_parts = input(f"\n{Fore.CYAN}How many boxes? {Fore.RESET}")
 
-        if wheels_price * int(amount_wheels) > vars.cash_total:
-            print(f"{Fore.RED}You can't spend that much on wheels{Fore.RESET}")
+        if misc_price * int(amount_parts) > vars.cash_total:
+            print(
+                f"{Fore.RED}You can't spend that \
+much on supplies{Fore.RESET}"
+            )
             input("Press Enter to Continue...")
             fort()
         if vars.cash_total <= 0:
             print(f"{Fore.RED} You can't spend any more.{Fore.RESET}")
             input("Press Enter to Continue...")
             fort()
-        elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (int(amount_wheels)))
-            vars.amount_spent_on_miscellaneous = int(
-                (vars.amount_spent_on_miscellaneous + int(amount_wheels))
+        elif (
+            vars.cash_total
+            and int(vars.cash_total - int(amount_parts * 20)) >= 0
+        ):
+            vars.cash_total = int(vars.cash_total - (int(amount_parts) * 20))
+            vars.amount_spent_on_bullets = int(
+                (vars.amount_spent_on_bullets + int(amount_parts) * 20)
             )
             fort()
         else:
-            print("\n{Fore.RED}Please enter a number{Fore.RESET}\n")
+            print(f"\n{Fore.RED}Please enter a number{Fore.RESET}\n")
         console.clear()
 
     if selected == "5":
-        amount_axles = input(f"\n{Fore.CYAN}How many axles? {Fore.RESET}")
-
-        if axles_price * int(amount_axles) > vars.cash_total:
-            print(f"{Fore.RED}You can't spend that much on axles{Fore.RESET}")
-            input("Press Enter to Continue...")
-            fort()
-        if vars.cash_total <= 0:
-            print(f"{Fore.RED} You can't spend any more.{Fore.RESET}")
-            input("Press Enter to Continue...")
-            fort()
-        elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (int(amount_axles)))
-            vars.amount_spent_on_miscellaneous = int(
-                (vars.amount_spent_on_miscellaneous + int(amount_axles))
-            )
-            fort()
-        else:
-            print("\n{Fore.RED}Please enter a number{Fore.RESET}\n")
-        console.clear()
-
-    if selected == "6":
-        amount_tounges = input(f"\n{Fore.CYAN}How many tounges? {Fore.RESET}")
-
-        if tounges_price * int(amount_tounges) > vars.cash_total:
-            print(
-                f"{Fore.RED}You can't spend that much on tounges{Fore.RESET}"
-            )
-            input("Press Enter to Continue...")
-            fort()
-        if vars.cash_total <= 0:
-            print(f"{Fore.RED} You can't spend any more.{Fore.RESET}")
-            input("Press Enter to Continue...")
-            fort()
-        elif vars.cash_total > 0:
-            vars.cash_total = int(vars.cash_total - (int(amount_tounges)))
-            vars.amount_spent_on_miscellaneous = int(
-                (vars.amount_spent_on_miscellaneous + int(amount_tounges))
-            )
-            fort()
-        else:
-            print("\n{Fore.RED}Please enter a number{Fore.RESET}\n")
-        console.clear()
-
-    if selected == "7":
         amount_pounds = input(f"\n{Fore.CYAN}How many pounds? {Fore.RESET}")
 
         if food_price * int(amount_pounds) > vars.cash_total:
@@ -802,7 +535,6 @@ per pound   ".ljust(
 
 
 def eating_quality():
-    print("eating_quality")
     """Function for choosing how well the
     player wants to divide their rations"""
     console.clear()
@@ -839,7 +571,6 @@ eat each day can change. These amounts are: {Fore.RESET}"
 
 
 def wait():
-    print("wait")
     console.clear()
     vars.current_date += int(input("How many days would you like to wait?: "))
     if vars.current_date > 31:
@@ -864,7 +595,6 @@ events_list = [
     eating,
     animals_attack,
     bandits_attack,
-    disease,
     wrong_trail,
 ]
 

@@ -9,7 +9,7 @@ console = Console()
 
 class Character:
     def __init__(self):
-        self.money = 1600
+        self.money = 1600.00
 
 
 class Player(Character):

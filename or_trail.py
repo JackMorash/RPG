@@ -41,6 +41,7 @@ def update():
     vars.current_date += 1
     vars.total_mileage += 15
     vars.amount_spent_on_food -= int(3 / vars.choice_of_eating)
+    vars.hp()
     next_landmark()
     if vars2.member_is_sick == True:
         if random.randint(0, 100) < 10:
@@ -84,8 +85,8 @@ def walking_trail():
 
         print(
             f"""
-                            {get_date()}
-                     {vars.location}
+                            {get_date().center(22)}
+                     {(vars.location).center(35)}
 ███████████████████████████████████████████████████████████████████████████████
 
     [cyan italic]Weather: {vars.weather}[/cyan italic]
@@ -1072,3 +1073,6 @@ def the_dalles():
 not far until Oregon City now![/italic cyan]"
     )
     input("Press Enter to Continue...")
+
+
+walking_trail()

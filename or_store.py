@@ -55,7 +55,7 @@ def food():
                 "\n[cyan italic]I recommend you take at least 200 pounds of food\
  for each person in your group. I see that you have 5 people in total.\
  You'll need flour, sugar, bacon, and coffee.\
- My total is [green]¢20 a pound[/green][/cyan italic]\n"
+ My total is [green]¢20[/green] a pound[/cyan italic]\n"
             )
             amount = input("\nHow many pounds of food do you want?: ")
             food_total = int(amount)
@@ -169,21 +169,15 @@ def parts():
     while True:
         try:
             print(
-                "\n[cyan italic]It's a good idea to have a few spare parts for\
- your wagon. Here are the totals:\
-\nWagon wheel - [green]$10 each[/green]\
-\nWagon axle - [green]$10 each[/green]\
-\nWagon tongue - [green]$10 each[/green]\n"
+                "\n[cyan italic]It's a good idea to have miscellaneous \
+supplies such as medicine for when party members become ill, and wagon parts \
+for when your wagon breaks down[/cyan italic]"
             )
-            amount1 = input("How many wagon wheels do you want?: ")
-            amount2 = input("How many wagon axles do you want?: ")
-            amount3 = input("How many wagon tongues do you want?: ")
-            wheels = int(amount1)
-            axles = int(amount2)
-            tongues = int(amount3)
-            parts_total = wheels + axles + tongues
+            amount = input("How mmany supplies do you want? ")
+            misc = int(amount)
+            parts_total = misc
             if (parts_total) > player.money:
-                print("[red]You can't spend that much on spare parts[/red]")
+                print("[red]You can't spend that much on misc supplies[/red]")
                 time.sleep(1.5)
                 continue
             if player.money <= 0:
@@ -214,17 +208,17 @@ def matt_message():
     time.sleep(1.5)
     console.clear()
     print(
-        "\nBefore leaving [red]Independence[/red] you should buy equipment \
+        "\nBefore leaving [red]Independence[/red]you should buy equipment \
 and supplies. You have [green]$1600.00[/green] in cash, but you \
 dont have to spend it \
-all now.\n\n You can buy whatever you need at \
+all now.\n\nYou can buy whatever you need at \
 [red]Matt's General Store[/red]"
     )
     input("Press Enter to continue...")
     console.clear()
     print(
         "\n[cyan italic] Hello, I'm Matt. So you're going to Oregon! I can\
- fix you up with what you need:\n\n\n - [blue]A team of oxen to pull your \
+ fix you up with what you need:\n\n\n [blue]- A team of oxen to pull your \
 wagon\
 \n - Clothing for both winter and summer[/blue]\n\n"
     )
@@ -264,7 +258,7 @@ def store():
     )
     # Creates "parts" portion of the table
     table.add_row(
-        "5. Spare Parts",
+        "5. Misc. (Medicine, Wagon parts etc.)",
         f"[green]${p}[/green]",
     )
     # Creates the total spent portion of the table
