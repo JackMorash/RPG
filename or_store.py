@@ -268,7 +268,8 @@ def store():
     console.print(table)
 
     while True:
-        # Displays and handles store options and which option the player selects
+        # Displays and handles store options and which option the player 
+        # selects
         try:
             print(
                 "Which item would you like to buy?\n\n[cyan italic]\

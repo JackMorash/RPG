@@ -389,7 +389,7 @@ starve to death{Fore.RESET}\n"
 
 
 def fort():
-
+    """Defines fort store UI event"""
     try:
         spacer = " " * 20
         oxen_price = 25.00

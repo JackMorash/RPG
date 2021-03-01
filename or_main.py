@@ -133,10 +133,15 @@ def on_press(key):
 
 
 def in_menu():
+    """Loops the keyboard listener to determine which key the player pushes"""
     global selected
+    # Variable for which option is selected
     selected = 0
+    # Starts listening to keyboard inputs
     listener = keyboard.Listener(on_press=on_press, suppress=True)
     listener.start()
+    # Loop for checking which key is pressed, updates menu when player presses
+    # key
     while True:
         main_menu()
         key = queue.get()

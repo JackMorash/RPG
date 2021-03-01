@@ -38,6 +38,7 @@ listener = KeyListener()
 
 
 def update():
+    """Refreshed trail UI, updates date, mileage, checks player variables"""
     vars.current_date += 1
     vars.total_mileage += 15
     vars.amount_spent_on_food -= int(3 / vars.choice_of_eating)

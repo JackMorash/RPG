@@ -8,10 +8,17 @@ console = Console()
 
 
 class Map:
+    """Class for displaying the Map"""
+
     def __init__(self):
+        """Initial variables"""
+        # Determines which message displays
         map_message = ""
+        # Determines which location the player selects
         self.position = 0
+        # Empty space when displaying certain prints
         self.spacer = " " * 47
+        # Array for map locations, (looks terrible in the IDE)
         self.map = [
             [
                 f"\n{self.spacer}╔═════════════════════════╗\n{self.spacer}║\
@@ -46,12 +53,14 @@ class Map:
         ]
 
     def print(self, selected):
+        """Function determines which location is selected, prints array"""
         flat_map = []
         for y in self.map:
             for x in y:
                 flat_map.append(x)
             flat_map.append("\n")
 
+        # Determines message for which location player selects
         if selected == 0:
             flat_map[77] = "[bold green][INDEPENDENCE][/bold green]"
             self.map_message = "[i cyan]Independence was founded by pioneers who\n\
@@ -122,6 +131,7 @@ before Oregon City[/i cyan]"
             self.map_message = "[i cyan]Your final destination[/i cyan]"
         console.clear()
         print(" ".join(flat_map))
+        # Prints map key, displays selected location's description
         print(
             f"""
     ╔═══════════════════════╗
@@ -130,8 +140,7 @@ before Oregon City[/i cyan]"
     ║      ◼ LANDMARKS      ║
     ║      ★ HOME           ║
     ║                       ║
-    ╚═══════════════════════╝
-        
+    ╚═══════════════════════╝    
 {self.map_message}"""
         )
 
@@ -146,10 +155,15 @@ def on_press(key):
 
 
 def print_map():
+    """Loops the keyboard listener to determine which key the player pushes"""
+    # Starts listening to keyboard inputs
     listener = keyboard.Listener(on_press=on_press, suppress=True)
     listener.start()
+    # Variable for which option is selected
     global selected
     selected = 0
+    # Loop for checking which key is pressed, updates menu when player presses
+    # key
     while True:
         map.print(selected)
         key = queue.get()
