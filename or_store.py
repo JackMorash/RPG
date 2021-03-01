@@ -24,18 +24,18 @@ I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
             amount = input("How many yoke do you want?: ")
             oxen_total = int(amount)
 
-            if (oxen_total * 40.00) > player.money:
+            if (oxen_total * 40.00) > vars.cash_total:
                 print("[red]You can't spend that much on oxen[/red]")
                 time.sleep(1.5)
                 continue
-            if player.money <= 0:
+            if vars.cash_total <= 0:
                 print("\n[red] You can't spend any more.[/red]")
                 time.sleep(1.5)
                 console.clear()
                 store()
                 continue
-            elif player.money > 0:
-                player.money = int(player.money - (oxen_total * 40.00))
+            elif vars.cash_total > 0:
+                vars.cash_total = int(vars.cash_total - (oxen_total * 40.00))
                 vars.amount_spent_on_animals = int(
                     vars.amount_spent_on_animals + oxen_total * 40.00
                 )
@@ -59,18 +59,18 @@ def food():
             )
             amount = input("\nHow many pounds of food do you want?: ")
             food_total = int(amount)
-            if (food_total * 0.20) > player.money:
+            if (food_total * 0.20) > vars.cash_total:
                 print("[red]You can't spend that much on food[/red]")
                 time.sleep(1.5)
                 continue
-            if player.money <= 0:
+            if vars.cash_total <= 0:
                 print("\n[red] You can't spend any more.[/red]")
                 time.sleep(1.5)
                 console.clear()
                 store()
                 continue
-            elif player.money > 0:
-                player.money = int(player.money - (food_total * 0.20))
+            elif vars.cash_total > 0:
+                vars.cash_total = int(vars.cash_total - (food_total * 0.20))
                 vars.amount_spent_on_food = int(
                     vars.amount_spent_on_food + food_total * 0.20
                 )
@@ -98,18 +98,20 @@ def clothes():
  clothes do you want?: "
             )
             clothes_total = int(amount)
-            if (clothes_total * 40.00) > player.money:
+            if (clothes_total * 40.00) > vars.cash_total:
                 print("[red]You can't spend that much on clothes[/red]")
                 time.sleep(1.5)
                 continue
-            if player.money <= 0:
+            if vars.cash_total <= 0:
                 print("\n[red] You can't spend any more.[/red]")
                 time.sleep(1.5)
                 console.clear()
                 store()
                 break
-            elif player.money > 0:
-                player.money = int(player.money - (clothes_total * 10.00))
+            elif vars.cash_total > 0:
+                vars.cash_total = int(
+                    vars.cash_total - (clothes_total * 10.00)
+                )
                 vars.amount_spent_on_clothing = int(
                     vars.amount_spent_on_clothing + clothes_total * 10.00
                 )
@@ -134,7 +136,7 @@ box costs [green]$2.00.[/green][/cyan italic]\n"
             amount = input("\nHow many boxes do you want?: ")
             bullets_total = int(amount)
             # Determines if the player can spend enough bullets
-            if (bullets_total * 2.00) > player.money:
+            if (bullets_total * 2.00) > vars.cash_total:
                 print(
                     "[red]You can't buy that many bullets, it's not like \
 you are an American or something...oh wait[/red]"
@@ -142,15 +144,15 @@ you are an American or something...oh wait[/red]"
                 time.sleep(1.5)
                 continue
             # Determines if the player can afford bullets
-            if player.money <= 0:
+            if vars.cash_total <= 0:
                 print("\n[red] You can't spend any more.[/red]\n")
                 time.sleep(1.5)
                 console.clear()
                 store()
                 break
             # Adds bullets to total player bullets
-            elif player.money > 0:
-                player.money = int(player.money - (bullets_total * 2.00))
+            elif vars.cash_total > 0:
+                vars.cash_total = int(vars.cash_total - (bullets_total * 2.00))
                 vars.amount_spent_on_bullets = int(
                     vars.amount_spent_on_bullets + bullets_total * 2.00
                 )
@@ -176,18 +178,18 @@ for when your wagon breaks down[/cyan italic]"
             amount = input("How mmany supplies do you want? ")
             misc = int(amount)
             parts_total = misc
-            if (parts_total) > player.money:
+            if (parts_total) > vars.cash_total:
                 print("[red]You can't spend that much on misc supplies[/red]")
                 time.sleep(1.5)
                 continue
-            if player.money <= 0:
+            if vars.cash_total <= 0:
                 print("\n[red] You can't spend any more.[/red]")
                 time.sleep(1.5)
                 console.clear()
                 store()
                 break
-            elif player.money > 0:
-                player.money = int(player.money - (parts_total * 10.00))
+            elif vars.cash_total > 0:
+                vars.cash_total = int(vars.cash_total - (parts_total * 10.00))
                 vars.amount_spent_on_miscellaneous = int(
                     vars.amount_spent_on_miscellaneous + parts_total * 10.00
                 )
@@ -208,7 +210,7 @@ def matt_message():
     time.sleep(1.5)
     console.clear()
     print(
-        "\nBefore leaving [red]Independence[/red]you should buy equipment \
+        "\nBefore leaving [red]Independence[/red] you should buy equipment \
 and supplies. You have [green]$1600.00[/green] in cash, but you \
 dont have to spend it \
 all now.\n\nYou can buy whatever you need at \
