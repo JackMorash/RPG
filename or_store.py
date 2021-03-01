@@ -1,5 +1,4 @@
 import time
-from re import T
 
 from rich import print
 from rich.console import Console

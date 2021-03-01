@@ -1,11 +1,8 @@
 import random
 import time
-from functools import partial
-from queue import SimpleQueue
 
-from colorama import Back, Fore, Style
+from colorama import Back, Fore
 from rich.console import Console
-from rich.table import Table
 
 from or_globalvars import player, vars, vars2
 

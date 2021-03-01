@@ -10,10 +10,9 @@
 # xlib package. You must also click into the VM window in order to operate
 # the UI elements
 
-from functools import partial
 from queue import SimpleQueue
 
-from colorama import Back, Fore, Style
+from colorama import Back, Fore
 from pynput import keyboard
 from rich.console import Console
 from rich.markdown import Markdown
@@ -103,7 +102,7 @@ and you've just
     good luck!!!
     """
     )
-    input(f"\nPress Enter to Continue")
+    input("\nPress Enter to Continue")
     in_menu()
     console.clear()
 
@@ -120,7 +119,7 @@ def op(selected):
         with open("changelog.md") as md:
             markdown = Markdown(md.read())
         console.print(markdown)
-        input(f"\nPress Enter to Continue")
+        input("\nPress Enter to Continue")
         in_menu()
         console.clear()
     elif selected == 3:
