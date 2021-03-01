@@ -11,14 +11,14 @@ Python 3.7 is needed to play this game. [Python 3.7](https://www.python.org/down
 
 If running in a CLI:
 
-Paste this in the command line: 
+  Paste this in the command line: 
 
-  ```python
-  python or_main.py
-  ```
+    ```python
+    python or_main.py
+    ```
 If running in Repl.it:
   
-  select or_main.py and click "Run"
+    select or_main.py and click "Run"
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
