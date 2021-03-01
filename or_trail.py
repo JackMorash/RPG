@@ -123,6 +123,8 @@ def walking_trail():
             or_events.eating_quality()
         elif option == "6":
             or_events.wait()
+        elif option == "exit":
+            quit()
         if vars.reached_landmark == True:
             if option == "7":
                 landmark_message()
@@ -1073,6 +1075,3 @@ def the_dalles():
 not far until Oregon City now![/italic cyan]"
     )
     input("Press Enter to Continue...")
-
-
-walking_trail()
