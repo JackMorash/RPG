@@ -6,23 +6,23 @@ This will be a recreation in python of the original 1971 text based adventure "O
 
 Python 3.7 or above is needed to play this game. [Python](https://www.python.org/downloads/).
 
-###Required packages: colorama, rich, xlib, pynput
+### Required packages: colorama, rich, xlib, pynput
 
-####If using CLI or vscode:
+#### If using CLI or vscode:
 
 Enter this into the console:
 ```pip install colorama rich xlib pynput```
 
 ## How to start the program
 
-###If running in a CLI:
+### If running in a CLI:
 
-  ####Paste this in the command line: 
+  #### Paste this in the command line: 
 
  ```python
  python or_main.py
  ```
-###If running in Repl.it:
+### If running in Repl.it:
   
 select or_main.py and click "Run"
 
