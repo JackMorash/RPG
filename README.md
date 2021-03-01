@@ -13,9 +13,9 @@ If running in a CLI:
 
   Paste this in the command line: 
 
-    ```python
-    python or_main.py
-    ```
+ ```python
+ python or_main.py
+ ```
 If running in Repl.it:
   
     select or_main.py and click "Run"
