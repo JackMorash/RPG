@@ -1,4 +1,5 @@
 import time
+from re import T
 
 from rich import print
 from rich.console import Console
@@ -14,191 +15,196 @@ console = Console()
 def oxen():
     """Function for handling the purchase of oxen"""
     while True:
-        print(
-            "\n[cyan italic]There are 2 oxen in a yoke;\n\
+        try:
+            print(
+                "\n[cyan italic]There are 2 oxen in a yoke;\n\
 I recommend at least 3 yoke.\nI charge [green]$40[/green] a yoke.\n\
 [/cyan italic]"
-        )
-        amount = input("How many yoke do you want?: ")
-        oxen_total = int(amount)
+            )
+            amount = input("How many yoke do you want?: ")
+            oxen_total = int(amount)
 
-        if (oxen_total * 40.00) > player.money:
-            print("[red]You can't spend that much on oxen[/red]")
-            time.sleep(1.5)
-            continue
-        if player.money <= 0:
-            print("\n[red] You can't spend any more.[/red]")
-            time.sleep(1.5)
+            if (oxen_total * 40.00) > player.money:
+                print("[red]You can't spend that much on oxen[/red]")
+                time.sleep(1.5)
+                continue
+            if player.money <= 0:
+                print("\n[red] You can't spend any more.[/red]")
+                time.sleep(1.5)
+                console.clear()
+                store()
+                continue
+            elif player.money > 0:
+                player.money = int(player.money - (oxen_total * 40.00))
+                vars.amount_spent_on_animals = int(
+                    vars.amount_spent_on_animals + oxen_total * 40.00
+                )
+                store()
+        except ValueError:
+            print("\n[red]Please enter a number[/red]\n")
+            input("\nPress Enter to Continue")
             console.clear()
             store()
-            continue
-        elif player.money > 0:
-            player.money = int(player.money - (oxen_total * 40.00))
-            vars.amount_spent_on_animals = int(
-                vars.amount_spent_on_animals + oxen_total * 40.00
-            )
-            store()
-            break
-        elif ValueError:
-            print("\n[red]Please enter a number[/red]\n")
-            continue
-        console.clear()
-        store()
 
 
 def food():
     """Function for handling the purchase of food"""
     while True:
-        print(
-            "\n[cyan italic]I recommend you take at least 200 pounds of food\
+        try:
+            print(
+                "\n[cyan italic]I recommend you take at least 200 pounds of food\
  for each person in your group. I see that you have 5 people in total.\
  You'll need flour, sugar, bacon, and coffee.\
  My total is [green]¢20 a pound[/green][/cyan italic]\n"
-        )
-        amount = input("\nHow many pounds of food do you want?: ")
-        food_total = int(amount)
-        if (food_total * 0.20) > player.money:
-            print("[red]You can't spend that much on food[/red]")
-            time.sleep(1.5)
-            continue
-        if player.money <= 0:
-            print("\n[red] You can't spend any more.[/red]")
-            time.sleep(1.5)
-            console.clear()
-            store()
-            continue
-        elif player.money > 0:
-            player.money = int(player.money - (food_total * 0.20))
-            vars.amount_spent_on_food = int(
-                vars.amount_spent_on_food + food_total * 0.20
             )
+            amount = input("\nHow many pounds of food do you want?: ")
+            food_total = int(amount)
+            if (food_total * 0.20) > player.money:
+                print("[red]You can't spend that much on food[/red]")
+                time.sleep(1.5)
+                continue
+            if player.money <= 0:
+                print("\n[red] You can't spend any more.[/red]")
+                time.sleep(1.5)
+                console.clear()
+                store()
+                continue
+            elif player.money > 0:
+                player.money = int(player.money - (food_total * 0.20))
+                vars.amount_spent_on_food = int(
+                    vars.amount_spent_on_food + food_total * 0.20
+                )
+                console.clear()
+                store()
+                break
+        except ValueError:
+            print("\n[red]Please enter a number[/red]\n")
+            input("\nPress Enter to Continue")
             console.clear()
             store()
-            break
-        elif ValueError:
-            print("\n[red]Please enter a number[/red]\n")
-        console.clear()
-        store()
 
 
 def clothes():
     """Function for handling the purchase of clothes"""
     while True:
-        print(
-            "\n[cyan italic]You'll need warm clothing in the mountains.\
+        try:
+            print(
+                "\n[cyan italic]You'll need warm clothing in the mountains.\
  I recommend taking at least 2 sets of clothes per person.\
  Each set is [green]$10.00.[/green][/cyan italic]\n"
-        )
-        amount = input(
-            "\nHow many sets of\
- clothes do you want?: "
-        )
-        clothes_total = int(amount)
-        if (clothes_total * 40.00) > player.money:
-            print("[red]You can't spend that much on clothes[/red]")
-            time.sleep(1.5)
-            continue
-        if player.money <= 0:
-            print("\n[red] You can't spend any more.[/red]")
-            time.sleep(1.5)
-            console.clear()
-            store()
-            break
-        elif player.money > 0:
-            player.money = int(player.money - (clothes_total * 10.00))
-            vars.amount_spent_on_clothing = int(
-                vars.amount_spent_on_clothing + clothes_total * 10.00
             )
+            amount = input(
+                "\nHow many sets of\
+ clothes do you want?: "
+            )
+            clothes_total = int(amount)
+            if (clothes_total * 40.00) > player.money:
+                print("[red]You can't spend that much on clothes[/red]")
+                time.sleep(1.5)
+                continue
+            if player.money <= 0:
+                print("\n[red] You can't spend any more.[/red]")
+                time.sleep(1.5)
+                console.clear()
+                store()
+                break
+            elif player.money > 0:
+                player.money = int(player.money - (clothes_total * 10.00))
+                vars.amount_spent_on_clothing = int(
+                    vars.amount_spent_on_clothing + clothes_total * 10.00
+                )
+                console.clear()
+                store()
+                break
+        except ValueError:
+            print("\n[red]Please enter a number[/red]\n")
+            input("\nPress Enter to Continue")
             console.clear()
             store()
-            break
-        elif ValueError:
-            print("\n[red]Please enter a number[/red]\n")
-            continue
-        console.clear()
-        store()
 
 
 def bullets():
     """Function for handling the purchase of bullets"""
     while True:
-        print(
-            "\n[cyan italic]I sell ammunition in boxes of 20 bullets. Each\
-box costs [green]$2.00.[/green][/cyan italic]\n"
-        )
-        amount = input("\nHow many boxes do you want?: ")
-        bullets_total = int(amount)
-        # Determines if the player can spend enough bullets
-        if (bullets_total * 2.00) > player.money:
+        try:
             print(
-                "[red]You can't buy that many bullets, it's not like \
+                "\n[cyan italic]I sell ammunition in boxes of 20 bullets. Each\
+box costs [green]$2.00.[/green][/cyan italic]\n"
+            )
+            amount = input("\nHow many boxes do you want?: ")
+            bullets_total = int(amount)
+            # Determines if the player can spend enough bullets
+            if (bullets_total * 2.00) > player.money:
+                print(
+                    "[red]You can't buy that many bullets, it's not like \
 you are an American or something...oh wait[/red]"
-            )
-            time.sleep(1.5)
-            continue
-        # Determines if the player can afford bullets
-        if player.money <= 0:
-            print("\n[red] You can't spend any more.[/red]\n")
-            time.sleep(1.5)
-            console.clear()
-            store()
-            break
-        # Adds bullets to total player bullets
-        elif player.money > 0:
-            player.money = int(player.money - (bullets_total * 2.00))
-            vars.amount_spent_on_bullets = int(
-                vars.amount_spent_on_bullets + bullets_total * 2.00
-            )
-            console.clear()
-            store()
-            break
-        elif ValueError:
+                )
+                time.sleep(1.5)
+                continue
+            # Determines if the player can afford bullets
+            if player.money <= 0:
+                print("\n[red] You can't spend any more.[/red]\n")
+                time.sleep(1.5)
+                console.clear()
+                store()
+                break
+            # Adds bullets to total player bullets
+            elif player.money > 0:
+                player.money = int(player.money - (bullets_total * 2.00))
+                vars.amount_spent_on_bullets = int(
+                    vars.amount_spent_on_bullets + bullets_total * 2.00
+                )
+                console.clear()
+                store()
+                break
+        except ValueError:
             print("\n[red]Please enter a number[/red]\n")
-            continue
-        console.clear()
-        store()
+            input("\nPress Enter to Continue")
+            console.clear()
+            store()
 
 
 def parts():
     """Function for handling the purchase of misc. parts"""
     while True:
-        print(
-            "\n[cyan italic]It's a good idea to have a few spare parts for\
+        try:
+            print(
+                "\n[cyan italic]It's a good idea to have a few spare parts for\
  your wagon. Here are the totals:\
 \nWagon wheel - [green]$10 each[/green]\
 \nWagon axle - [green]$10 each[/green]\
 \nWagon tongue - [green]$10 each[/green]\n"
-        )
-        amount1 = input("How many wagon wheels do you want?: ")
-        amount2 = input("How many wagon axles do you want?: ")
-        amount3 = input("How many wagon tongues do you want?: ")
-        wheels = int(amount1)
-        axles = int(amount2)
-        tongues = int(amount3)
-        parts_total = wheels + axles + tongues
-        if (parts_total) > player.money:
-            print("[red]You can't spend that much on spare parts[/red]")
-            time.sleep(1.5)
-            continue
-        if player.money <= 0:
-            print("\n[red] You can't spend any more.[/red]")
-            time.sleep(1.5)
-            console.clear()
-            store()
-            break
-        elif player.money > 0:
-            player.money = int(player.money - (parts_total * 10.00))
-            vars.amount_spent_on_miscellaneous = int(
-                vars.amount_spent_on_miscellaneous + parts_total * 10.00
             )
+            amount1 = input("How many wagon wheels do you want?: ")
+            amount2 = input("How many wagon axles do you want?: ")
+            amount3 = input("How many wagon tongues do you want?: ")
+            wheels = int(amount1)
+            axles = int(amount2)
+            tongues = int(amount3)
+            parts_total = wheels + axles + tongues
+            if (parts_total) > player.money:
+                print("[red]You can't spend that much on spare parts[/red]")
+                time.sleep(1.5)
+                continue
+            if player.money <= 0:
+                print("\n[red] You can't spend any more.[/red]")
+                time.sleep(1.5)
+                console.clear()
+                store()
+                break
+            elif player.money > 0:
+                player.money = int(player.money - (parts_total * 10.00))
+                vars.amount_spent_on_miscellaneous = int(
+                    vars.amount_spent_on_miscellaneous + parts_total * 10.00
+                )
+                console.clear()
+                store()
+                break
+        except ValueError:
+            print("[red]Please enter a number[/red]")
+            input("\nPress Enter to Continue")
             console.clear()
             store()
-            break
-        elif ValueError:
-            print("[red]Please enter a number[/red]")
-            continue
-        console.clear()
-        store()
 
 
 def matt_message():
@@ -206,6 +212,7 @@ def matt_message():
     for step in track(range(13), description="Beginning Your Journey..."):
         time.sleep(0.2)
     time.sleep(1.5)
+    console.clear()
     print(
         "\nBefore leaving [red]Independence[/red] you should buy equipment \
 and supplies. You have [green]$1600.00[/green] in cash, but you \
@@ -266,56 +273,56 @@ def store():
 
     while True:
         # Displays and handles store options and which option the player selects
-        print(
-            "Which item would you like to buy?\n\n[cyan italic]\
+        try:
+            print(
+                "Which item would you like to buy?\n\n[cyan italic]\
 Type 'leave' to exit the store[/cyan italic]"
-        )
-        selection = input("\n-->")
-        if selection == "1":
-            console.clear()
-            oxen()
-            break
-        elif selection == "2":
-            console.clear()
-            food()
-            break
-        elif selection == "3":
-            console.clear()
-            clothes()
-            break
-        elif selection == "4":
-            console.clear()
-            bullets()
-            break
-        elif selection == "5":
-            console.clear()
-            parts()
-            break
-        elif selection == "exit":
-            console.clear()
-            return None
-        elif selection == ValueError:
-            print("[bold red]Invalid Selection[/bold red]")
-        elif selection == "leave":
-            # Determines if the player has enough oxen to play the game
-            if vars.amount_spent_on_animals < 1:
-                print(
-                    "[cyan italic] Don't forget,\
+            )
+            selection = input("\n-->")
+            if selection == "1":
+                console.clear()
+                oxen()
+            elif selection == "2":
+                console.clear()
+                food()
+                break
+            elif selection == "3":
+                console.clear()
+                clothes()
+                break
+            elif selection == "4":
+                console.clear()
+                bullets()
+                break
+            elif selection == "5":
+                console.clear()
+                parts()
+                break
+            elif selection == "exit":
+                console.clear()
+                exit()
+            elif selection == "leave":
+                # Determines if the player has enough oxen to play the game
+                if vars.amount_spent_on_animals < 1:
+                    print(
+                        "[cyan italic] Don't forget,\
  you'll need oxen to pull your wagon![/cyan italic]"
-                )
-                input("Press Enter to Continue...")
-                console.clear()
-                store()
-            elif vars.amount_spent_on_animals > 1:
-                console.clear()
-                print(
-                    "[cyan italic]Well then, you are ready to start.\
+                    )
+                    input("Press Enter to Continue...")
+                    console.clear()
+                    store()
+                elif vars.amount_spent_on_animals > 1:
+                    console.clear()
+                    print(
+                        "[cyan italic]Well then, you are ready to start.\
  Good luck! You have a long and difficult\
  journey ahead of you...[/cyan italic]"
-                )
-            input("Press Enter to Continue...")
-            console.clear()
-            walking_trail()
-            break
-        else:
+                    )
+                input("Press Enter to Continue...")
+                console.clear()
+                walking_trail()
+                break
+        except ValueError:
             print("\n[red]Invalid Selection[/red]\n")
+            input("\nPress Enter to Continue")
+            continue

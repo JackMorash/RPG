@@ -22,7 +22,7 @@ class Player(Character):
         self.cold = False
         self.alive = True
         self.repair = False
-        self.miles = 2000
+        self.miles = 0
 
 
 player = Player()
@@ -228,8 +228,9 @@ class GameGlobals:
 
     def death(self):
         if self.dead == True:
+            console.clear()
             print(
-                f"""[white]
+                f"""[red]
                        uuuuuuuuuuuuuuuuuuuuu.
                    .u$$$$$$$$$$$$$$$$$$$$$$$$$$W.
                  u$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$Wu.
@@ -277,7 +278,7 @@ $$         $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
                               $$$$$$$$$$$$$$$$$$$$$$!
                             $$$$$$$$$$$$$$$$$$$$$$$`
                              $$$$$$$$$$$$$$$$$$$$"
-            [/white]"""
+            [/red]"""
             )
         quit()
 

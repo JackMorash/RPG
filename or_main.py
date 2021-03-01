@@ -30,7 +30,7 @@ options = [
     "Exit".ljust(50),
 ]
 
-selected = 0
+
 queue = SimpleQueue()
 
 
@@ -84,7 +84,7 @@ and you've just
         and bandits, and for hunting food
         Clothing - this is especially important for the cold
         weather you will encounter when crossing the mountains
-        Miscellaneous supplies - this includes medicine and1
+        Miscellaneous supplies - this includes medicine and
         other things you will need for sickness
         and emergency repairs
     {Fore.RESET}
@@ -104,6 +104,7 @@ and you've just
     """
     )
     input(f"\nPress Enter to Continue")
+    in_menu()
     console.clear()
 
 
@@ -120,6 +121,7 @@ def op(selected):
             markdown = Markdown(md.read())
         console.print(markdown)
         input(f"\nPress Enter to Continue")
+        in_menu()
         console.clear()
     elif selected == 3:
         exit()
@@ -130,23 +132,24 @@ def on_press(key):
     queue.put(key)
 
 
-listener = keyboard.Listener(on_press=on_press, suppress=True)
-listener.start()
-
-while True:
-    main_menu()
-    key = queue.get()
-    if key == keyboard.Key.up and selected > 0:
-        selected -= 1
-    elif key == keyboard.Key.down and selected < len(options) - 1:
-        selected += 1
-    elif key == keyboard.Key.enter:
-        if selected == 2:
-            op(selected)
-        else:
+def in_menu():
+    global selected
+    selected = 0
+    listener = keyboard.Listener(on_press=on_press, suppress=True)
+    listener.start()
+    while True:
+        main_menu()
+        key = queue.get()
+        if key == keyboard.Key.up and selected > 0:
+            selected -= 1
+        elif key == keyboard.Key.down and selected < len(options) - 1:
+            selected += 1
+        elif key == keyboard.Key.enter:
             listener.stop()
             op(selected)
-    elif key == keyboard.Key.esc:
-        listener.stop()
-        break
-main_menu()
+        elif key == keyboard.Key.esc:
+            listener.stop()
+            break
+
+
+in_menu()

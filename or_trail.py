@@ -40,6 +40,7 @@ listener = KeyListener()
 def update():
     vars.current_date += 1
     vars.total_mileage += 15
+    vars.amount_spent_on_food -= int(3 / vars.choice_of_eating)
     next_landmark()
     if vars2.member_is_sick == True:
         if random.randint(0, 100) < 10:
@@ -50,6 +51,15 @@ has died of {vars2.disease}.\n"
             vars2.dead_member()
             vars2.member_is_sick = False
             input("Press Enter to Continue... ")
+    if vars.amount_spent_on_food <= 0:
+        console.clear()
+        print(
+            "[red]You have run out of food. You and your party starve \
+to death before reaching Oregon City...[/red]"
+        )
+        input("Press Enter to Continue...")
+        vars.dead = True
+        vars.death()
     if random.random() < 0.3:
         or_events.events()
 
@@ -449,11 +459,11 @@ def next_landmark():
         vars.distance_to_landmark = -vars.total_mileage + 950
     if vars.location == "South Pass":
         vars.distance_to_landmark = -vars.total_mileage + 980
-    if vars.location == "Green River":
+    if vars.location == "Green River" and vars.green_river_crossing == True:
         vars.distance_to_landmark = -vars.total_mileage + 1000
     if vars.location == "Soda Springs":
         vars.distance_to_landmark = -vars.total_mileage + 1100
-    if vars.location == "Fort Bridger":
+    if vars.location == "Fort Bridger" and vars.fort_bridger == True:
         vars.distance_to_landmark = -vars.total_mileage + 1200
     if vars.location == "Snake River":
         vars.distance_to_landmark = -vars.total_mileage + 1370
@@ -473,111 +483,107 @@ def landmark():
     """Function determines which landmark the player should encounter based
     on how many miles the player has reached"""
     # Landmark flag for "Kansas River"
-    if vars.total_mileage > 100:
+    if vars.total_mileage > 100 and vars.kansas_river_passed == False:
         if vars.kansas_river_passed == False:
             vars.location = "Kansas River"
             kansas_river()
             vars.kansas_river_passed = True
     # Landmark flag for "Big Blue River"
-    if vars.total_mileage > 185:
-        if vars.big_blue_river_passed == False:
-            vars.location = "Big Blue River"
-            big_blue_river()
-            vars.big_blue_river_passed = True
+    if vars.total_mileage > 185 and vars.big_blue_river_passed == False:
+        vars.location = "Big Blue River"
+        big_blue_river()
+        vars.big_blue_river_passed = True
     # Landmark flag for "Fort Kearney"
-    if vars.total_mileage > 300:
-        if vars.fort_kearney_passed == False:
-            vars.location = "Fort Kearney"
-            fort_kearney()
-            vars.fort_kearney_passed = True
+    if vars.total_mileage > 300 and vars.fort_kearney_passed == False:
+        vars.location = "Fort Kearney"
+        fort_kearney()
+        vars.fort_kearney_passed = True
     # Landmark flag for "Chimney Rock"
-    if vars.total_mileage > 550:
-        if vars.chimney_rock_passed == False:
-            vars.location = "Chimney Rock"
-            chimney_rock()
-            vars.chimney_rock_passed = True
+    if vars.total_mileage > 550 and vars.chimney_rock_passed == False:
+        vars.location = "Chimney Rock"
+        chimney_rock()
+        vars.chimney_rock_passed = True
     # Landmark flag for "Fort Laramie"
-    if vars.current_date > 650:
-        if vars.fort_laramie_passed == False:
-            vars.location = "Fort Laramie"
-            fort_laramie()
-            vars.fort_laramie_passed = True
+    if vars.current_date > 650 and vars.fort_laramie_passed == False:
+        vars.location = "Fort Laramie"
+        fort_laramie()
+        vars.fort_laramie_passed = True
     # Landmark flag for "Independence Rock"
-    if vars.total_mileage > 850:
-        if vars.independence_rock_passed == False:
-            vars.location = "Independence Rock"
-            independence_rock()
-            vars.independence_rock_passed = True
+    if vars.total_mileage > 850 and vars.independence_rock_passed == False:
+        vars.location = "Independence Rock"
+        independence_rock()
+        vars.independence_rock_passed = True
     # Landmark flag for "South Pass"
-    if vars.total_mileage > 950:
-        if vars.south_pass_passed == False:
-            vars.location = "South Pass"
-            south_pass()
-            vars.south_pass_passed = True
+    if vars.total_mileage > 950 and vars.south_pass_passed == False:
+        vars.location = "South Pass"
+        south_pass()
+        vars.south_pass_passed = True
     # Landmark flag for "Green River"
-    if vars.total_mileage > 980:
-        if vars.green_river_passed == False:
-            if green_river == True:
-                vars.location = "Green River"
-                green_river()
-                vars.green_river_passed = True
+    if (
+        vars.total_mileage > 980
+        and vars.green_river_passed == False
+        and green_river == True
+    ):
+        vars.location = "Green River"
+        green_river()
+        vars.green_river_passed = True
     # Landmark flag for "Soda Springs"
-    if vars.total_mileage > 1000:
-        if vars.soda_springs_passed == False:
-            vars.location = "Soda Springs"
-            soda_springs()
-            vars.soda_springs_passed = True
+    if vars.total_mileage > 1000 and vars.soda_springs_passed == False:
+        vars.location = "Soda Springs"
+        soda_springs()
+        vars.soda_springs_passed = True
     # Landmark flag for "Fort Bridger"
-    if vars.total_mileage > 1100:
-        if vars.fort_bridger_passed == False:
-            if fort_bridger == True:
-                vars.location = "Fort Bridger"
-                fort_bridger()
-                vars.fort_bridger_passed = True
+    if (
+        vars.total_mileage > 1100
+        and vars.fort_bridger_passed == False
+        and fort_bridger == True
+    ):
+        vars.location = "Fort Bridger"
+        fort_bridger()
+        vars.fort_bridger_passed = True
     # Landmark flag for "Fort Hall"
-    if vars.total_mileage > 1200:
-        if vars.fort_hall_passed == False:
-            vars.location = "Fort Hall"
-            fort_hall()
-            vars.fort_hall_passed = True
+    if vars.total_mileage > 1200 and vars.fort_hall_passed == False:
+        vars.location = "Fort Hall"
+        fort_hall()
+        vars.fort_hall_passed = True
     # Landmark flag for "Snake River"
-    if vars.total_mileage > 1370:
-        if vars.snake_river_passed == False:
-            vars.location = "Snake River"
-            snake_river()
-            vars.snake_river_passed = True
+    if vars.total_mileage > 1370 and vars.snake_river_passed == False:
+        vars.location = "Snake River"
+        snake_river()
+        vars.snake_river_passed = True
     # Landmark flag for "Fort Boise"
-    if vars.total_mileage > 1500:
-        if vars.fort_boise_passed == False:
-            vars.location = "Fort Boise"
-            fort_boise()
-            vars.fort_boise_passed = True
+    if vars.total_mileage > 1500 and vars.fort_boise_passed == False:
+        vars.location = "Fort Boise"
+        fort_boise()
+        vars.fort_boise_passed = True
     # Landmark flag for "Grande Ronde Valley"
-    if vars.total_mileage > 1650:
-        if vars.grande_ronde_valley_passed == False:
-            vars.location = "Grande Ronde Valley"
-            grande_ronde_valley()
-            vars.grande_ronde_valley_passed = True
+    if vars.total_mileage > 1650 and vars.grande_ronde_valley_passed == False:
+        vars.location = "Grande Ronde Valley"
+        grande_ronde_valley()
+        vars.grande_ronde_valley_passed = True
     # Landmark flag for "Blue Mountains"
-    if vars.total_mileage > 1700:
-        if vars.blue_mountains_passed == False:
-            vars.location = "Blue Mountains"
-            blue_mountains()
-            vars.blue_mountains_passed = True
+    if vars.total_mileage > 1700 and vars.blue_mountains_passed == False:
+        vars.location = "Blue Mountains"
+        blue_mountains()
+        vars.blue_mountains_passed = True
     # Landmark flag for "Fort Walla Walla"
-    if vars.total_mileage > 1800:
-        if vars.fort_walla_walla_passed == False:
-            if vars.fort_walla_walla == True:
-                vars.location = "Fort Walla Walla"
-                fort_walla_walla()
-                vars.fort_walla_walla_passed = True
+    if (
+        vars.total_mileage > 1800
+        and vars.fort_walla_walla_passed == False
+        and vars.fort_walla_walla == True
+    ):
+        vars.location = "Fort Walla Walla"
+        fort_walla_walla()
+        vars.fort_walla_walla_passed = True
     # Landmark flag for "The Dalles"
-    if vars.total_mileage > 1770:
-        if vars.the_dalles_passed == False:
-            if vars.the_dalles == True:
-                vars.location = "The Dalles"
-                the_dalles()
-                vars.the_dalles_passed = True
+    if (
+        vars.total_mileage > 1770
+        and vars.the_dalles_passed == False
+        and vars.the_dalles == True
+    ):
+        vars.location = "The Dalles"
+        the_dalles()
+        vars.the_dalles_passed = True
 
 
 def kansas_river():
@@ -604,34 +610,32 @@ River depth: 5.2 Feet\n\n [u italic blue]You may: [/u italic blue][cyan]\n\n\
  \n 3. Wait to see if the conditions improve\n 4. Get more information[/cyan]"
         )
         option = input("\n\nWhat is your choice? ")
-        if option == "1":
-            if x < 30:
-                vars.kansas_river_passed = True
-                or_events.wagon_swamped()
-                input("\nPress Enter to Continue...")
-                break
-            if x > 30:
-                vars.kansas_river_passed = True
-                print(
-                    "\n[italic cyan]You had no \
+        if option == "1" and x < 30:
+            vars.kansas_river_passed = True
+            or_events.wagon_swamped()
+            input("\nPress Enter to Continue...")
+            break
+        if option == "1" and x > 30:
+            vars.kansas_river_passed = True
+            print(
+                "\n[italic cyan]You had no \
 trouble crossing the river[/italic cyan]"
-                )
-                input("\nPress Enter to Continue...")
-                break
-        elif option == "2":
-            if y < 40:
-                vars.kansas_river_passed = True
-                or_events.wagon_swamped()
-                input("\nPress Enter to Continue...")
-                break
-            if y > 40:
-                vars.kansas_river_passed = True
-                print(
-                    "\n[italic cyan]You had no \
+            )
+            input("\nPress Enter to Continue...")
+            break
+        elif option == "2" and y < 40:
+            vars.kansas_river_passed = True
+            or_events.wagon_swamped()
+            input("\nPress Enter to Continue...")
+            break
+        elif option == "2" and y > 40:
+            vars.kansas_river_passed = True
+            print(
+                "\n[italic cyan]You had no \
 trouble crossing the river[/italic cyan]"
-                )
-                input("\nPress Enter to Continue...")
-                break
+            )
+            input("\nPress Enter to Continue...")
+            break
         elif option == "3":
             vars.current_date += 1
             console.clear()
@@ -690,34 +694,31 @@ River depth: 3.1 Feet\n [u italic blue]\nYou may: \n[/u italic blue][cyan]\n\
  \n 3. Wait to see if the conditions improve\n 4. Get more information[/cyan]"
         )
         option = input("\nWhat is your choice? ")
-        if option == "1":
-            if x < 5:
-                vars.big_blue_river_passed = True
-                or_events.wagon_swamped()
-                input("\nPress Enter to Continue...")
-                break
-            if x > 5:
-                vars.big_blue_river_passed = True
-                print(
-                    "\n[italic cyan]You had no \
+        if option == "1" and x < 5:
+            vars.big_blue_river_passed = True
+            or_events.wagon_swamped()
+            input("\nPress Enter to Continue...")
+            break
+        elif option == "1" and x > 5:
+            vars.big_blue_river_passed = True
+            print(
+                "\n[italic cyan]You had no \
 trouble crossing the river[/italic cyan]"
-                )
-                input("\nPress Enter to Continue...")
-                break
-        elif option == "2":
-            if y < 30:
-                vars.big_blue_river_passed = True
-                or_events.wagon_swamped()
-                input("Press Enter to Continue...")
-                break
-            if y > 30:
-                vars.big_blue_river_passed = True
-                print(
-                    "\n[italic cyan]You had no \
+            )
+            input("\nPress Enter to Continue...")
+            break
+        elif option == "2" and y < 30:
+            vars.big_blue_river_passed = True
+            or_events.wagon_swamped()
+            input("Press Enter to Continue...")
+            break
+        elif option == "2" and y > 30:
+            vars.big_blue_river_passed = True
+            print(
+                "\n[italic cyan]You had no \
 trouble crossing the river[/italic cyan]"
-                )
-                input("\nPress Enter to Continue...")
-                break
+            )
+            input("\nPress Enter to Continue...")
             break
         elif option == "3":
             vars.current_date += 1
@@ -798,8 +799,9 @@ it appears to be even grander than chimney rock...[/italic cyan]"
 def south_pass():
     """Function determines landmark properties for "South Pass" """
     print(
-        "[cyan]The trail divides here. You may:\n \
-1. Head for Green River Crossing\n 2. Head for Fort Bridger\n 3. See the map"
+        "[cyan]The trail divides here. You may:\n\n \
+1. Head for Green River Crossing\n\n 2. Head for Fort Bridger\n\n \
+3. See the map"
     )
     direction = vars.input_int("What is your choice? ")
     if direction == 1:
@@ -837,44 +839,41 @@ def green_river():
         )
         print(
             "\n[italic blue]You must cross the river in order to continue. \
-The river at this point is currently 235 feet across and \
-3.1 feet deep in the middle[/italic blue]"
+The river at this point is currently 405 feet across and \
+20.7 feet deep in the middle[/italic blue]"
         )
         print(
-            f"\n[cyan]Weather: {vars.weather}\nRiver width: 235 Feet\n\
-River depth: 3.1 Feet\n [u italic blue]\nYou may: \n[/u italic blue][cyan]\n\
+            f"\n[cyan]Weather: {vars.weather}\nRiver width: 405 Feet\n\
+River depth: 20.7 Feet\n [u italic blue]\nYou may: \n[/u italic blue][cyan]\n\
  1. Attempt to ford the river\n 2. Caulk the wagon and float it across\
  \n 3. Wait to see if the conditions improve\n 4. Get more information[/cyan]"
         )
         option = input("\nWhat is your choice? ")
-        if option == "1":
-            if x < 5:
-                vars.green_river_passed = True
-                or_events.wagon_swamped()
-                input("\nPress Enter to Continue...")
-                break
-            if x > 5:
-                vars.green_river_passed = True
-                print(
-                    "\n[italic cyan]You had no \
+        if option == "1" and x < 5:
+            vars.green_river_passed = True
+            or_events.wagon_swamped()
+            input("\nPress Enter to Continue...")
+            break
+        elif option == "1" and x > 5:
+            vars.green_river_passed = True
+            print(
+                "\n[italic cyan]You had no \
 trouble crossing the river[/italic cyan]"
-                )
-                input("\nPress Enter to Continue...")
-                break
-        elif option == "2":
-            if y < 30:
-                vars.green_river_passed = True
-                or_events.wagon_swamped()
-                input("Press Enter to Continue...")
-                break
-            if y > 30:
-                vars.green_river_passed = True
-                print(
-                    "\n[italic cyan]You had no \
+            )
+            input("\nPress Enter to Continue...")
+            break
+        elif option == "2" and y < 30:
+            vars.green_river_passed = True
+            or_events.wagon_swamped()
+            input("Press Enter to Continue...")
+            break
+        elif option == "2" and y > 30:
+            vars.green_river_passed = True
+            print(
+                "\n[italic cyan]You had no \
 trouble crossing the river[/italic cyan]"
-                )
-                input("\nPress Enter to Continue...")
-                break
+            )
+            input("\nPress Enter to Continue...")
             break
         elif option == "3":
             vars.current_date += 1
@@ -945,45 +944,42 @@ def snake_river():
         )
         print(
             "\n[italic blue]You must cross the river in order to continue. \
-The river at this point is currently 235 feet across and \
-3.1 feet deep in the middle[/italic blue]"
+The river at this point is currently 1005 feet across and \
+6.8 feet deep in the middle[/italic blue]"
         )
         print(
-            f"\n[cyan]Weather: {vars.weather}\nRiver width: 235 Feet\n\
-River depth: 3.1 Feet\n [u italic blue]\nYou may: \n[/u italic blue][cyan]\n\
+            f"\n[cyan]Weather: {vars.weather}\nRiver width: 1005 Feet\n\
+River depth: 6.8 Feet\n [u italic blue]\nYou may: \n[/u italic blue][cyan]\n\
 1. Attempt to ford the river\n 2. Caulk the wagon and float it across\
     \n 3. Wait to see if the conditions improve\n\
  4. Get more information[/cyan]"
         )
         option = input("\nWhat is your choice? ")
-        if option == "1":
-            if x < 5:
-                vars.snake_river_passed = True
-                or_events.wagon_swamped()
-                input("\nPress Enter to Continue...")
-                break
-            if x > 5:
-                vars.snake_river_passed = True
-                print(
-                    "\n[italic cyan]You had no \
+        if option == "1" and x < 5:
+            vars.snake_river_passed = True
+            or_events.wagon_swamped()
+            input("\nPress Enter to Continue...")
+            break
+        elif option == "1" and x > 5:
+            vars.snake_river_passed = True
+            print(
+                "\n[italic cyan]You had no \
 trouble crossing the river[/italic cyan]"
-                )
-                input("\nPress Enter to Continue...")
-                break
-        elif option == "2":
-            if y < 30:
-                vars.snake_river_passed = True
-                or_events.wagon_swamped()
-                input("Press Enter to Continue...")
-                break
-            if y > 30:
-                vars.snake_river_passed = True
-                print(
-                    "\n[italic cyan]You had no \
+            )
+            input("\nPress Enter to Continue...")
+            break
+        elif option == "2" and y < 30:
+            vars.snake_river_passed = True
+            or_events.wagon_swamped()
+            input("Press Enter to Continue...")
+            break
+        elif option == "2" and y > 30:
+            vars.snake_river_passed = True
+            print(
+                "\n[italic cyan]You had no \
 trouble crossing the river[/italic cyan]"
-                )
-                input("\nPress Enter to Continue...")
-                break
+            )
+            input("\nPress Enter to Continue...")
             break
         elif option == "3":
             vars.current_date += 1
@@ -1043,8 +1039,8 @@ beautiful sight![/italic cyan]"
 def blue_mountains():
     """Function determines landmark properties for "Blue Mountains" """
     print(
-        "[cyan]The trail divides here. You may:\n \
-1. Head for Fort Walla Walla\n 2. Head for The Dalles\n 3. See the map"
+        "[cyan]The trail divides here. You may:\n\n \
+1. Head for Fort Walla Walla\n\n 2. Head for The Dalles\n\n 3. See the map"
     )
     direction = vars.input_int("What is your choice? ")
     if direction == 1:
@@ -1061,7 +1057,7 @@ def fort_walla_walla():
     """Function determines landmark properties for "Fort Boise" """
     console.clear()
     print(
-        "[italic blue]You have arrived at [cyan]Fort Boise[/cyan], \
+        "[italic blue]You have arrived at [cyan]Fort Walla Walla[/cyan], \
 take the time to buy some supplies...[/italic blue]"
     )
     input("Press Enter to Continue...")

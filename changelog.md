@@ -4,7 +4,7 @@
 - Basic numerical inventory created
 
 [v0.2] - 2021-02-04
-- Introductory menu's added
+- Introductory menus added
 - Player attributes defined
 - Placeholder numerical inventory removed
 
@@ -46,3 +46,28 @@
 - Added locations
 - Added loops
 - Fixed formatting issues
+
+[v1.0] 2021-02-28
+- Changed nested ifs to "and" strings
+- Fixed bug where player cant return to main menu after opening changelog
+- Added exceptions for ValueErrors
+- Fixed unreasonable penalties when missing shots while hunting
+- Fixed unbroken loop in cold_weather event
+- Added distance to next landmark counter
+- Changed events colour library from rich to colorama to better format the fort
+  store UI
+- Added the abulity to finish the game after reaching mile goal
+- Fixed error where dates was no longer imported into gameglobals
+- Added branching paths to south pass and blue mountains landmarks
+- Fixed bug where the distance to the next landmark could become a negative
+  integer
+- Changeed nested ifs to "and" strings to make code less terrible
+- Player can now win battles with wild animals
+- Added option to talk to strangers, messages change based on location
+- Fixed bug where getting a disease crashes the game
+- Fixed a bug where if a party member dies from a disease the next member to
+  become afflicted would cause an error when checking member list length
+- Fixed a bug where when choosing a path and selecting the map will cause the
+  player to be unable to choose a path
+- Made food decrease as player walks the trail, amount decreses depending on
+  food ration setting

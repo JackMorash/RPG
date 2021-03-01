@@ -24,6 +24,7 @@ def cold_weather():
         c_message
     )
     print(message)
+    print("Press Enter to Continue...")
     if not enough_clothes:
         vars.is_sufficient_clothing = True
         vars.dead = True
@@ -306,7 +307,7 @@ they took your food and clothes!{Fore.RESET}\n"
         )
         vars.amount_spent_on_bullets -= 10 * response_time
         vars.amount_spent_on_clothing -= 4 * response_time
-        vars.amount_spent_on_food -= 8 * response_time
+        vars.amount_spent_on_food -= 1 * response_time
 
 
 def bandits_attack():
@@ -333,8 +334,10 @@ def bandits_attack():
                 f"\n{Fore.RED}Too slow! They shot you.\
  Seek medical attention!{Fore.RESET}"
             )
+            vars.amount_spent_on_bullets -= 10 * response_time
             vars.got_shot = True
         else:
+            vars.amount_spent_on_bullets -= 1 * response_time
             print("\nQuickest draw outside of Dodge City!!\n")
             print("\nYou got 'em!\n")
 
@@ -345,9 +348,10 @@ def hunt():
     # Determines if the player has enough bullets to hunt
     if vars.amount_spent_on_bullets <= 0:
         print("\nTough...You need more bullets to go hunting\n")
+        input("Press Enter to Continue...")
     else:
         if vars.total_mileage > 45:
-            vars.total_mileage -= 45
+            vars.total_mileage += 20
         RND = random.randint(30, 50)
         # Determines if the player typed the word fast enough
         print("\nYou begin to look for animals...\n")
@@ -358,7 +362,7 @@ def hunt():
             print("Right between the eyes, you got a big one!!!")
             print("Full bellies tonight!")
             input("\nPress Enter to Continue...")
-            vars.amount_spent_on_food -= RND // 2
+            vars.amount_spent_on_food += RND // 2
             vars.amount_spent_on_bullets -= RND // 3
         else:
             print("You missed and your dinner got away...")
@@ -396,7 +400,7 @@ def continue_on():
 With no food and no ability to hunt, you \
 starve to death{Fore.RESET}\n"
         )
-        input("\n-->")
+        input("Press Enter to Continue")
         vars.death()
     else:
         return True
@@ -639,6 +643,7 @@ per pound   ".ljust(
         ),
         f"{Back.RESET + Fore.RESET}  8. Leave store".ljust(50),
     ]
+    print(f"\n{Fore.GREEN}{vars.cash_total}{Fore.RESET}\n")
     print(f"{Fore.CYAN}You may buy:{Fore.RESET}\n")
     for i in options:
         print(i)
@@ -817,23 +822,20 @@ eat each day can change. These amounts are: {Fore.RESET}"
         if vars.choice_of_eating == 1:
             vars.food_quality = "Filling"
             vars.choice_of_eating = 1
+            break
         if vars.choice_of_eating == 2:
             vars.food_quality = "Meager"
             vars.choice_of_eating = 2
+            break
         if vars.choice_of_eating == 3:
             vars.food_quality = "Bare Bones"
             vars.choice_of_eating = 3
+            break
         eaten = (vars.amount_spent_on_food - 8) - (5 * vars.choice_of_eating)
         if eaten < 0:
             print(f"{Fore.RED}You can't eat that well.{Fore.RESET}\n")
             input("Press Enter to Continue... ")
-        else:
-            vars.amount_spent_on_food -= 200
-            vars.total_mileage += (
-                vars.total_mileage + 200 + (vars.amount_spent_on_animals - 220)
-            ) // random.randint(5, 10)
-            vars.is_blizzard = vars.is_sufficient_clothing = False
-            break
+            continue
 
 
 def wait():
