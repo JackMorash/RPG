@@ -160,6 +160,3 @@ def print_map():
         elif key == keyboard.Key.esc:
             listener.stop()
             break
-
-
-print_map()
