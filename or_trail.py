@@ -105,7 +105,8 @@ def walking_trail():
     [blue]4. Hunt for food[/blue]
     [blue]5. Change food rations[/blue]
     [blue]6. Stop to rest[/blue]
-    [blue]7. Talk to people[/blue]\n"""
+    [blue]7. Talk to people[/blue]
+    [blue]8 Exit Program[/blue]\n"""
         )
         # Determines which option the player selects from the UI
         option = input("What is your choice? ")
@@ -124,6 +125,8 @@ def walking_trail():
         elif option == "6":
             or_events.wait()
         elif option == "exit":
+            quit()
+        elif option == "8":
             quit()
         if vars.reached_landmark == True:
             if option == "7":
